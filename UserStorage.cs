@@ -10,6 +10,12 @@
             return users.FirstOrDefault(x => x.IsSignIn);
         }
 
+        public List<User> GetAll()
+        {
+            var users = FileProvider.Load<List<User>>(fileName) ?? new List<User>();
+            return users;
+        }
+
         public void Add(User user)
         {
             var users = FileProvider.Load<List<User>>(fileName) ?? new List<User>();
