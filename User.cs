@@ -1,4 +1,4 @@
-﻿namespace AutorizationWpfApp
+﻿namespace WeatherWpfApp
 {
     public class User
     {

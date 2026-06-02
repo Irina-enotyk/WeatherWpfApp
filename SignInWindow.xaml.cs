@@ -1,13 +1,13 @@
 ﻿using System.Windows;
 
-namespace AutorizationWpfApp
+namespace WeatherWpfApp
 {
     /// <summary>
     /// Interaction logic for SignInnWindow.xaml
     /// </summary>
-    public partial class SignInnWindow : Window
+    public partial class SignInWindow : Window
     {
-        public SignInnWindow()
+        public SignInWindow()
         {
             InitializeComponent();
         }

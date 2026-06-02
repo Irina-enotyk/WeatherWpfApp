@@ -1,5 +1,4 @@
-﻿using AutorizationWpfApp;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace WeatherWpfApp
@@ -16,6 +15,7 @@ namespace WeatherWpfApp
             InitializeComponent();
 
             registrationButton.Click += RegistrationButton_Click;
+            signInButton.Click += SignInButtonButton_Click;
             signOutButton.Click += SignOutButton_Click;
             Loaded += MainWindow_Loaded;
 
@@ -38,6 +38,19 @@ namespace WeatherWpfApp
             };                                                                      
         }
 
+        private void SignInButtonButton_Click(object sender, RoutedEventArgs e)
+        {
+            var signInWindow = new SignInWindow();
+            signInWindow.ShowDialog();
+
+            userNameLabel.Visibility = Visibility.Visible;
+            signOutButton.Visibility = Visibility.Visible;
+            personRoomLabel.Visibility = Visibility.Visible;
+
+            //signInButton.Visibility = Visibility.Collapsed;
+            //registrationButton.Visibility = Visibility.Collapsed;
+        }
+
         private void RegistrationButton_Click(object sender, RoutedEventArgs e)
         {
             var registrationWindow = new RegistrationWindow();
@@ -47,8 +60,8 @@ namespace WeatherWpfApp
             signOutButton.Visibility = Visibility.Visible;
             personRoomLabel.Visibility = Visibility.Visible;
 
-            signInButton.Visibility = Visibility.Collapsed;
-            registrationButton.Visibility = Visibility.Collapsed;
+            //signInButton.Visibility = Visibility.Collapsed;
+            //registrationButton.Visibility = Visibility.Collapsed;
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)

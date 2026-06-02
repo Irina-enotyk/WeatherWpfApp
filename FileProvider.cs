@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text.Json;
 
-namespace AutorizationWpfApp
+namespace WeatherWpfApp
 {
     public static class FileProvider
     {
