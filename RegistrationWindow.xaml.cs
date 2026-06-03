@@ -45,9 +45,7 @@ namespace WeatherWpfApp
             }
 
             var user = new User(loginTextBox.Text, passwordTextBox.Text);
-            user.IsSignIn = true;
             userStorage.Add(user);
-
             MessageBox.Show("Успешная регистрация!");
             Close();
         }

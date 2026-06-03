@@ -7,8 +7,6 @@ namespace WeatherWpfApp
     /// </summary>
     public partial class SignInWindow : Window
     {
-
-
         private UserStorage userStorage = new UserStorage();
 
         public SignInWindow()
@@ -38,11 +36,12 @@ namespace WeatherWpfApp
                 return;
             }
 
+            var users = userStorage.GetAll();
             if (rememberMeCheckBox.IsChecked == true)
             {
-                userStorage.SwitchSignInUser(currentUser);
+                userStorage.SwitchSignInUser(currentUser, users);
             }
-            userStorage.SwitchActiveUser(currentUser);
+            userStorage.SwitchActiveUser(currentUser, users);
             Close();
         }
     }

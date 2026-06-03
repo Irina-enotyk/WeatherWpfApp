@@ -18,7 +18,8 @@ namespace WeatherWpfApp
             LoadForecastData();
 
             user = userStorage.GetSignInUser();
-            userStorage.SwitchActiveUser(user);
+            var users = userStorage.GetAll();
+            userStorage.SwitchActiveUser(user, users);
         }
 
         private void ShowUser()
