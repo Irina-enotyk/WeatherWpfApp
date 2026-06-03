@@ -4,8 +4,6 @@
     {
         private const string fileName = "Users.json";
 
-        //private List<User> users;
-
         public UserStorage ()
         {
             GetAll();
