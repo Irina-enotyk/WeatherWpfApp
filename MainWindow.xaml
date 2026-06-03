@@ -16,7 +16,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height =' 1*'/>
+            <RowDefinition Height =' auto'/>
             <RowDefinition Height =' 1*'/>
             <RowDefinition Height =' 10*'/>
         </Grid.RowDefinitions>
@@ -45,37 +45,38 @@
                        HorizontalAlignment="Center"/>       
                 </Grid>
                 <Grid Grid.Column="2">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Label x:Name="personRoomLabel"
+                    <Label x:Name="userNameLabel"
+                        Grid.Row="0"
                         Grid.Column="0"
-                        Content="Кабинет"
                         Margin="5"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"/>
-                    <Label x:Name="userNameLabel"
+                    <Button x:Name="signOutButton"
+                        Grid.Row="0"
                         Grid.Column="1"
                         Margin="5"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center"/>
+                        Content="Выйти"/>
                     <Button x:Name="registrationButton"
-                        Grid.Column="2" 
+                        Grid.Row="1"
+                        Grid.Column="0" 
                         Margin="5" 
                         Content="Регистрация"/>
                     <Button x:Name="signInButton"
-                        Grid.Column="3" 
+                        Grid.Row="1"
+                        Grid.Column="1" 
                         Margin="5" 
                         Content="Войти"/>
-                    <Button x:Name="signOutButton"
-                        Grid.Column="4"
-                        Margin="5"
-                        Content="Выйти"/>
                 </Grid>
 
             </Grid>

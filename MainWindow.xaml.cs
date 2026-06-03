@@ -16,16 +16,21 @@ namespace WeatherWpfApp
             InitializeComponent();
             SetSubscribes();
             LoadForecastData();
+
+            user = userStorage.GetSignInUser();
+            userStorage.SwitchActiveUser(user);
         }
 
-        public void SetActiveUser()
+        private void ShowUser()
         {
             if (user == null)
             {
                 userNameLabel.Content = "Имя";
+                OutAccount();
                 return;
             }
-            userNameLabel.Content = user.Login;
+            userNameLabel.Content = "Имя: " + user.Login;
+            InAccount();
         }
 
         private void SetSubscribes()
@@ -33,20 +38,17 @@ namespace WeatherWpfApp
             registrationButton.Click += RegistrationButton_Click;
             signInButton.Click += SignInButtonButton_Click;
             signOutButton.Click += SignOutButton_Click;
-            Loaded += MainWindow_Loaded;
             Activated += MainWindow_Activated;
-        }
-
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            user = userStorage.GetSignInUser();
-            SetActiveUser();
         }
 
         private void MainWindow_Activated(object? sender, EventArgs e)
         {
-            user = userStorage.GetActiveUser();
-            SetActiveUser();
+            if (userStorage.GetActiveUser() != null)
+            {
+                user = userStorage.GetActiveUser();
+            }
+            else { user = userStorage.GetSignInUser(); }
+            ShowUser();
         }
 
         private void SignInButtonButton_Click(object sender, RoutedEventArgs e)
@@ -64,7 +66,24 @@ namespace WeatherWpfApp
         private void SignOutButton_Click(object sender, RoutedEventArgs e)
         {
             user = null;
-            SetActiveUser();
+            ShowUser();
+        }
+
+        private void OutAccount()
+        {
+            userNameLabel.Visibility = Visibility.Collapsed;
+            signOutButton.Visibility = Visibility.Collapsed;
+
+            registrationButton.Visibility = Visibility.Visible;
+            signInButton.Visibility = Visibility.Visible;
+        }
+        private void InAccount()
+        {
+            userNameLabel.Visibility = Visibility.Visible;
+            signOutButton.Visibility = Visibility.Visible;
+
+            registrationButton.Visibility = Visibility.Collapsed;
+            signInButton.Visibility = Visibility.Collapsed;
         }
 
         private void WeatherDayButton_Click(object sender, RoutedEventArgs e)

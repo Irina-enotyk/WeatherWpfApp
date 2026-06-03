@@ -8,16 +8,18 @@
 
         public UserStorage ()
         {
-            users = FileProvider.Load<List<User>>(fileName) ?? new List<User>();
+            GetAll();
         }
 
         public User GetSignInUser()
         {
+            GetAll();
             return users.FirstOrDefault(x => x.IsSignIn);
         }
 
         public User GetActiveUser()
         {
+            GetAll();
             return users.FirstOrDefault(x => x.IsActive);
         }
 
@@ -30,11 +32,13 @@
 
         public User GetUserByLogin(string login)
         {
+            GetAll();
             return users.FirstOrDefault(x => (x.Login == login));
         }
 
         public void SwitchSignInUser(User signInUser)
         {
+            GetAll();
             foreach (var user in users)
             {
                 if (signInUser.Login == user.Login)
@@ -48,6 +52,7 @@
 
         public void SwitchActiveUser(User activeUser)
         {
+            GetAll();
             foreach (var user in users)
             {
                 if (activeUser.Login == user.Login)
@@ -57,6 +62,11 @@
                 else { user.IsActive = false; }
             }
             FileProvider.Save(users, fileName);
+        }
+
+        private void GetAll()
+        {
+            users = FileProvider.Load<List<User>>(fileName) ?? new List<User>();
         }
     }
 }

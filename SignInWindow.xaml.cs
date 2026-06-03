@@ -42,10 +42,7 @@ namespace WeatherWpfApp
             {
                 userStorage.SwitchSignInUser(currentUser);
             }
-            else
-            {
-                userStorage.SwitchActiveUser(currentUser);
-            }            
+            userStorage.SwitchActiveUser(currentUser);
             Close();
         }
     }
