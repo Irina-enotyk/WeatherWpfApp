@@ -8,17 +8,77 @@ namespace WeatherWpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private User activeUser;
         private UserStorage userStorage { get; } = new UserStorage();
 
         public MainWindow()
         {
             InitializeComponent();
+            SetSubscribes();
+            LoadForecastData();
+        }
 
+        public void SetActiveUser(User user)
+        {
+            activeUser = user;
+            userNameLabel.Content = activeUser.Login;
+        }
+
+        private void SetSubscribes()
+        {
             registrationButton.Click += RegistrationButton_Click;
             signInButton.Click += SignInButtonButton_Click;
             signOutButton.Click += SignOutButton_Click;
             Loaded += MainWindow_Loaded;
+            Activated += MainWindow_Activated;
+        }
 
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            var signInUser = userStorage.GetSignInUser();
+            if (signInUser != null)
+            {
+                SetActiveUser(signInUser);
+            }
+        }
+
+        private void MainWindow_Activated(object? sender, EventArgs e)
+        {
+            var activeUser = userStorage.GetActiveUser();
+            if (activeUser != null)
+            {
+                SetActiveUser(activeUser);
+            }
+        }
+
+        private void SignInButtonButton_Click(object sender, RoutedEventArgs e)
+        {
+            var signInWindow = new SignInWindow();
+            signInWindow.ShowDialog();
+        }
+
+        private void RegistrationButton_Click(object sender, RoutedEventArgs e)
+        {
+            var registrationWindow = new RegistrationWindow();
+            registrationWindow.ShowDialog();
+        }
+
+        private void SignOutButton_Click(object sender, RoutedEventArgs e)
+        {
+ 
+        }
+
+        private void WeatherDayButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                var day = button.DataContext as DayForecastModel;
+                Details_StackPanel.DataContext = day;
+            }
+        }
+
+        private void LoadForecastData()
+        {
             var data = new DayForecastModel
             {
                 Date = DateTime.Now,
@@ -34,69 +94,8 @@ namespace WeatherWpfApp
 
             WeatherDays_ListBox.ItemsSource = new List<DayForecastModel>
             {
-                data, data2, data, data2
-            };                                                                      
-        }
-
-        private void SignInButtonButton_Click(object sender, RoutedEventArgs e)
-        {
-            var signInWindow = new SignInWindow();
-            signInWindow.ShowDialog();
-
-            userNameLabel.Visibility = Visibility.Visible;
-            signOutButton.Visibility = Visibility.Visible;
-            personRoomLabel.Visibility = Visibility.Visible;
-
-            //signInButton.Visibility = Visibility.Collapsed;
-            //registrationButton.Visibility = Visibility.Collapsed;
-        }
-
-        private void RegistrationButton_Click(object sender, RoutedEventArgs e)
-        {
-            var registrationWindow = new RegistrationWindow();
-            registrationWindow.ShowDialog();
-
-            userNameLabel.Visibility = Visibility.Visible;
-            signOutButton.Visibility = Visibility.Visible;
-            personRoomLabel.Visibility = Visibility.Visible;
-
-            //signInButton.Visibility = Visibility.Collapsed;
-            //registrationButton.Visibility = Visibility.Collapsed;
-        }
-
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            var signInUser = userStorage.GetSignInUser();
-            if (signInUser != null)
-            {
-                userNameLabel.Visibility = Visibility.Visible;
-                signOutButton.Visibility = Visibility.Visible;
-                personRoomLabel.Visibility = Visibility.Visible;
-
-                signInButton.Visibility = Visibility.Collapsed;
-                registrationButton.Visibility = Visibility.Collapsed;
-
-                userNameLabel.Content = signInUser.Login.ToString();
-            }
-        }
-
-        private void SignOutButton_Click(object sender, RoutedEventArgs e)
-        {
-            userNameLabel.Visibility = Visibility.Collapsed;
-            signOutButton.Visibility = Visibility.Collapsed;
-            personRoomLabel.Visibility = Visibility.Collapsed;
-
-            signInButton.Visibility = Visibility.Visible;
-            registrationButton.Visibility = Visibility.Visible;
-        }
-
-        private void WeatherDayButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button button)
-            {
-                var day = button.DataContext as DayForecastModel;
-                Details_StackPanel.DataContext = day;
-            }
+                data, data2, data, data2, data, data2, data
+            };
         }
     }
 }

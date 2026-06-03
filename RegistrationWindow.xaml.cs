@@ -16,12 +16,13 @@ namespace WeatherWpfApp
 
         private void RegistrationButton_Click(object sender, RoutedEventArgs e)
         {
-            try { ExistsLogin(loginTextBox.Text); }
-            catch (Exception ex)
+            var currentUser = userStorage.GetUserByLogin(loginTextBox.Text);
+            if (currentUser != null)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Пользователь с таким логин уже зарегистрирован!");
                 return;
             }
+
             try { InputValidator.CheckLogin(loginTextBox.Text); }
             catch (Exception ex)
             {
@@ -36,29 +37,18 @@ namespace WeatherWpfApp
                 return;
             }
 
-            if (repeatPasswordTextBox.Text == passwordTextBox.Text)
+            if (repeatPasswordTextBox.Text != passwordTextBox.Text)
             {
-                var user = new User(loginTextBox.Text, passwordTextBox.Text);
-                user.IsSignIn = true;
-                userStorage.Add(user);
-                MessageBox.Show("Успешная регистрация!");
-                Close();
+                MessageBox.Show("Пароли не совпадают!");
+                repeatPasswordTextBox.Clear();
                 return;
             }
-            MessageBox.Show("Пароли не совпадают!");
-            repeatPasswordTextBox.Clear();
-        }
+            var user = new User(loginTextBox.Text, passwordTextBox.Text);
+            user.IsSignIn = true;
+            userStorage.Add(user);
 
-        private void ExistsLogin(string login)
-        {
-            var registratedUsers = userStorage.GetAll();
-            foreach(var user in registratedUsers)
-            {
-                if(user.Login == login)
-                {
-                    throw new Exception("Пользователь с таким логином уже зарегистрирован!");
-                }
-            }
+            MessageBox.Show("Успешная регистрация!");
+            Close();
         }
     }
 }
