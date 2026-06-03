@@ -8,7 +8,7 @@ namespace WeatherWpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private User activeUser;
+        private User user;
         private UserStorage userStorage { get; } = new UserStorage();
 
         public MainWindow()
@@ -18,10 +18,14 @@ namespace WeatherWpfApp
             LoadForecastData();
         }
 
-        public void SetActiveUser(User user)
+        public void SetActiveUser()
         {
-            activeUser = user;
-            userNameLabel.Content = activeUser.Login;
+            if (user == null)
+            {
+                userNameLabel.Content = "Имя";
+                return;
+            }
+            userNameLabel.Content = user.Login;
         }
 
         private void SetSubscribes()
@@ -35,20 +39,14 @@ namespace WeatherWpfApp
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var signInUser = userStorage.GetSignInUser();
-            if (signInUser != null)
-            {
-                SetActiveUser(signInUser);
-            }
+            user = userStorage.GetSignInUser();
+            SetActiveUser();
         }
 
         private void MainWindow_Activated(object? sender, EventArgs e)
         {
-            var activeUser = userStorage.GetActiveUser();
-            if (activeUser != null)
-            {
-                SetActiveUser(activeUser);
-            }
+            user = userStorage.GetActiveUser();
+            SetActiveUser();
         }
 
         private void SignInButtonButton_Click(object sender, RoutedEventArgs e)
@@ -65,7 +63,8 @@ namespace WeatherWpfApp
 
         private void SignOutButton_Click(object sender, RoutedEventArgs e)
         {
- 
+            user = null;
+            SetActiveUser();
         }
 
         private void WeatherDayButton_Click(object sender, RoutedEventArgs e)

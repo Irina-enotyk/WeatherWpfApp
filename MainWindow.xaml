@@ -61,7 +61,6 @@
                         HorizontalAlignment="Center"/>
                     <Label x:Name="userNameLabel"
                         Grid.Column="1"
-                        Content="Имя"
                         Margin="5"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"/>

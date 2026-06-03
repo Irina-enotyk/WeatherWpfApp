@@ -43,6 +43,7 @@ namespace WeatherWpfApp
                 repeatPasswordTextBox.Clear();
                 return;
             }
+
             var user = new User(loginTextBox.Text, passwordTextBox.Text);
             user.IsSignIn = true;
             userStorage.Add(user);

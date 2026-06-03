@@ -4,23 +4,25 @@
     {
         private const string fileName = "Users.json";
 
-        private List<User> users {  get; set; }
+        private List<User> users;
+
+        public UserStorage ()
+        {
+            users = FileProvider.Load<List<User>>(fileName) ?? new List<User>();
+        }
 
         public User GetSignInUser()
         {
-            GetAll();
             return users.FirstOrDefault(x => x.IsSignIn);
         }
 
         public User GetActiveUser()
         {
-            GetAll();
             return users.FirstOrDefault(x => x.IsActive);
         }
 
         public void Add(User user)
         {
-            GetAll();
             users.Add(user);
             SwitchSignInUser(user);
             FileProvider.Save(users, fileName);
@@ -28,13 +30,11 @@
 
         public User GetUserByLogin(string login)
         {
-            GetAll();
             return users.FirstOrDefault(x => (x.Login == login));
         }
 
         public void SwitchSignInUser(User signInUser)
         {
-            GetAll();
             foreach (var user in users)
             {
                 if (signInUser.Login == user.Login)
@@ -48,7 +48,6 @@
 
         public void SwitchActiveUser(User activeUser)
         {
-            GetAll();
             foreach (var user in users)
             {
                 if (activeUser.Login == user.Login)
@@ -58,11 +57,6 @@
                 else { user.IsActive = false; }
             }
             FileProvider.Save(users, fileName);
-        }
-
-        private void GetAll()
-        {
-            var users = FileProvider.Load<List<User>>(fileName) ?? new List<User>();
         }
     }
 }
