@@ -4,7 +4,7 @@
     {
         private const string fileName = "Users.json";
 
-        public User GetSignInUser()
+        public User GetRememberUser()
         {
             var users = GetAll();
             return users.FirstOrDefault(x => x.IsRemember);

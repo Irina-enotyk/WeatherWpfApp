@@ -17,7 +17,7 @@ namespace WeatherWpfApp
             SetSubscribes();
             LoadForecastData();
 
-            user = userStorage.GetSignInUser();
+            user = userStorage.GetRememberUser();
             var users = userStorage.GetAll();
             userStorage.SwitchActiveUser(user, users);
         }
@@ -44,11 +44,7 @@ namespace WeatherWpfApp
 
         private void MainWindow_Activated(object? sender, EventArgs e)
         {
-            if (userStorage.GetActiveUser() != null)
-            {
-                user = userStorage.GetActiveUser();
-            }
-            else { user = userStorage.GetSignInUser(); }
+            user = userStorage.GetActiveUser() ?? userStorage.GetRememberUser();
             ShowUser();
         }
 
