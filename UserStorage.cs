@@ -7,7 +7,7 @@
         public User GetSignInUser()
         {
             var users = GetAll();
-            return users.FirstOrDefault(x => x.IsSignIn);
+            return users.FirstOrDefault(x => x.IsRemember);
         }
 
         public User GetActiveUser()
@@ -37,9 +37,9 @@
             {
                 if (signInUser.Login == user.Login)
                 {
-                    user.IsSignIn = true;
+                    user.IsRemember = true;
                 }
-                else { user.IsSignIn = false; }
+                else { user.IsRemember = false; }
             }
             FileProvider.Save(users, fileName);
         }

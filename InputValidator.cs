@@ -4,7 +4,7 @@
     {
         public static void CheckLogin(string login)
         {
-            if(IsEmpty(login))
+            if(login == string.Empty)
             {
                 throw new Exception("Логин не может быть пустым");
             }
@@ -15,7 +15,7 @@
                 {
                     throw new Exception("Логин не должен содержать цифры!");
                 }
-                if (!((IsCapitalLetter(symbol)) && (IsLowercaseLetter(symbol))))
+                if (!IsCapitalLetter(symbol) || !IsLowercaseLetter(symbol))
                 {
                     throw new Exception("Для логина используйте только латинские буквы!");
                 }
@@ -24,9 +24,9 @@
 
         public static void CheckPassword(string password)
         {
-            if (IsEmpty(password))
+            if (password == string.Empty)
             {
-                throw new Exception("Логин не может быть пустым");
+                throw new Exception("Пароль не может быть пустым");
             }
 
             var requaredSymbolCount = 5;
@@ -67,11 +67,6 @@
                     "\n 1 прописную латинскую букву, " +
                     "\n и 1 цифру!");
             }
-        }
-
-        private static bool IsEmpty(string text)
-        {
-            return text.Length == 0;
         }
 
         private static bool IsCapitalLetter(char symbol)

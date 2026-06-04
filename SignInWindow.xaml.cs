@@ -17,7 +17,7 @@ namespace WeatherWpfApp
 
         private void SignInButton_Click(object sender, RoutedEventArgs e)
         {
-            if(loginTextBox.Text == string.Empty || passwordPasswordBox.Password == string.Empty)
+            if (loginTextBox.Text == string.Empty || passwordPasswordBox.Password == string.Empty)
             {
                 MessageBox.Show("Заполните поля!");
                 return;
