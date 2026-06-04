@@ -12,12 +12,12 @@ namespace WeatherWpfApp
         public SignInWindow()
         {
             InitializeComponent();
-            signInnButton.Click += SignInnButton_Click;
+            signInButton.Click += SignInButton_Click;
         }
 
-        private void SignInnButton_Click(object sender, RoutedEventArgs e)
+        private void SignInButton_Click(object sender, RoutedEventArgs e)
         {
-            if(loginTextBox.Text == null || passwordTextBox.Text == null)
+            if(loginTextBox.Text == string.Empty || passwordPasswordBox.Password == string.Empty)
             {
                 MessageBox.Show("Заполните поля!");
                 return;
@@ -30,7 +30,7 @@ namespace WeatherWpfApp
                 return;
             }
             
-            if (currentUser.Password != passwordTextBox.Text)
+            if (currentUser.Password != passwordPasswordBox.Password)
             {
                 MessageBox.Show("Неверный пароль");
                 return;

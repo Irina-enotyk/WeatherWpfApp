@@ -4,13 +4,18 @@
     {
         public static void CheckLogin(string login)
         {
+            if(IsEmpty(login))
+            {
+                throw new Exception("Логин не может быть пустым");
+            }
+
             foreach (var symbol in login)
             {
-                if (symbol >= '0' && symbol <= '9')
+                if (IsNumber(symbol))
                 {
                     throw new Exception("Логин не должен содержать цифры!");
                 }
-                if (!(symbol >= 'A' && symbol <= 'z'))
+                if (!((IsCapitalLetter(symbol)) && (IsLowercaseLetter(symbol))))
                 {
                     throw new Exception("Для логина используйте только латинские буквы!");
                 }
@@ -19,6 +24,11 @@
 
         public static void CheckPassword(string password)
         {
+            if (IsEmpty(password))
+            {
+                throw new Exception("Логин не может быть пустым");
+            }
+
             var requaredSymbolCount = 5;
 
             if (password.Length < requaredSymbolCount)
@@ -32,15 +42,15 @@
 
             foreach (var symbol in password)
             {
-                if (symbol >= 'A' && symbol <= 'Z')
+                if (IsCapitalLetter(symbol))
                 {
                     capitalLetterCount++;
                 }
-                else if (symbol >= 'a' && symbol <= 'z')
+                else if (IsLowercaseLetter(symbol))
                 {
                     lowercaseLetterCount++;
                 }
-                else if (symbol >= '0' && symbol <= '9')
+                else if (IsNumber(symbol))
                 {
                     numberCount++;
                 }
@@ -57,6 +67,26 @@
                     "\n 1 прописную латинскую букву, " +
                     "\n и 1 цифру!");
             }
+        }
+
+        private static bool IsEmpty(string text)
+        {
+            return text.Length == 0;
+        }
+
+        private static bool IsCapitalLetter(char symbol)
+        {
+            return symbol >= 'A' && symbol <= 'Z';
+        }
+
+        private static bool IsLowercaseLetter(char symbol)
+        {
+            return symbol >= 'a' && symbol <= 'z';
+        }
+
+        private static bool IsNumber(char symbol)
+        {
+            return symbol >= '0' && symbol <= '9';
         }
     }
 }

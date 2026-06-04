@@ -67,8 +67,8 @@
                 Margin="5"
             />
 
-            <TextBox
-                x:Name="passwordTextBox"
+            <PasswordBox
+                x:Name="passwordPasswordBox"
                 Grid.Column="1"
                 Margin="5"
                 Width="200"
@@ -84,8 +84,8 @@
                 <ColumnDefinition Width="131*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox
-                x:Name="repeatPasswordTextBox"
+            <PasswordBox
+                x:Name="repeatPasswordBox"
                 Grid.Column="1"
                 Width="200"
                 FontSize="20"

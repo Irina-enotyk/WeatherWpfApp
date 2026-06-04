@@ -67,8 +67,8 @@
                 Margin="5"
                 />
 
-                <TextBox
-                x:Name="passwordTextBox"
+            <PasswordBox
+                x:Name="passwordPasswordBox"
                 Grid.Column="1"
                 Margin="5"
                 Width="200"
@@ -105,7 +105,7 @@
         </Grid>
 
             <Button
-            x:Name="signInnButton"
+            x:Name="signInButton"
             Grid.Row="4"
             Content="Войти"
             FontSize="20"

@@ -4,11 +4,6 @@
     {
         private const string fileName = "Users.json";
 
-        public UserStorage ()
-        {
-            GetAll();
-        }
-
         public User GetSignInUser()
         {
             var users = GetAll();

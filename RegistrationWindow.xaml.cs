@@ -30,21 +30,21 @@ namespace WeatherWpfApp
                 return;
             }
 
-            try { InputValidator.CheckPassword(passwordTextBox.Text); }
+            try { InputValidator.CheckPassword(passwordPasswordBox.Password); }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return;
             }
 
-            if (repeatPasswordTextBox.Text != passwordTextBox.Text)
+            if (repeatPasswordBox.Password != passwordPasswordBox.Password)
             {
                 MessageBox.Show("Пароли не совпадают!");
-                repeatPasswordTextBox.Clear();
+                repeatPasswordBox.Clear();
                 return;
             }
 
-            var user = new User(loginTextBox.Text, passwordTextBox.Text);
+            var user = new User(loginTextBox.Text, passwordPasswordBox.Password);
             userStorage.Add(user);
             MessageBox.Show("Успешная регистрация!");
             Close();

@@ -8,11 +8,6 @@ namespace WeatherWpfApp
         public static void Save(Object data, string fileName)
         {
             string serializedData = JsonSerializer.Serialize(data);
-
-            if(!File.Exists(fileName))
-            {
-                File.Create(fileName).Close();
-            }
             File.WriteAllText(fileName, serializedData);
         }
 
