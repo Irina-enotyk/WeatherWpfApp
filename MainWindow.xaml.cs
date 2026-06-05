@@ -15,7 +15,7 @@ namespace WeatherWpfApp
         {
             InitializeComponent();
             SetSubscribes();
-            LoadForecastData();
+            ForecastData.Load();
 
             user = userStorage.GetRememberUser();
             var users = userStorage.GetAll();
@@ -90,27 +90,6 @@ namespace WeatherWpfApp
                 var day = button.DataContext as DayForecastModel;
                 Details_StackPanel.DataContext = day;
             }
-        }
-
-        private void LoadForecastData()
-        {
-            var data = new DayForecastModel
-            {
-                Date = DateTime.Now,
-                MaxTemperature = 20,
-                MinTemperature = 10
-            };
-            var data2 = new DayForecastModel
-            {
-                Date = DateTime.Now,
-                MaxTemperature = 25,
-                MinTemperature = 14
-            };
-
-            WeatherDays_ListBox.ItemsSource = new List<DayForecastModel>
-            {
-                data, data2, data, data2, data, data2, data
-            };
         }
     }
 }
