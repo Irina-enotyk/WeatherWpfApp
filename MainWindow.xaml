@@ -50,7 +50,7 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    
+
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
@@ -78,7 +78,6 @@
                         Margin="5" 
                         Content="Войти"/>
                 </Grid>
-
             </Grid>
         </Grid>
 
@@ -153,9 +152,44 @@
                         <DataTemplate>
                             <Button Click="WeatherDayButton_Click">
                                 <StackPanel Orientation="Vertical">
-                                    <Label Content="{Binding Path=Date}"/>
-                                    <Label Content="{Binding Path=MaxTemperature}"/>
-                                    <Label Content="{Binding Path=MinTemperature}"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column ="0">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Grid Grid.Row="0">
+                                                    <Label Content="{Binding Path=Date}"/>
+                                                </Grid>
+                                                <Grid Grid.Row="1">
+                                                    <Label Content="{Binding Path=WeekDay}"/>
+                                                </Grid>
+                                            </Grid>
+                                        </Grid>
+                                        <Grid Grid.Column ="1"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Center">
+                                            <Label Content="PlaceForImage"/>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0">
+                                            <Label Content="{Binding Path=MaxTemperature}"/>
+                                        </Grid>
+                                        <Grid Grid.Column="1">
+                                            <Label Content="{Binding Path=MinTemperature}"/>
+                                        </Grid>
+                                    </Grid>
+                                    <Label Content="{Binding Path=Weather}"/>
                                 </StackPanel>
                             </Button>
                         </DataTemplate>

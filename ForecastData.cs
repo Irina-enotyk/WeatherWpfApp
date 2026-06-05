@@ -8,7 +8,8 @@ namespace WeatherWpfApp
         {
             var day1 = new DayForecastModel()
             {
-                Date = DateTime.Now,
+                Date = DateTime.Now.Date,
+                WeekDay = "Sunday",
                 MaxTemperature = 25,
                 MinTemperature = 14,
                 Pressure = 1,
