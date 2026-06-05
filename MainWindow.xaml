@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherWpfApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="480" Width="1065">
+        Title="MainWindow" Height="600" Width="1300">
     <Window.Resources>
         <Style x:Key="LeftPanelButton" TargetType="Button">
             <Setter Property="Margin" Value="15"/>
@@ -174,7 +174,12 @@
                                         <Grid Grid.Column ="1"
                                               VerticalAlignment="Center"
                                               HorizontalAlignment="Center">
-                                            <Label Content="PlaceForImage"/>
+                                            <Image 
+                                                Source="/Image/weather-forcast-storm-rain-thunder-day_108615.png"
+                                                Width="32"
+                                                Height="32"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"/>
                                         </Grid>
                                     </Grid>
                                     <Grid>
