@@ -39,7 +39,7 @@ namespace WeatherWpfApp
             var users = userStorage.GetAll();
             if (rememberMeCheckBox.IsChecked == true)
             {
-                userStorage.SwitchSignInUser(currentUser, users);
+                userStorage.SwitchRememberUser(currentUser, users);
             }
             userStorage.SwitchActiveUser(currentUser, users);
             Close();

@@ -20,7 +20,7 @@
         {
             var users = GetAll();
             users.Add(user);
-            SwitchSignInUser(user, users);
+            SwitchRememberUser(user, users);
             SwitchActiveUser(user, users);
             FileProvider.Save(users, fileName);
         }
@@ -31,7 +31,7 @@
             return users.FirstOrDefault(x => (x.Login == login));
         }
 
-        public void SwitchSignInUser(User signInUser, List<User> users)
+        public void SwitchRememberUser(User signInUser, List<User> users)
         {
             foreach (var user in users)
             {
