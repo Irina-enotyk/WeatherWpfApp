@@ -9,6 +9,7 @@ namespace WeatherWpfApp
     public partial class MainWindow : Window
     {
         private User user;
+        private bool IsSignOut = false;
         private UserStorage userStorage { get; } = new UserStorage();
 
         public MainWindow()
@@ -25,7 +26,7 @@ namespace WeatherWpfApp
 
         private void ShowUser()
         {
-            if (user == null)
+            if (user == null || IsSignOut)
             {
                 userNameLabel.Content = "Имя";
                 OutAccount();
@@ -63,7 +64,7 @@ namespace WeatherWpfApp
 
         private void SignOutButton_Click(object sender, RoutedEventArgs e)
         {
-            user = null;
+            IsSignOut = true;
             ShowUser();
         }
 
