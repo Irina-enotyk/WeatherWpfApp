@@ -15,7 +15,8 @@ namespace WeatherWpfApp
         {
             InitializeComponent();
             SetSubscribes();
-            ForecastData.Load();
+            LoadForecastData();
+
 
             user = userStorage.GetRememberUser();
             var users = userStorage.GetAll();
@@ -90,6 +91,11 @@ namespace WeatherWpfApp
                 var day = button.DataContext as DayForecastModel;
                 Details_StackPanel.DataContext = day;
             }
+        }
+
+        private void LoadForecastData()
+        {
+            WeatherDays_ListBox.ItemsSource = ForecastData.Load();
         }
     }
 }
