@@ -11,5 +11,6 @@
         public WindDirection WindDirection { get; set; }
         public WeatherCodes Weather { get; set; }
         public string Location { get; set; }
+        public List<HourlyForecastModel> HourlyForecasts { get; set; } 
     }
 }

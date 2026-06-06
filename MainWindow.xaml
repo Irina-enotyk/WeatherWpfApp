@@ -133,21 +133,91 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel x:Name="Details_StackPanel" Grid.Column="0" Orientation="Vertical">
+                    <StackPanel 
+                        x:Name="Details_StackPanel" 
+                        Grid.Column="0" 
+                        Orientation="Vertical">
                         <Label Content="{Binding Path=Date}"/>
                         <Label Content="{Binding Path=MaxTemperature}"/>
                         <Label Content="{Binding Path=MinTemperature}"/>
                     </StackPanel>
 
-                </Grid>
+                    <Grid Grid.Column="1" Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="10*"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0"
+                               Content="Почасовой прогноз"
+                               VerticalAlignment="Center"/>
 
-                <ListBox x:Name="WeatherDays_ListBox" Grid.Row="1">
+                        <Grid Grid.Row="1" Grid.IsSharedSizeScope="True">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition SharedSizeGroup="Time"/>
+                                    <ColumnDefinition SharedSizeGroup="Picture"/>
+                                    <ColumnDefinition SharedSizeGroup="MaxTemp"/>
+                                    <ColumnDefinition SharedSizeGroup="MinTemp"/>
+                                    <ColumnDefinition SharedSizeGroup="Precipitation"/>
+                                    <ColumnDefinition SharedSizeGroup="Pressure"/>
+                                    <ColumnDefinition SharedSizeGroup="Wind"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Margin ="5" Grid.Column="0" Text="Время"/>
+                                <TextBlock Margin ="5" Grid.Column="1" Text="Изобр"/>
+                                <TextBlock Margin ="5" Grid.Column="2" Text="ТМакс"/>
+                                <TextBlock Margin ="5" Grid.Column="3" Text="ТМин"/>
+                                <TextBlock Margin ="5" Grid.Column="4" Text="Осадки"/>
+                                <TextBlock Margin ="5" Grid.Column="5" Text="Давление"/>
+                                <TextBlock Margin ="5" Grid.Column="6" Text="Ветер"/>
+                            </Grid>
+                            <ListBox 
+                                x:Name="ForecastHours_ListBox"
+                                Grid.Row ="1" d:ItemsSource="{d:SampleData ItemCount=5}">
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Vertical"/>
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition SharedSizeGroup="Time"/>
+                                                <ColumnDefinition SharedSizeGroup="Picture"/>
+                                                <ColumnDefinition SharedSizeGroup="MaxTemp"/>
+                                                <ColumnDefinition SharedSizeGroup="MinTemp"/>
+                                                <ColumnDefinition SharedSizeGroup="Precipitation"/>
+                                                <ColumnDefinition SharedSizeGroup="Pressure"/>
+                                                <ColumnDefinition SharedSizeGroup="Wind"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Column="0" Content="{Binding Path=Time}"/>
+                                            <Label Grid.Column="1" Content="{Binding Path=Picture}"/>
+                                            <Label Grid.Column="2" Content="{Binding Path=MaxTemperature}"/>
+                                            <Label Grid.Column="3" Content="{Binding Path=MinTemperature}"/>
+                                            <Label Grid.Column="4" Content="{Binding Path=Precipitation}"/>
+                                            <Label Grid.Column="5" Content="{Binding Path=Pressure}"/>
+                                            <Label Grid.Column="6" Content="{Binding Path=Wind}"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                            
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <ListBox 
+                    x:Name="WeatherDays_ListBox" 
+                    Grid.Row="1">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal"/>
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
-
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Button Click="WeatherDayButton_Click">
