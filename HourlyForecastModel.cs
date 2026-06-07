@@ -2,7 +2,8 @@
 {
     public class HourlyForecastModel
     {
-        public TimeOnly Time { get; set; }
+        public DateTime Time { get; set; }
+
         public float Temperature { get; set; }
         public float ApparentTemperature { get; set; }
         public float RelativeHumidity { get; set; }
