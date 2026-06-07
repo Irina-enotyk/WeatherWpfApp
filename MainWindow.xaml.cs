@@ -96,7 +96,7 @@ namespace WeatherWpfApp
 
         private void LoadForecastData()
         {
-            WeatherDays_ListBox.ItemsSource = ForecastData.Load();
+            WeatherDays_ListBox.ItemsSource = DayForecastData.Load();
         }
     }
 }
