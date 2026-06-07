@@ -2,7 +2,7 @@
 
 namespace WeatherWpfApp
 {
-    public static class DayForecastData
+    public static class ForecastData
     {
         public static List<DayForecastModel> Load()
         {
