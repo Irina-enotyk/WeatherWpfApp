@@ -100,10 +100,10 @@
                     Margin="5,5,0,5"
                     HorizontalAlignment="Left"
                     Content=" Обновить "/>
-                <Label
+                <Label x:Name="periodLabel"
                     Grid.Column="1"
                     Width="Auto"
-                    Margin="112,5,0,5"
+                    Margin="5"
                     HorizontalAlignment="Left"
                     Content="Период прогноза погоды" Grid.ColumnSpan="2"/>
             </Grid>
@@ -135,7 +135,8 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel 
-                        x:Name="Details_StackPanel" 
+                        x:Name="Details_StackPanel"
+                        Margin="10"
                         Grid.Column="0" 
                         Orientation="Vertical">
                         <Label Content="{Binding Path=Date}"/>

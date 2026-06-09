@@ -17,11 +17,22 @@ namespace WeatherWpfApp
             InitializeComponent();
             SetSubscribes();
             LoadDaysForecastData();
-
+            SetForecastPeriod();
 
             user = userStorage.GetRememberUser();
             var users = userStorage.GetAll();
             userStorage.SwitchActiveUser(user, users);
+        }
+
+        private void SetForecastPeriod()
+        {
+            var startDayOfWeek = DateTime.Now.AddDays(-3).DayOfWeek;
+            var startDay = DateTime.Now.AddDays(-3).Day;
+            var endDayOfWeek = DateTime.Now.AddDays(3).DayOfWeek;
+            var endtDay = DateTime.Now.AddDays(3).Day;
+
+
+            periodLabel.Content = $"Прогноз погоды на {startDay} {startDayOfWeek} - {endtDay} {endDayOfWeek}";
         }
 
         private void ShowUser()
