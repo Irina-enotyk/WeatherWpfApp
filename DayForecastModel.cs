@@ -1,4 +1,6 @@
-﻿namespace WeatherWpfApp
+﻿using System.Timers;
+
+namespace WeatherWpfApp
 {
     public class DayForecastModel
     {
