@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using WeatherWpfApp.Models;
+using WeatherWpfApp.Storages;
 
 namespace WeatherWpfApp
 {
@@ -90,14 +92,14 @@ namespace WeatherWpfApp
             if (sender is Button button)
             {
                 var day = button.DataContext as DayForecastModel;
-                Details_StackPanel.DataContext = day;
-                ForecastHours_ListBox.ItemsSource = day.HourlyForecast;
+                //Details_StackPanel.DataContext = day;
+                //ForecastHours_ListBox.ItemsSource = day.HourlyForecast;
             }
         }
 
         private void LoadDaysForecastData()
         {
-            WeatherDays_ListBox.ItemsSource = DayForecastData.Load();
+            //WeatherDays_ListBox.ItemsSource = WeatherDataStorage.Load();
         }
     }
 }
