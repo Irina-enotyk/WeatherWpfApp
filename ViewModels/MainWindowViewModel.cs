@@ -15,6 +15,7 @@ namespace WeatherWpfApp.ViewModels
             set
             {
                 homeViewViewModel = value;
+                OnPropertyChanged();
             }
         }
 
