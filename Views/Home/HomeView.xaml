@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WeatherWpfApp.Views.Home"
+             xmlns:vm="clr-namespace:WeatherWpfApp.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:HomeViewViewModel/>
+    </UserControl.DataContext>
     <Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
@@ -62,8 +66,9 @@
                             <Label Grid.Column="6" Content="Ветер"/>
                         </Grid>
                         <ListBox 
-                    x:Name="ForecastHours_ListBox"
-                    Grid.Row ="1" d:ItemsSource="{d:SampleData ItemCount=5}">
+                            x:Name="ForecastHours_ListBox"
+                            Grid.Row ="1" 
+                            d:ItemsSource="{d:SampleData ItemCount=5}">
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel Orientation="Vertical"/>
@@ -96,8 +101,9 @@
                 </Grid>
             </Grid>
             <ListBox 
-        x:Name="WeatherDays_ListBox" 
-        Grid.Row="1">
+                x:Name="WeatherDays_ListBox" 
+                Grid.Row="1" 
+                ItemsSource="{Binding ForecastDays}">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal"/>
