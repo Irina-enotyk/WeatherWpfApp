@@ -39,7 +39,7 @@ namespace WeatherWpfApp.ViewModels
 
         private void OpenHomeView(object obj)
         {
-            homeViewViewModel = new HomeViewViewModel();
+            HomeViewViewModel = new HomeViewViewModel();
         }
     }
 }
