@@ -9,6 +9,8 @@ namespace WeatherWpfApp.ViewModels
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
+        private List<DayForecastModel> forecastDays;
+
         public List<DayForecastModel> ForecastDays
         {
             get => forecastDays;
@@ -17,15 +19,24 @@ namespace WeatherWpfApp.ViewModels
                 forecastDays = value;
                 OnPropertyChanged();
             }
-                
+        }
+
+        private DayForecastModel selectedDay;
+
+        public DayForecastModel SelectedDay
+        {
+            get => selectedDay;
+            set
+            {
+                selectedDay = value;
+                OnPropertyChanged();
+            }
         }
 
         public HomeViewViewModel()
         {
             ForecastDays = WeatherDataStorage.Load();
         }
-
-        private List<DayForecastModel> forecastDays;
 
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {

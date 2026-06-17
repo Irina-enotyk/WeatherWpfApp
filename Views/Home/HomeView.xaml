@@ -22,15 +22,9 @@
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
-
-                <StackPanel 
-            x:Name="Details_StackPanel" 
-            Grid.Column="0" 
-            Orientation="Vertical">
-                    <Label Content="{Binding Path=Date}"/>
-                    <Label Content="{Binding Path=MaxTemperature}"/>
-                    <Label Content="{Binding Path=MinTemperature}"/>
-                </StackPanel>
+                <Grid Grid.Column="0">
+                    <local:DayForecastDetailsView DataContext="{Binding SelectedDay}"/>
+                </Grid>
 
                 <Grid Grid.Column="1" Margin="10">
                     <Grid.RowDefinitions>
@@ -103,7 +97,8 @@
             <ListBox 
                 x:Name="WeatherDays_ListBox" 
                 Grid.Row="1" 
-                ItemsSource="{Binding ForecastDays}">
+                ItemsSource="{Binding ForecastDays}"
+                SelectedItem="{Binding SelectedDay}">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal"/>
