@@ -15,7 +15,7 @@
                 {
                     throw new Exception("Логин не должен содержать цифры!");
                 }
-                if (!IsCapitalLetter(symbol) || !IsLowercaseLetter(symbol))
+                if (!IsCapitalLetter(symbol) && !IsLowercaseLetter(symbol))
                 {
                     throw new Exception("Для логина используйте только латинские буквы!");
                 }
