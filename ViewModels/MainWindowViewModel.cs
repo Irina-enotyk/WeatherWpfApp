@@ -8,7 +8,9 @@ namespace WeatherWpfApp.ViewModels
     {
         public event PropertyChangedEventHandler? PropertyChanged;
         public ICommand HomeCommand { get; }
+        public ICommand LocationCommand { get; }
 
+        private HomeViewViewModel homeViewViewModel;
         public HomeViewViewModel HomeViewViewModel
         {
             get { return homeViewViewModel; }
@@ -19,11 +21,21 @@ namespace WeatherWpfApp.ViewModels
             }
         }
 
-        private HomeViewViewModel homeViewViewModel;
+        private LocationViewViewModel locationViewViewModel;
+        public LocationViewViewModel LocationViewViewModel
+        {
+            get { return locationViewViewModel; }
+            set
+            {
+                locationViewViewModel = value;
+                OnPropertyChanged();
+            }
+        }
 
         public MainWindowViewModel()
         {
             HomeCommand = new RelayCommand(OpenHomeView, CanOpenHomeView);
+            LocationCommand = new RelayCommand(OpenLocationView, CanOpenLocationView);
         }
 
         public void OnPropertyChanged([CallerMemberName] string prop = "")
@@ -40,6 +52,15 @@ namespace WeatherWpfApp.ViewModels
         private void OpenHomeView(object obj)
         {
             HomeViewViewModel = new HomeViewViewModel();
+        }
+        private bool CanOpenLocationView(object arg)
+        {
+            return true;
+        }
+
+        private void OpenLocationView(object obj)
+        {
+            LocationViewViewModel = new LocationViewViewModel();
         }
     }
 }
