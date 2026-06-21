@@ -4,8 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WeatherWpfApp.Views.Home"
+             xmlns:model="clr-namespace:WeatherWpfApp.Models"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" x:Key="CellStyle">
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <model:DayForecastModel/>
+    </UserControl.DataContext>
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
@@ -15,7 +26,7 @@
                Content="Почасовой прогноз"
                VerticalAlignment="Center"/>
 
-        <Grid Grid.Row="1" Grid.IsSharedSizeScope="True">
+        <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -23,60 +34,102 @@
 
             <Border Grid.Row ="0"
                     BorderThickness="1"
-                BorderBrush="DimGray"
-                Background="Beige"    >
+                    BorderBrush="DimGray"
+                    Background="LightGoldenrodYellow">
             </Border>
-
-            <Grid Grid.Row="0">
+            <Grid Grid.Row="0" Margin="0, 0, 20, 0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" SharedSizeGroup="Time"/>
-                    <ColumnDefinition Width="*" SharedSizeGroup="Picture"/>
-                    <ColumnDefinition Width="*" SharedSizeGroup="Temperature"/>
-                    <ColumnDefinition Width="*" SharedSizeGroup="ApparentTemperature"/>
-                    <ColumnDefinition Width="*" SharedSizeGroup="RelativeHumidity"/>
-                    <ColumnDefinition Width="*" SharedSizeGroup="SurfasePressure"/>
-                    <ColumnDefinition Width="*" SharedSizeGroup="WindSpeed"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Время"/>
-                <Label Grid.Column="1" Content="Изобр"/>
-                <Label Grid.Column="2" Content="ТМакс"/>
-                <Label Grid.Column="3" Content="ТМин"/>
-                <Label Grid.Column="4" Content="Осадки"/>
-                <Label Grid.Column="5" Content="Давление"/>
-                <Label Grid.Column="6" Content="Ветер"/>
+                <TextBlock 
+                    Grid.Column="0"
+                    HorizontalAlignment="Center" 
+                    Text="Время"/>
+                <TextBlock 
+                    Grid.Column="1" 
+                    HorizontalAlignment="Center"
+                    Text="Изобр"/>
+                <TextBlock 
+                    Grid.Column="2" 
+                    HorizontalAlignment="Center"
+                    Text="ТМакс"/>
+                <TextBlock 
+                    Grid.Column="3" 
+                    HorizontalAlignment="Center"
+                    Text="ТМин"/>
+                <TextBlock 
+                    Grid.Column="4" 
+                    HorizontalAlignment="Center"
+                    Text="Осадки"/>
+                <TextBlock 
+                    Grid.Column="5" 
+                    HorizontalAlignment="Center"
+                    Text="Давление"/>
+                <TextBlock 
+                    Grid.Column="6" 
+                    HorizontalAlignment="Center"
+                    Text="Ветер"/>
             </Grid>
-            <ListBox 
-            x:Name="ForecastHours_ListBox"
-            Grid.Row ="1" 
-            ItemsSource="{Binding HourlyForecast}">
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" SharedSizeGroup="Time"/>
-                                <ColumnDefinition Width="*" SharedSizeGroup="Picture"/>
-                                <ColumnDefinition Width="*" SharedSizeGroup="Temperature"/>
-                                <ColumnDefinition Width="*" SharedSizeGroup="ApparentTemperature"/>
-                                <ColumnDefinition Width="*" SharedSizeGroup="RelativeHumidity"/>
-                                <ColumnDefinition Width="*" SharedSizeGroup="SurfasePressure"/>
-                                <ColumnDefinition Width="*" SharedSizeGroup="WindSpeed"/>
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Content="{Binding Path=Time}"/>
-                            <Label Grid.Column="1" Content=""/>
-                            <Label Grid.Column="2" Content="{Binding Path=Temperature}"/>
-                            <Label Grid.Column="3" Content="{Binding Path=ApparentTemperature}"/>
-                            <Label Grid.Column="4" Content="{Binding Path=RelativeHumidity}"/>
-                            <Label Grid.Column="5" Content="{Binding Path=SurfasePressure}"/>
-                            <Label Grid.Column="6" Content="{Binding Path=WindSpeed}"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <ScrollViewer Grid.Row="1">
+                <ItemsControl ItemsSource="{Binding HourlyForecast}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>  
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock 
+                                    Grid.Column="0" 
+                                    Style ="{StaticResource CellStyle}" 
+                                    Text="{Binding Time}"/>
+                                <TextBlock 
+                                    Grid.Column="1" 
+                                    Style ="{StaticResource CellStyle}" 
+                                    Text=""/>
+                                <TextBlock 
+                                    Grid.Column="2" 
+                                    Style ="{StaticResource CellStyle}" 
+                                    Text="{Binding Temperature}"/>
+                                <TextBlock 
+                                    Grid.Column="3" 
+                                    Style ="{StaticResource CellStyle}" 
+                                    Text="{Binding ApparentTemperature}"/>
+                                <TextBlock 
+                                    Grid.Column="4" 
+                                    Style ="{StaticResource CellStyle}" 
+                                    Text="{Binding RelativeHumidity}"/>
+                                <TextBlock 
+                                    Grid.Column="5" 
+                                    Style ="{StaticResource CellStyle}" 
+                                    Text="{Binding SurfasePressure}"/>
+                                <TextBlock 
+                                    Grid.Column="6" 
+                                    Style ="{StaticResource CellStyle}" 
+                                    Text="{Binding WindSpeed}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>

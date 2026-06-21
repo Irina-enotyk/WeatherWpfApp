@@ -20,40 +20,25 @@
 
         private void LoadHourlyData()
         {
-            var hour8 = new HourlyForecastModel
+            HourlyForecast = new List<HourlyForecastModel>();
+
+            for (int i = 0; i < 24; i++)
             {
-                Time = new TimeOnly(8, 00),
-                Temperature = 27,
-                ApparentTemperature = 26,
-                RelativeHumidity = 0.65f,
-                SurfasePressure = 765,
-                WindSpeed = 3,
-                WindDirection = 2,
-                Weather = WeatherCodes.SlightRain    
-            };
-            var hour9 = new HourlyForecastModel
-            {
-                Time = new TimeOnly(9, 00),
-                Temperature = 28,
-                ApparentTemperature = 27,
-                RelativeHumidity = 0.75f,
-                SurfasePressure = 766,
-                WindSpeed = 5,
-                WindDirection = 3,
-                Weather = WeatherCodes.ClearSky    
-            };
-            var hour10 = new HourlyForecastModel
-            {
-                Time = new TimeOnly(10, 00),
-                Temperature = 26,
-                ApparentTemperature = 25,
-                RelativeHumidity = 0.73f,
-                SurfasePressure = 764,
-                WindSpeed = 4,
-                WindDirection = 3,
-                Weather = WeatherCodes.ClearSky    
-            };
-            HourlyForecast = new List<HourlyForecastModel> { hour8, hour9, hour10};
+                var random = new Random();
+
+                var hour = new HourlyForecastModel
+                {
+                    Time = new TimeOnly(i, 00),
+                    Temperature = random.Next(23, 32),
+                    ApparentTemperature = random.Next(13, 22),
+                    RelativeHumidity = 0.65f,
+                    SurfasePressure = random.Next(762, 768),
+                    WindSpeed = random.Next(0, 20),
+                    WindDirection = random.Next(1, 9),
+                    Weather = WeatherCodes.SlightRain,
+                };
+                HourlyForecast.Add(hour);
+            }
         }
     }
 }
