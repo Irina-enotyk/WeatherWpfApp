@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:homeView="clr-namespace:WeatherWpfApp.Views.Home"
         xmlns:locationView="clr-namespace:WeatherWpfApp.Views.Location"
+        xmlns:settingsView="clr-namespace:WeatherWpfApp.Views.Settings"
         xmlns:vm="clr-namespace:WeatherWpfApp.ViewModels"
         xmlns:local="clr-namespace:WeatherWpfApp"
         mc:Ignorable="d"
@@ -22,6 +23,10 @@
         
         <DataTemplate DataType="{x:Type vm:LocationViewViewModel}">
             <locationView:LocationView DataContext="{Binding}"/>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type vm:SettingsViewViewModel}">
+            <settingsView:SettingsView DataContext="{Binding}"/>
         </DataTemplate>
         
     </Window.Resources>
@@ -140,7 +145,8 @@
                     Command="{Binding LocationCommand}"/>
                 <Button 
                     Content="Settings"
-                    Style="{StaticResource LeftPanelButton}"/>
+                    Style="{StaticResource LeftPanelButton}"
+                    Command="{Binding SettingsCommand}"/>
                 <Button
                     Content="Close" 
                     Style="{StaticResource LeftPanelButton}"/>
