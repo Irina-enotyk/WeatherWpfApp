@@ -136,20 +136,21 @@
 
             <StackPanel Grid.Column ="0" Orientation="Vertical">
                 <Button
-                    Content="Home"
+                    Content="Главная"
                     Style="{StaticResource LeftPanelButton}"
                     Command="{Binding HomeCommand}"/>
                 <Button
-                    Content="Location"
+                    Content="Местоположение"
                     Style="{StaticResource LeftPanelButton}"
                     Command="{Binding LocationCommand}"/>
                 <Button 
-                    Content="Settings"
+                    Content="Настройки"
                     Style="{StaticResource LeftPanelButton}"
                     Command="{Binding SettingsCommand}"/>
                 <Button
-                    Content="Close" 
-                    Style="{StaticResource LeftPanelButton}"/>
+                    Content="Закрыть" 
+                    Style="{StaticResource LeftPanelButton}"
+                    Command="{Binding CloseCommand}"/>
             </StackPanel>
 
             <Grid Grid.Column="1">

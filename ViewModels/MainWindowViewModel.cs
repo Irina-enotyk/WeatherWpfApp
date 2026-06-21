@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Windows;
+using System.Windows.Input;
 
 namespace WeatherWpfApp.ViewModels
 {
@@ -7,6 +8,7 @@ namespace WeatherWpfApp.ViewModels
         public ICommand HomeCommand { get; }
         public ICommand LocationCommand { get; }
         public ICommand SettingsCommand { get; }
+        public ICommand CloseCommand { get; }
 
         private BaseViewModel selectedContent;
 
@@ -25,6 +27,7 @@ namespace WeatherWpfApp.ViewModels
             HomeCommand = new RelayCommand(OpenHomeView, CanOpenHomeView);
             LocationCommand = new RelayCommand(OpenLocationView, CanOpenLocationView);
             SettingsCommand = new RelayCommand(OpenSettingsView, CanOpenSettingsView);
+            CloseCommand = new RelayCommand(CloseApplication, CanOpenCloseApplication);
         }
 
         private bool CanOpenHomeView(object arg)
@@ -54,6 +57,16 @@ namespace WeatherWpfApp.ViewModels
         private void OpenSettingsView(object obj)
         {
             SelectedContent = new SettingsViewViewModel();
+        }
+
+        private bool CanOpenCloseApplication(object arg)
+        {
+            return true;
+        }
+
+        private void CloseApplication(object obj)
+        {
+            Application.Current.MainWindow.Close();
         }
     }
 }
