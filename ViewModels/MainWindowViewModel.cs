@@ -1,33 +1,20 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace WeatherWpfApp.ViewModels
 {
-    public class MainWindowViewModel : INotifyPropertyChanged
+    public class MainWindowViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
         public ICommand HomeCommand { get; }
         public ICommand LocationCommand { get; }
 
-        private HomeViewViewModel homeViewViewModel;
-        public HomeViewViewModel HomeViewViewModel
-        {
-            get { return homeViewViewModel; }
-            set
-            {
-                homeViewViewModel = value;
-                OnPropertyChanged();
-            }
-        }
+        private BaseViewModel selectedContent;
 
-        private LocationViewViewModel locationViewViewModel;
-        public LocationViewViewModel LocationViewViewModel
+        public BaseViewModel SelectedContent
         {
-            get { return locationViewViewModel; }
+            get {  return selectedContent; }
             set
             {
-                locationViewViewModel = value;
+                selectedContent = value;
                 OnPropertyChanged();
             }
         }
@@ -38,12 +25,6 @@ namespace WeatherWpfApp.ViewModels
             LocationCommand = new RelayCommand(OpenLocationView, CanOpenLocationView);
         }
 
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
-
         private bool CanOpenHomeView(object arg)
         {
             return true;
@@ -51,7 +32,7 @@ namespace WeatherWpfApp.ViewModels
 
         private void OpenHomeView(object obj)
         {
-            HomeViewViewModel = new HomeViewViewModel();
+            SelectedContent = new HomeViewViewModel();
         }
         private bool CanOpenLocationView(object arg)
         {
@@ -60,7 +41,7 @@ namespace WeatherWpfApp.ViewModels
 
         private void OpenLocationView(object obj)
         {
-            LocationViewViewModel = new LocationViewViewModel();
+            SelectedContent = new LocationViewViewModel();
         }
     }
 }

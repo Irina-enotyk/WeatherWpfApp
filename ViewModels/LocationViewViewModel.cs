@@ -2,7 +2,7 @@
 
 namespace WeatherWpfApp.ViewModels
 {
-    public class LocationViewViewModel
+    public class LocationViewViewModel : BaseViewModel
     {
     }
 }

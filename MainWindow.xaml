@@ -15,6 +15,15 @@
             <Setter Property="Height" Value="60"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
+
+        <DataTemplate DataType="{x:Type vm:HomeViewViewModel}">
+            <homeView:HomeView DataContext="{Binding}"/>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type vm:LocationViewViewModel}">
+            <locationView:LocationView DataContext="{Binding}"/>
+        </DataTemplate>
+        
     </Window.Resources>
     <Window.DataContext>
         <vm:MainWindowViewModel/>
@@ -138,8 +147,7 @@
             </StackPanel>
 
             <Grid Grid.Column="1">
-                <homeView:HomeView DataContext="{Binding HomeViewViewModel}"/>
-                <locationView:LocationView DataContext="{Binding LocationViewViewModel}"/>
+                <ContentControl Content="{Binding SelectedContent}"/>
             </Grid>
             
         </Grid>
