@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:homeView="clr-namespace:WeatherWpfApp.Views.Home"
+        xmlns:locationView="clr-namespace:WeatherWpfApp.Views.Location"
         xmlns:vm="clr-namespace:WeatherWpfApp.ViewModels"
         xmlns:local="clr-namespace:WeatherWpfApp"
         mc:Ignorable="d"
@@ -123,15 +124,22 @@
                 <Button
                     Content="Home"
                     Style="{StaticResource LeftPanelButton}"
-                    Command="{Binding Path=HomeCommand}"/>
-                <Button Content="Location" Style="{StaticResource LeftPanelButton}"/>
-                <Button Content="Settings" Style="{StaticResource LeftPanelButton}"/>
-                <Button Content="Close" Style="{StaticResource LeftPanelButton}"/>
+                    Command="{Binding HomeCommand}"/>
+                <Button
+                    Content="Location"
+                    Style="{StaticResource LeftPanelButton}"
+                    Command="{Binding LocationCommand}"/>
+                <Button 
+                    Content="Settings"
+                    Style="{StaticResource LeftPanelButton}"/>
+                <Button
+                    Content="Close" 
+                    Style="{StaticResource LeftPanelButton}"/>
             </StackPanel>
 
-            <!--Здесь нужно вставить домашнее окно-->
             <Grid Grid.Column="1">
                 <homeView:HomeView DataContext="{Binding HomeViewViewModel}"/>
+                <locationView:LocationView DataContext="{Binding LocationViewViewModel}"/>
             </Grid>
             
         </Grid>
