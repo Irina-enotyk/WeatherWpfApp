@@ -24,16 +24,17 @@
         <DataTemplate DataType="{x:Type vm:LocationViewViewModel}">
             <locationView:LocationView DataContext="{Binding}"/>
         </DataTemplate>
-        
+
         <DataTemplate DataType="{x:Type vm:SettingsViewViewModel}">
             <settingsView:SettingsView DataContext="{Binding}"/>
         </DataTemplate>
-        
     </Window.Resources>
+    
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
-    <Grid>
+
+    <Grid Background="{DynamicResource MainWindowBackGround}">
         <Grid.RowDefinitions>
             <RowDefinition Height =' auto'/>
             <RowDefinition Height =' 1*'/>

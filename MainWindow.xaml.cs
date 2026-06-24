@@ -1,7 +1,10 @@
 ﻿using System.Windows;
+using System.Timers;
 using System.Windows.Controls;
 using WeatherWpfApp.Models;
 using WeatherWpfApp.Storages;
+using System.Windows.Media;
+using LinearGradientBrush = System.Windows.Media.LinearGradientBrush;
 
 namespace WeatherWpfApp
 {
@@ -10,6 +13,8 @@ namespace WeatherWpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private System.Timers.Timer timer = new System.Timers.Timer();
+
         private User user;
         private bool IsSignOut = false;
         private UserStorage userStorage { get; } = new UserStorage();
@@ -19,9 +24,45 @@ namespace WeatherWpfApp
             InitializeComponent();
             SetSubscribes();
 
+            timer.Interval = 1000;
+            timer.Elapsed += Timer_Elapsed;
+            timer.Start();
+
             user = userStorage.GetRememberUser();
             var users = userStorage.GetAll();
             userStorage.SwitchActiveUser(user, users);
+        }
+
+        private void Timer_Elapsed(object? sender, ElapsedEventArgs e)
+        {
+            var hour = DateTime.Now.Hour;
+            LinearGradientBrush gradient = new LinearGradientBrush { };
+
+            if (hour <=  6 || hour >= 18)
+            {
+                gradient = new LinearGradientBrush
+                {
+                    GradientStops = new GradientStopCollection
+                    {
+                        new GradientStop(Colors.Black, 0),
+                        new GradientStop(Colors.DeepSkyBlue, 1),
+                    }
+                };
+            }
+
+            else
+            {
+                gradient = new LinearGradientBrush
+                {
+                    GradientStops = new GradientStopCollection
+                    {
+                        new GradientStop(Colors.Coral, 0),
+                        new GradientStop((Color)ColorConverter.ConvertFromString("#FFC371"), 1)
+                    }
+                };
+            }
+
+            Application.Current.Resources["MainWindowBackGround"] = gradient;
         }
 
         private void ShowUser()
