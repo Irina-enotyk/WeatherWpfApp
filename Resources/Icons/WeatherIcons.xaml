@@ -1,0 +1,99 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ControlTemplate x:Key="clear_sky" TargetType="Control">
+        <Grid>
+            <Path
+                Name="polygon1"
+                Stroke="#FFFBBF24"
+                StrokeThickness="3"
+                Width="56"
+                Height="56"
+                Margin="-8,-8,0,0"
+                StrokeEndLineCap="Round"
+                StrokeMiterLimit="10"
+                StrokeStartLineCap="Round">
+                <Path.Data>
+                    <PathGeometry Figures="M 32 15.71 V 9.5 m 0 45 v -6.21 m 11.52 -27.81 l 4.39 -4.39 M 16.09 47.91 l 4.39 -4.39 m 0 -23 l -4.39 -4.39 m 31.82 31.78 l -4.39 -4.39 M 15.71 32 H 9.5 m 45 0 h -6.21" />
+                </Path.Data>
+                <Path.RenderTransform>
+                    <RotateTransform x:Name="rotate" CenterX="32" CenterY="32" />
+                </Path.RenderTransform>
+                <Path.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    RepeatBehavior="Forever"
+                                    Storyboard.TargetName="rotate"
+                                    Storyboard.TargetProperty="Angle"
+                                    From="0"
+                                    To="90"
+                                    Duration="0:0:2.5" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Path.Triggers>
+            </Path>
+
+            <Ellipse
+                Stroke="#FFFBBF24"
+                StrokeThickness="1"
+                Width="24"
+                Height="24">
+                <Ellipse.Fill>
+                    <LinearGradientBrush>
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Offset="0" Color="#FFFBBF24" />
+                            <GradientStop Offset="0.45" Color="#FFB526" />
+                            <GradientStop Offset="1" Color="#FF9926" />
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="partly_cloudy" TargetType="Control">
+        <Grid>
+            <Path
+                Name="polygon1"
+                Stroke="{DynamicResource CloudStroke}"
+                StrokeThickness="1"
+                Width="56"
+                Height="56"
+                Margin="-8,-8,0,0"
+                StrokeEndLineCap="Round"
+                StrokeMiterLimit="10"
+                StrokeStartLineCap="Round">
+                <Path.Fill>
+                    <LinearGradientBrush>
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Offset="0" Color="#f3f7fe" />
+                            <GradientStop Offset="0.45" Color="#f3f7fe" />
+                            <GradientStop Offset="1" Color="#deeafb" />
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Path.Fill>
+                <Path.Data>
+                    <PathGeometry Figures="M 46.5 31.5 h -0.32 a 10.49 10.49 0 0 0 -19.11 -8 a 7 7 0 0 0 -10.57 6 a 7.21 7.21 0 0 0 0.1 1.14 A 7.5 7.5 0 0 0 18 45.5 a 4.19 4.19 0 0 0 0.5 0 v 0 h 28 a 7 7 0 0 0 0 -14 Z" />
+                </Path.Data>
+                <Path.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ThicknessAnimation
+                                    AutoReverse="True"
+                                    RepeatBehavior="Forever"
+                                    Storyboard.TargetName="polygon1"
+                                    Storyboard.TargetProperty="Margin"
+                                    From="-11, -8, 0, 0"
+                                    To="-5, -8, 0, 0"
+                                    Duration="0:0:2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Path.Triggers>
+            </Path>
+        </Grid>
+    </ControlTemplate>
+</ResourceDictionary>

@@ -32,10 +32,10 @@
                     Temperature = random.Next(23, 32),
                     ApparentTemperature = random.Next(13, 22),
                     RelativeHumidity = 0.65f,
-                    SurfasePressure = random.Next(762, 768),
+                    SurfasePressure = random.Next(745, 768),
                     WindSpeed = random.Next(0, 20),
                     WindDirection = random.Next(1, 9),
-                    Weather = WeatherCodes.SlightRain,
+                    Weather = (WeatherCodes)random.Next(2),
                 };
                 HourlyForecast.Add(hour);
             }

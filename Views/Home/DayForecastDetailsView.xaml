@@ -5,16 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherWpfApp.Views.Home"
         xmlns:model="clr-namespace:WeatherWpfApp.Models"
+        xmlns:converters="clr-namespace:WeatherWpfApp.Resources.Converters"
         mc:Ignorable="d"
         Height="450" Width="800">
     <UserControl.DataContext>
         <model:DayForecastModel/>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <!--Как понять, что здесь ещё и ключ надо прописать? x:Key="WeatherCodeToIconConverter-->
+        <converters:WeatherCodeToIconConverter x:Key="WeatherCodeToIconConverter"/>
+    </UserControl.Resources>
     <Grid>
-        <StackPanel 
-                    x:Name="Details_StackPanel" 
-                    Grid.Column="0" 
-                    Orientation="Vertical">
+        <StackPanel x:Name="Details_StackPanel">
+            <Label Content="{Binding Path=Location}"/>
+            <Control Template="{Binding Weather, Converter={StaticResource WeatherCodeToIconConverter}}"/>
             <Label Content="{Binding Path=Date}"/>
             <Label Content="{Binding Path=MaxTemperature}"/>
             <Label Content="{Binding Path=MinTemperature}"/>
