@@ -21,6 +21,27 @@ namespace WeatherWpfApp.Resources.Converters
                 case WeatherCodes.PartlyCloudy:
                     resourceName = "partly_cloudy";
                     break;
+                case WeatherCodes.Overcast:
+                    resourceName = "overcast";
+                    break;
+                case WeatherCodes.Drizzle:
+                    resourceName = "drizzle";
+                    break;
+                case WeatherCodes.Fog:
+                    resourceName = "fog";
+                    break;
+                case WeatherCodes.SlightRain:
+                    resourceName = "slight_rain";
+                    break;
+                case WeatherCodes.Snowfall:
+                    resourceName = "snowfall";
+                    break;
+                case WeatherCodes.Thunderstorm:
+                    resourceName = "thunderstorm";
+                    break;
+                case WeatherCodes.Windy:
+                    resourceName = "windy";
+                    break;
             }
             if(resourceName == null)
             {
