@@ -18,7 +18,7 @@
     <Grid>
         <StackPanel x:Name="Details_StackPanel">
             <Label Content="{Binding Path=Location}"/>
-            <Control Template="{Binding Weather, Converter={StaticResource WeatherCodeToIconConverter}}"/>
+            <Control HorizontalAlignment="Left" Template="{Binding Weather, Converter={StaticResource WeatherCodeToIconConverter}}"/>
             <Label Content="{Binding Path=Date}"/>
             <Label Content="{Binding Path=MaxTemperature}"/>
             <Label Content="{Binding Path=MinTemperature}"/>

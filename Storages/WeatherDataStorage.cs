@@ -10,7 +10,6 @@ namespace WeatherWpfApp.Storages
 
             for(int i = 0; i < 7; i++)
             {
-                //Как понять, что нужно обратиться к WeatherCodes через typeof?
                 var weathers = Enum.GetValues(typeof(WeatherCodes));
                 var random = new Random();
 

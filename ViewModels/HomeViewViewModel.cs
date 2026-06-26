@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using WeatherWpfApp.Models;
+﻿using WeatherWpfApp.Models;
 using WeatherWpfApp.Storages;
 
 namespace WeatherWpfApp.ViewModels
