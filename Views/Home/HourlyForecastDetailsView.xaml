@@ -7,13 +7,6 @@
              xmlns:model="clr-namespace:WeatherWpfApp.Models"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <Style TargetType="TextBlock" x:Key="CellStyle">
-            <Setter Property="FontSize" Value="10"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-        </Style>
-    </UserControl.Resources>
     <UserControl.DataContext>
         <model:DayForecastModel/>
     </UserControl.DataContext>

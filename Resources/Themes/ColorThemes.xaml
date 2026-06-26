@@ -7,5 +7,7 @@
             <GradientStop Offset="1" Color="#FFC371"/>
         </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
-    
+
+    <SolidColorBrush x:Key="MainMenuButtonBackground" Color="LemonChiffon"/>
+
 </ResourceDictionary>
