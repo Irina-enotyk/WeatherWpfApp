@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WeatherWpfApp.Views.Home"
         xmlns:model="clr-namespace:WeatherWpfApp.Models"
         xmlns:converters="clr-namespace:WeatherWpfApp.Resources.Converters"
+        FontFamily="{StaticResource MainFont}"
         mc:Ignorable="d"
         Height="450" Width="800">
     <UserControl.DataContext>

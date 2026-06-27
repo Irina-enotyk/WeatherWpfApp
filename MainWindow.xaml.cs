@@ -45,8 +45,8 @@ namespace WeatherWpfApp
                 {
                     GradientStops = new GradientStopCollection
                     {
-                        new GradientStop(Colors.SteelBlue, 0),
-                        new GradientStop(Colors.MidnightBlue, 1),
+                        new GradientStop(Colors.SteelBlue, 1),
+                        new GradientStop(Colors.MidnightBlue, 0),
                     }
                 };
                 solidBrush.Opacity =0.25;
