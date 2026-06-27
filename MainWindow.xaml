@@ -9,7 +9,8 @@
         xmlns:vm="clr-namespace:WeatherWpfApp.ViewModels"
         xmlns:local="clr-namespace:WeatherWpfApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="935">
+        Title="MainWindow" Height="600" Width="935"
+        FontFamily="{StaticResource MainFont}">
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:HomeViewViewModel}">
             <homeView:HomeView DataContext="{Binding}"/>
@@ -29,13 +30,15 @@
     </Window.DataContext>
 
     <Grid Background="{DynamicResource MainWindowBackGround}">
+        
         <Grid.RowDefinitions>
             <RowDefinition Height =' auto'/>
             <RowDefinition Height =' 1*'/>
             <RowDefinition Height =' 10*'/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid 
+            Grid.Row="0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -128,8 +131,9 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="4*"/>
             </Grid.ColumnDefinitions>
-
-            <StackPanel Grid.Column ="0" Orientation="Vertical">
+            <StackPanel 
+                Grid.Column ="0"
+                Orientation="Vertical">
                 <Button
                     Content="Главная"
                     Style="{StaticResource LeftPanelButton}"

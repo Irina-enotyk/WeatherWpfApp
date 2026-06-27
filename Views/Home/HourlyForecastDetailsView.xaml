@@ -5,8 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WeatherWpfApp.Views.Home"
              xmlns:model="clr-namespace:WeatherWpfApp.Models"
+             xmlns:converters="clr-namespace:WeatherWpfApp.Resources.Converters"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             FontFamily="{StaticResource MainFont}">
+    <UserControl.Resources>
+        <converters:WeatherCodeToIconConverter x:Key="WeatherCodeToIconConverter"/>
+    </UserControl.Resources>
     <UserControl.DataContext>
         <model:DayForecastModel/>
     </UserControl.DataContext>
@@ -50,7 +55,7 @@
                 <TextBlock 
                     Grid.Column="1" 
                     HorizontalAlignment="Center"
-                    Text="Изобр"/>
+                    Text="Погода"/>
                 <TextBlock 
                     Grid.Column="2" 
                     HorizontalAlignment="Center"
@@ -100,10 +105,9 @@
                                     Grid.Column="0" 
                                     Style ="{StaticResource CellStyle}" 
                                     Text="{Binding Time}"/>
-                                <TextBlock 
+                                <Control                 
                                     Grid.Column="1" 
-                                    Style ="{StaticResource CellStyle}" 
-                                    Text=""/>
+                                    Template="{Binding Weather, Converter={StaticResource WeatherCodeToIconConverter}}"/>
                                 <TextBlock 
                                     Grid.Column="2" 
                                     Style ="{StaticResource CellStyle}" 

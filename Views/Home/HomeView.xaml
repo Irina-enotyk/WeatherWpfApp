@@ -66,17 +66,6 @@
                                         </Grid>
                                     </Grid>
                                 </Grid>
-                                <Grid Grid.Column ="1"
-                                  VerticalAlignment="Center"
-                                  HorizontalAlignment="Center">
-                                    <Image 
-                                    Source="/Image/weather-forcast-storm-rain-thunder-day_108615.png"
-                                    Opacity="0.75"
-                                    Width="32"
-                                    Height="32"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"/>
-                                </Grid>
                             </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>
