@@ -15,8 +15,11 @@
         <!--Как понять, что здесь ещё и ключ надо прописать? x:Key="WeatherCodeToIconConverter-->
         <converters:WeatherCodeToIconConverter x:Key="WeatherCodeToIconConverter"/>
     </UserControl.Resources>
-    <Grid>
-        <StackPanel x:Name="Details_StackPanel">
+    <Grid
+        Background="{StaticResource DetailsViewInfoBackground}">
+        <StackPanel 
+            Margin="25"
+            x:Name="Details_StackPanel">
             <Label Content="{Binding Path=Location}"/>
             <Label Content="{Binding Path=Date}"/>
             <Label Content="{Binding Path=MaxTemperature}"/>

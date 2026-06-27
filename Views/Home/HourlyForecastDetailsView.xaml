@@ -28,7 +28,7 @@
             <Border Grid.Row ="0"
                     BorderThickness="1"
                     BorderBrush="DimGray"
-                    Background="LightGoldenrodYellow">
+                    Background="{StaticResource HourlyForcastHeaderBackground}">
             </Border>
             <Grid Grid.Row="0" Margin="0, 0, 20, 0">
                 <Grid.ColumnDefinitions>
@@ -69,7 +69,10 @@
                     HorizontalAlignment="Center"
                     Text="Ветер"/>
             </Grid>
-            <ScrollViewer Grid.Row="1">
+            <ScrollViewer 
+                Grid.Row="1"
+                Background="{StaticResource HourlyForcastDataBackground}">
+                
                 <ItemsControl ItemsSource="{Binding HourlyForecast}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
