@@ -12,19 +12,22 @@
         <model:DayForecastModel/>
     </UserControl.DataContext>
     <UserControl.Resources>
-        <!--Как понять, что здесь ещё и ключ надо прописать? x:Key="WeatherCodeToIconConverter-->
         <converters:WeatherCodeToIconConverter x:Key="WeatherCodeToIconConverter"/>
+        <converters:WindDirectionToIconConverter x:Key="WindDirectionToIconConverter"/>
     </UserControl.Resources>
-    <Grid
-        Background="{StaticResource DetailsViewInfoBackground}">
+    <Grid 
+        Background="{DynamicResource LightBackground}">
         <StackPanel 
             Margin="25"
             x:Name="Details_StackPanel">
             <Label Content="{Binding Path=Location}"/>
             <Label Content="{Binding Path=Date}"/>
+            <Control
+                HorizontalAlignment="Left"
+                Template="{Binding WindDirection, Converter={StaticResource WindDirectionToIconConverter}}" Width="55" Height="54"/>
             <Label Content="{Binding Path=MaxTemperature}"/>
             <Label Content="{Binding Path=MinTemperature}"/>
-            <Control 
+            <Control                 
                 HorizontalAlignment="Left"
                 Template="{Binding Weather, Converter={StaticResource WeatherCodeToIconConverter}}"/>
         </StackPanel>

@@ -37,6 +37,7 @@ namespace WeatherWpfApp
         {
             var hour = DateTime.Now.Hour;
             LinearGradientBrush gradient = new LinearGradientBrush { };
+            SolidColorBrush solidBrush = new SolidColorBrush(Colors.White);
 
             if (hour <=  6 || hour >= 18)
             {
@@ -48,6 +49,7 @@ namespace WeatherWpfApp
                         new GradientStop(Colors.MidnightBlue, 1),
                     }
                 };
+                solidBrush.Opacity =0.25;
             }
 
             else
@@ -63,6 +65,7 @@ namespace WeatherWpfApp
             }
 
             Application.Current.Resources["MainWindowBackGround"] = gradient;
+            Application.Current.Resources["LightBackground"] = solidBrush;
         }
 
         private void ShowUser()

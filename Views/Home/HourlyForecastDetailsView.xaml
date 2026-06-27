@@ -10,7 +10,8 @@
     <UserControl.DataContext>
         <model:DayForecastModel/>
     </UserControl.DataContext>
-    <Grid Margin="10">
+    <Grid 
+        Background="{DynamicResource LightBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="10*"/>
@@ -19,7 +20,9 @@
                Content="Почасовой прогноз"
                VerticalAlignment="Center"/>
 
-        <Grid Grid.Row="1">
+        <Grid 
+            Margin="10"
+            Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>

@@ -19,19 +19,24 @@
 
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
+                <Grid 
+                    Grid.Column="0"
+                    Margin="0, 10, 0, 10">
                     <local:DayForecastDetailsView DataContext="{Binding SelectedDay}"/>
                 </Grid>
-                <Grid Grid.Column="1">
+                <Grid Grid.Column="1"
+                      Margin="10">
                     <local:HourlyForecastDetailsView DataContext="{Binding SelectedDay}"/>
                 </Grid>
             </Grid>
             <ListBox 
                 x:Name="WeatherDays_ListBox" 
                 Grid.Row="1" 
+                Background="{DynamicResource LightBackground}"
+                Margin="0,0,10,10"
                 ItemsSource="{Binding ForecastDays}"
                 SelectedItem="{Binding SelectedDay}">
                 <ListBox.ItemsPanel>
@@ -48,7 +53,7 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.Column ="0">
-                                    <Grid>
+                                    <Grid >
                                         <Grid.RowDefinitions>
                                             <RowDefinition/>
                                             <RowDefinition/>
@@ -66,6 +71,7 @@
                                   HorizontalAlignment="Center">
                                     <Image 
                                     Source="/Image/weather-forcast-storm-rain-thunder-day_108615.png"
+                                    Opacity="0.75"
                                     Width="32"
                                     Height="32"
                                     HorizontalAlignment="Center"

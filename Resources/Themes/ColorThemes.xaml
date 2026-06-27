@@ -10,18 +10,18 @@
 
     <SolidColorBrush 
         x:Key="MainMenuButtonBackground"
-        Color="LemonChiffon"
+        Color="White"
         Opacity="0.25"/>
     <SolidColorBrush 
-        x:Key="DetailsViewInfoBackground" 
+        x:Key="LightBackground" 
         Color="White"
         Opacity="1"/>
     <SolidColorBrush 
         x:Key="HourlyForcastHeaderBackground" 
         Color="LimeGreen"
-        Opacity="0.75"/>
+        Opacity="0.5"/>
     <SolidColorBrush 
         x:Key="HourlyForcastDataBackground" 
         Color="LightGreen"
-        Opacity="0.5"/>
+        Opacity="0.35"/>
 </ResourceDictionary>
