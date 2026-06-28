@@ -1,5 +1,4 @@
 ﻿using WeatherWpfApp.Models;
-using WeatherWpfApp.Storages;
 
 namespace WeatherWpfApp.ViewModels
 {
@@ -29,9 +28,9 @@ namespace WeatherWpfApp.ViewModels
             }
         }
 
-        public HomeViewViewModel()
+        public HomeViewViewModel(IWeatherStorage weatherStorage)
         {
-            ForecastDays = WeatherDataStorage.Load();
+            ForecastDays = weatherStorage.GetAll();
         }
     }
 }

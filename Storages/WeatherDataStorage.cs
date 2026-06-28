@@ -2,9 +2,9 @@
 
 namespace WeatherWpfApp.Storages
 {
-    public static class WeatherDataStorage
+    public class WeatherDataStorage : IWeatherStorage
     {
-        public static List<DayForecastModel> Load()
+        public List<DayForecastModel> GetAll()
         {
             var days = new List<DayForecastModel>();
 
