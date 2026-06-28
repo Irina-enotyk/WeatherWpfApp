@@ -24,10 +24,6 @@
             <settingsView:SettingsView DataContext="{Binding}"/>
         </DataTemplate>
     </Window.Resources>
-    
-    <Window.DataContext>
-        <vm:MainWindowViewModel/>
-    </Window.DataContext>
 
     <Grid Background="{DynamicResource MainWindowBackGround}">
         
