@@ -5,6 +5,7 @@ using WeatherWpfApp.Models;
 using WeatherWpfApp.Storages;
 using System.Windows.Media;
 using LinearGradientBrush = System.Windows.Media.LinearGradientBrush;
+using WeatherWpfApp.ViewModels;
 
 namespace WeatherWpfApp
 {
@@ -19,10 +20,12 @@ namespace WeatherWpfApp
         private bool IsSignOut = false;
         private UserStorage userStorage { get; } = new UserStorage();
 
-        public MainWindow()
+        public MainWindow(MainWindowViewModel mainWindowViewModel)
         {
             InitializeComponent();
             SetSubscribes();
+
+            DataContext = mainWindowViewModel;
 
             timer.Interval = 1000;
             timer.Elapsed += Timer_Elapsed;
