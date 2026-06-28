@@ -12,6 +12,8 @@ namespace WeatherWpfApp.ViewModels
 
         private BaseViewModel selectedContent;
 
+        private HomeViewViewModel homeViewViewModel;
+
         public BaseViewModel SelectedContent
         {
             get {  return selectedContent; }
@@ -22,12 +24,13 @@ namespace WeatherWpfApp.ViewModels
             }
         }
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(HomeViewViewModel homeViewViewModel)
         {
             HomeCommand = new RelayCommand(OpenHomeView, CanOpenHomeView);
             LocationCommand = new RelayCommand(OpenLocationView, CanOpenLocationView);
             SettingsCommand = new RelayCommand(OpenSettingsView, CanOpenSettingsView);
             CloseCommand = new RelayCommand(CloseApplication, CanOpenCloseApplication);
+            this.homeViewViewModel = homeViewViewModel;
         }
 
         private bool CanOpenHomeView(object arg)
@@ -37,7 +40,7 @@ namespace WeatherWpfApp.ViewModels
 
         private void OpenHomeView(object obj)
         {
-            SelectedContent = new HomeViewViewModel();
+            SelectedContent = homeViewViewModel;
         }
         private bool CanOpenLocationView(object arg)
         {
