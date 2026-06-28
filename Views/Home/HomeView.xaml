@@ -8,9 +8,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              FontFamily="{StaticResource MainFont}">
-    <UserControl.DataContext>
-        <vm:HomeViewViewModel/>
-    </UserControl.DataContext>
     <Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
