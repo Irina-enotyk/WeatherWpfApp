@@ -1,4 +1,4 @@
-﻿namespace WeatherWpfApp
+﻿namespace WeatherWpfApp.Models
 {
     public static class InputValidator
     {
