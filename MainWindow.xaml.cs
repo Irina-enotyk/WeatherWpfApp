@@ -24,7 +24,7 @@ namespace WeatherWpfApp
             InitializeComponent();
             SetSubscribes();
 
-            timer.Interval = 1000;
+            timer.Interval = 3600000;
             timer.Elapsed += Timer_Elapsed;
             timer.Start();
 
