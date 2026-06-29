@@ -1,4 +1,6 @@
-﻿namespace WeatherWpfApp
+﻿using WeatherWpfApp.Models;
+
+namespace WeatherWpfApp.Storages
 {
     public class UserStorage
     {

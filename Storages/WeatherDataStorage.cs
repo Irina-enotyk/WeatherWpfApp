@@ -1,8 +1,8 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using WeatherWpfApp.Models;
 
-namespace WeatherWpfApp
+namespace WeatherWpfApp.Storages
 {
-    public static class DayForecastData
+    public static class WeatherDataStorage
     {
         public static List<DayForecastModel> Load()
         {

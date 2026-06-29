@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using WeatherWpfApp.Models;
+using WeatherWpfApp.Storages;
 
 namespace WeatherWpfApp
 {

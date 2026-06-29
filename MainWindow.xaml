@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:homeView="clr-namespace:WeatherWpfApp.Views.Home"
+        xmlns:vm="clr-namespace:WeatherWpfApp.ViewModels"
         xmlns:local="clr-namespace:WeatherWpfApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="935">
@@ -12,14 +14,10 @@
             <Setter Property="Height" Value="60"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
-
-        <Style x:Key="TableDataCentrPosition" TargetType="Label">
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
     </Window.Resources>
-
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height =' auto'/>
@@ -122,162 +120,20 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column ="0" Orientation="Vertical">
-                <Button Content="Home" Style="{StaticResource LeftPanelButton}"/>
+                <Button
+                    Content="Home"
+                    Style="{StaticResource LeftPanelButton}"
+                    Command="{Binding Path=HomeCommand}"/>
                 <Button Content="Location" Style="{StaticResource LeftPanelButton}"/>
                 <Button Content="Settings" Style="{StaticResource LeftPanelButton}"/>
                 <Button Content="Close" Style="{StaticResource LeftPanelButton}"/>
             </StackPanel>
 
+            <!--Здесь нужно вставить домашнее окно-->
             <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="5*"/>
-                    <RowDefinition Height="2*"/>
-                </Grid.RowDefinitions>
-
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="5*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel 
-                        x:Name="Details_StackPanel" 
-                        Grid.Column="0" 
-                        Orientation="Vertical">
-                        <Label Content="{Binding Path=Date}"/>
-                        <Label Content="{Binding Path=MaxTemperature}"/>
-                        <Label Content="{Binding Path=MinTemperature}"/>
-                    </StackPanel>
-
-                    <Grid Grid.Column="1" Margin="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="2*"/>
-                            <RowDefinition Height="10*"/>
-                        </Grid.RowDefinitions>
-                        <Label Grid.Row="0"
-                               Content="Почасовой прогноз"
-                               VerticalAlignment="Center"/>
-
-                        <Grid Grid.Row="1" Grid.IsSharedSizeScope="True">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-
-                            <Grid Grid.Row="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition SharedSizeGroup="Time"/>
-                                    <ColumnDefinition SharedSizeGroup="Picture"/>
-                                    <ColumnDefinition SharedSizeGroup="Temperature"/>
-                                    <ColumnDefinition SharedSizeGroup="ApparentTemperature"/>
-                                    <ColumnDefinition SharedSizeGroup="RelativeHumidity"/>
-                                    <ColumnDefinition SharedSizeGroup="SurfasePressure"/>
-                                    <ColumnDefinition SharedSizeGroup="WindSpeed"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Content="Время" Style="{StaticResource TableDataCentrPosition}"/>
-                                <Label Grid.Column="1" Content="Изобр" Style="{StaticResource TableDataCentrPosition}"/>
-                                <Label Grid.Column="2" Content="ТМакс" Style="{StaticResource TableDataCentrPosition}"/>
-                                <Label Grid.Column="3" Content="ТМин" Style="{StaticResource TableDataCentrPosition}"/>
-                                <Label Grid.Column="4" Content="Осадки" Style="{StaticResource TableDataCentrPosition}"/>
-                                <Label Grid.Column="5" Content="Давление" Style="{StaticResource TableDataCentrPosition}"/>
-                                <Label Grid.Column="6" Content="Ветер" Style="{StaticResource TableDataCentrPosition}"/>
-                            </Grid>
-                            <ListBox 
-                                x:Name="ForecastHours_ListBox"
-                                Grid.Row ="1" d:ItemsSource="{d:SampleData ItemCount=5}">
-                                <ListBox.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Vertical"/>
-                                    </ItemsPanelTemplate>
-                                </ListBox.ItemsPanel>
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition SharedSizeGroup="Time"/>
-                                                <ColumnDefinition SharedSizeGroup="Picture"/>
-                                                <ColumnDefinition SharedSizeGroup="Temperature"/>
-                                                <ColumnDefinition SharedSizeGroup="ApparentTemperature"/>
-                                                <ColumnDefinition SharedSizeGroup="RelativeHumidity"/>
-                                                <ColumnDefinition SharedSizeGroup="SurfasePressure"/>
-                                                <ColumnDefinition SharedSizeGroup="WindSpeed"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Label Grid.Column="0" Content="{Binding Path=Time}" Style="{StaticResource TableDataCentrPosition}"/>
-                                            <Label Grid.Column="1" Content="" Style="{StaticResource TableDataCentrPosition}"/>
-                                            <Label Grid.Column="2" Content="{Binding Path=Temperature}" Style="{StaticResource TableDataCentrPosition}"/>
-                                            <Label Grid.Column="3" Content="{Binding Path=ApparentTemperature}" Style="{StaticResource TableDataCentrPosition}"/>
-                                            <Label Grid.Column="4" Content="{Binding Path=RelativeHumidity}" Style="{StaticResource TableDataCentrPosition}"/>
-                                            <Label Grid.Column="5" Content="{Binding Path=SurfasePressure}" Style="{StaticResource TableDataCentrPosition}"/>
-                                            <Label Grid.Column="6" Content="{Binding Path=WindSpeed}" Style="{StaticResource TableDataCentrPosition}"/>
-                                        </Grid>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
-
-                        </Grid>
-                    </Grid>
-                </Grid>
-                <ListBox 
-                    x:Name="WeatherDays_ListBox" 
-                    Grid.Row="1">
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"/>
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Button Click="WeatherDayButton_Click">
-                                <StackPanel Orientation="Vertical">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid Grid.Column ="0">
-                                            <Grid>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition/>
-                                                    <RowDefinition/>
-                                                </Grid.RowDefinitions>
-                                                <Grid Grid.Row="0">
-                                                    <Label Content="{Binding Path=Date}"/>
-                                                </Grid>
-                                                <Grid Grid.Row="1">
-                                                    <Label Content="{Binding Path=WeekDay}"/>
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
-                                        <Grid Grid.Column ="1"
-                                              VerticalAlignment="Center"
-                                              HorizontalAlignment="Center">
-                                            <Image 
-                                                Source="/Image/weather-forcast-storm-rain-thunder-day_108615.png"
-                                                Width="32"
-                                                Height="32"
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"/>
-                                        </Grid>
-                                    </Grid>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid Grid.Column="0">
-                                            <Label Content="{Binding Path=MaxTemperature}"/>
-                                        </Grid>
-                                        <Grid Grid.Column="1">
-                                            <Label Content="{Binding Path=MinTemperature}"/>
-                                        </Grid>
-                                    </Grid>
-                                    <Label Content="{Binding Path=Weather}"/>
-                                </StackPanel>
-                            </Button>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                <homeView:HomeView DataContext="{Binding HomeViewViewModel}"/>
             </Grid>
+            
         </Grid>
     </Grid>
 </Window>

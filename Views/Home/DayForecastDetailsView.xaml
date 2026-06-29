@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="WeatherWpfApp.Views.Home.DayForecastDetailsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WeatherWpfApp.Views.Home"
+        xmlns:model="clr-namespace:WeatherWpfApp.Models"
+        mc:Ignorable="d"
+        Height="450" Width="800">
+    <UserControl.DataContext>
+        <model:DayForecastModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <StackPanel 
+                    x:Name="Details_StackPanel" 
+                    Grid.Column="0" 
+                    Orientation="Vertical">
+            <Label Content="{Binding Path=Date}"/>
+            <Label Content="{Binding Path=MaxTemperature}"/>
+            <Label Content="{Binding Path=MinTemperature}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
