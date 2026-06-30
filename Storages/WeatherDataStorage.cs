@@ -7,12 +7,12 @@ namespace WeatherWpfApp.Storages
         public static List<DayForecastModel> Load()
         {
             var days = new List<DayForecastModel>();
+            var random = new Random();
 
-            for(int i = 0; i < 7; i++)
+            for (int i = 0; i < 7; i++)
             {
                 var weathers = Enum.GetValues(typeof(WeatherCodes));
                 var winds = Enum.GetValues(typeof(WindDirection));
-                var random = new Random();
 
                 var day = new DayForecastModel()
                 {
