@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherWpfApp"
-        xmlns:vm="clr-namespace:WeatherWpfApp.ViewModels.Auth"
         mc:Ignorable="d"
         Title="" 
         Height="350" 
@@ -110,8 +109,7 @@
             Grid.Row="4"
             Content="Зарегистрироваться"
             FontSize="20"
-            Margin="10" 
-            Command="{Binding RegistrationCommand}"
+            Margin="10" Click="RegistrationButton_Click"
         />
     </Grid>
 </Window>

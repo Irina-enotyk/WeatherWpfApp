@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using WeatherWpfApp.Models;
+using WeatherWpfApp.Storages;
 
 namespace WeatherWpfApp
 {
@@ -7,31 +9,47 @@ namespace WeatherWpfApp
     /// </summary>
     public partial class RegistrationWindow : Window
     {
-        public string Login
-        {
-            get
-            {
-                return loginTextBox.Text;
-            }
-        }
-        public string Password
-        {
-            get
-            {
-                return passwordPasswordBox.Password;
-            }
-        }
-        public string RepeatPassword
-        {
-            get
-            {
-                return repeatPasswordBox.Password;
-            }
-        }
+        private UserStorage userStorage { get; } = new UserStorage();
 
         public RegistrationWindow()
         {
             InitializeComponent();
+        }
+
+        private void RegistrationButton_Click(object sender, RoutedEventArgs e)
+        {
+            var currentUser = userStorage.GetUserByLogin(loginTextBox.Text);
+            if (currentUser != null)
+            {
+                MessageBox.Show("Пользователь с таким логин уже зарегистрирован!");
+                return;
+            }
+
+            try { InputValidator.CheckLogin(loginTextBox.Text); }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            try { InputValidator.CheckPassword(passwordPasswordBox.Password); }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            if (repeatPasswordBox.Password != passwordPasswordBox.Password)
+            {
+                MessageBox.Show("Пароли не совпадают!");
+                repeatPasswordBox.Clear();
+                return;
+            }
+
+            var user = new User(loginTextBox.Text, passwordPasswordBox.Password);
+            userStorage.Add(user);
+            MessageBox.Show("Успешная регистрация!");
+            Close();
         }
     }
 }
