@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:WeatherWpfApp.Views.Home"
              xmlns:vm="clr-namespace:WeatherWpfApp.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             FontFamily="{StaticResource MainFont}">
     <UserControl.DataContext>
         <vm:HomeViewViewModel/>
     </UserControl.DataContext>
@@ -19,84 +20,24 @@
 
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
+                <Grid 
+                    Grid.Column="0"
+                    Margin="0, 10, 0, 10">
                     <local:DayForecastDetailsView DataContext="{Binding SelectedDay}"/>
                 </Grid>
-
-                <Grid Grid.Column="1" Margin="10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="10*"/>
-                    </Grid.RowDefinitions>
-                    <Label Grid.Row="0"
-                   Content="Почасовой прогноз"
-                   VerticalAlignment="Center"/>
-
-                    <Grid Grid.Row="1" Grid.IsSharedSizeScope="True">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
-                        <Grid Grid.Row="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition SharedSizeGroup="Time"/>
-                                <ColumnDefinition SharedSizeGroup="Picture"/>
-                                <ColumnDefinition SharedSizeGroup="Temperature"/>
-                                <ColumnDefinition SharedSizeGroup="ApparentTemperature"/>
-                                <ColumnDefinition SharedSizeGroup="RelativeHumidity"/>
-                                <ColumnDefinition SharedSizeGroup="SurfasePressure"/>
-                                <ColumnDefinition SharedSizeGroup="WindSpeed"/>
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Content="Время"/>
-                            <Label Grid.Column="1" Content="Изобр"/>
-                            <Label Grid.Column="2" Content="ТМакс"/>
-                            <Label Grid.Column="3" Content="ТМин"/>
-                            <Label Grid.Column="4" Content="Осадки"/>
-                            <Label Grid.Column="5" Content="Давление"/>
-                            <Label Grid.Column="6" Content="Ветер"/>
-                        </Grid>
-                        <ListBox 
-                            x:Name="ForecastHours_ListBox"
-                            Grid.Row ="1" 
-                            d:ItemsSource="{d:SampleData ItemCount=5}">
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Vertical"/>
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition SharedSizeGroup="Time"/>
-                                            <ColumnDefinition SharedSizeGroup="Picture"/>
-                                            <ColumnDefinition SharedSizeGroup="Temperature"/>
-                                            <ColumnDefinition SharedSizeGroup="ApparentTemperature"/>
-                                            <ColumnDefinition SharedSizeGroup="RelativeHumidity"/>
-                                            <ColumnDefinition SharedSizeGroup="SurfasePressure"/>
-                                            <ColumnDefinition SharedSizeGroup="WindSpeed"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Label Grid.Column="0" Content="{Binding Path=Time}"/>
-                                        <Label Grid.Column="1" Content=""/>
-                                        <Label Grid.Column="2" Content="{Binding Path=Temperature}"/>
-                                        <Label Grid.Column="3" Content="{Binding Path=ApparentTemperature}"/>
-                                        <Label Grid.Column="4" Content="{Binding Path=RelativeHumidity}"/>
-                                        <Label Grid.Column="5" Content="{Binding Path=SurfasePressure}"/>
-                                        <Label Grid.Column="6" Content="{Binding Path=WindSpeed}"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </Grid>
+                <Grid Grid.Column="1"
+                      Margin="10">
+                    <local:HourlyForecastDetailsView DataContext="{Binding SelectedDay}"/>
                 </Grid>
             </Grid>
             <ListBox 
                 x:Name="WeatherDays_ListBox" 
                 Grid.Row="1" 
+                Background="{DynamicResource LightBackground}"
+                Margin="0,0,10,10"
                 ItemsSource="{Binding ForecastDays}"
                 SelectedItem="{Binding SelectedDay}">
                 <ListBox.ItemsPanel>
@@ -113,7 +54,7 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.Column ="0">
-                                    <Grid>
+                                    <Grid >
                                         <Grid.RowDefinitions>
                                             <RowDefinition/>
                                             <RowDefinition/>
@@ -125,16 +66,6 @@
                                             <Label Content="{Binding Path=WeekDay}"/>
                                         </Grid>
                                     </Grid>
-                                </Grid>
-                                <Grid Grid.Column ="1"
-                                  VerticalAlignment="Center"
-                                  HorizontalAlignment="Center">
-                                    <Image 
-                                    Source="/Image/weather-forcast-storm-rain-thunder-day_108615.png"
-                                    Width="32"
-                                    Height="32"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"/>
                                 </Grid>
                             </Grid>
                             <Grid>

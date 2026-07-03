@@ -4,28 +4,41 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:homeView="clr-namespace:WeatherWpfApp.Views.Home"
+        xmlns:locationView="clr-namespace:WeatherWpfApp.Views.Location"
+        xmlns:settingsView="clr-namespace:WeatherWpfApp.Views.Settings"
         xmlns:vm="clr-namespace:WeatherWpfApp.ViewModels"
         xmlns:local="clr-namespace:WeatherWpfApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="935">
+        Title="MainWindow" Height="600" Width="935"
+        FontFamily="{StaticResource MainFont}">
     <Window.Resources>
-        <Style x:Key="LeftPanelButton" TargetType="Button">
-            <Setter Property="Margin" Value="15"/>
-            <Setter Property="Height" Value="60"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
+        <DataTemplate DataType="{x:Type vm:HomeViewViewModel}">
+            <homeView:HomeView DataContext="{Binding}"/>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type vm:LocationViewViewModel}">
+            <locationView:LocationView DataContext="{Binding}"/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:SettingsViewViewModel}">
+            <settingsView:SettingsView DataContext="{Binding}"/>
+        </DataTemplate>
     </Window.Resources>
+    
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
-    <Grid>
+
+    <Grid Background="{DynamicResource MainWindowBackGround}">
+        
         <Grid.RowDefinitions>
             <RowDefinition Height =' auto'/>
             <RowDefinition Height =' 1*'/>
             <RowDefinition Height =' 10*'/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid 
+            Grid.Row="0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -118,20 +131,29 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="4*"/>
             </Grid.ColumnDefinitions>
-
-            <StackPanel Grid.Column ="0" Orientation="Vertical">
+            <StackPanel 
+                Grid.Column ="0"
+                Orientation="Vertical">
                 <Button
-                    Content="Home"
+                    Content="Главная"
                     Style="{StaticResource LeftPanelButton}"
-                    Command="{Binding Path=HomeCommand}"/>
-                <Button Content="Location" Style="{StaticResource LeftPanelButton}"/>
-                <Button Content="Settings" Style="{StaticResource LeftPanelButton}"/>
-                <Button Content="Close" Style="{StaticResource LeftPanelButton}"/>
+                    Command="{Binding HomeCommand}"/>
+                <Button
+                    Content="Местоположение"
+                    Style="{StaticResource LeftPanelButton}"
+                    Command="{Binding LocationCommand}"/>
+                <Button 
+                    Content="Настройки"
+                    Style="{StaticResource LeftPanelButton}"
+                    Command="{Binding SettingsCommand}"/>
+                <Button
+                    Content="Закрыть" 
+                    Style="{StaticResource LeftPanelButton}"
+                    Command="{Binding CloseCommand}"/>
             </StackPanel>
 
-            <!--Здесь нужно вставить домашнее окно-->
             <Grid Grid.Column="1">
-                <homeView:HomeView DataContext="{Binding HomeViewViewModel}"/>
+                <ContentControl Content="{Binding SelectedContent}"/>
             </Grid>
             
         </Grid>

@@ -1,6 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using WeatherWpfApp.Models;
+﻿using System.Windows.Controls;
 
 namespace WeatherWpfApp.Views.Home
 {
@@ -13,15 +11,5 @@ namespace WeatherWpfApp.Views.Home
         {
             InitializeComponent();
         }
-        private void WeatherDayButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button button)
-            {
-                var day = button.DataContext as DayForecastModel;
-                //Details_StackPanel.DataContext = day;
-                //ForecastHours_ListBox.ItemsSource = day.HourlyForecast;
-            }
-        }
-
     }
 }

@@ -5,10 +5,6 @@
         West,
         East,
         North,
-        South,
-        NorthWest,
-        NorthEast,
-        SouthWest,
-        SouthEast
+        South
     }
 }

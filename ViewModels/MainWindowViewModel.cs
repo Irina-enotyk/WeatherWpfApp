@@ -1,35 +1,33 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using System.Windows;
 using System.Windows.Input;
 
 namespace WeatherWpfApp.ViewModels
 {
-    public class MainWindowViewModel : INotifyPropertyChanged
+    public class MainWindowViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
         public ICommand HomeCommand { get; }
+        public ICommand LocationCommand { get; }
+        public ICommand SettingsCommand { get; }
+        public ICommand CloseCommand { get; }
 
-        public HomeViewViewModel HomeViewViewModel
+        private BaseViewModel selectedContent;
+
+        public BaseViewModel SelectedContent
         {
-            get { return homeViewViewModel; }
+            get {  return selectedContent; }
             set
             {
-                homeViewViewModel = value;
+                selectedContent = value;
                 OnPropertyChanged();
             }
         }
 
-        private HomeViewViewModel homeViewViewModel;
-
         public MainWindowViewModel()
         {
             HomeCommand = new RelayCommand(OpenHomeView, CanOpenHomeView);
-        }
-
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            LocationCommand = new RelayCommand(OpenLocationView, CanOpenLocationView);
+            SettingsCommand = new RelayCommand(OpenSettingsView, CanOpenSettingsView);
+            CloseCommand = new RelayCommand(CloseApplication, CanOpenCloseApplication);
         }
 
         private bool CanOpenHomeView(object arg)
@@ -39,7 +37,36 @@ namespace WeatherWpfApp.ViewModels
 
         private void OpenHomeView(object obj)
         {
-            HomeViewViewModel = new HomeViewViewModel();
+            SelectedContent = new HomeViewViewModel();
+        }
+        private bool CanOpenLocationView(object arg)
+        {
+            return true;
+        }
+
+        private void OpenLocationView(object obj)
+        {
+            SelectedContent = new LocationViewViewModel();
+        }
+
+        private bool CanOpenSettingsView(object arg)
+        {
+            return true;
+        }
+
+        private void OpenSettingsView(object obj)
+        {
+            SelectedContent = new SettingsViewViewModel();
+        }
+
+        private bool CanOpenCloseApplication(object arg)
+        {
+            return true;
+        }
+
+        private void CloseApplication(object obj)
+        {
+            Application.Current.MainWindow.Close();
         }
     }
 }

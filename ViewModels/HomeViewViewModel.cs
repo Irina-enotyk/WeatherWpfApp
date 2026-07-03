@@ -1,14 +1,10 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using WeatherWpfApp.Models;
+﻿using WeatherWpfApp.Models;
 using WeatherWpfApp.Storages;
 
 namespace WeatherWpfApp.ViewModels
 {
-    public class HomeViewViewModel : INotifyPropertyChanged
+    public class HomeViewViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
-
         private List<DayForecastModel> forecastDays;
 
         public List<DayForecastModel> ForecastDays
@@ -36,12 +32,6 @@ namespace WeatherWpfApp.ViewModels
         public HomeViewViewModel()
         {
             ForecastDays = WeatherDataStorage.Load();
-        }
-
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
 }
