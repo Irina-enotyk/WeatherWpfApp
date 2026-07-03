@@ -113,6 +113,9 @@ namespace WeatherWpfApp
         {
             IsSignOut = true;
             ShowUser();
+
+            IsSignOut = false;
+            ShowUser();
         }
 
         private void OutAccount()
