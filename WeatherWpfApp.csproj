@@ -9,11 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Image\weather-forcast-storm-rain-thunder-day_108615.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Image\weather-forcast-storm-rain-thunder-day_108615.png" />
+    <Resource Include="Resources\Fonts\ofont.ru_SonyEricssonLogo.ttf" />
   </ItemGroup>
 
 </Project>

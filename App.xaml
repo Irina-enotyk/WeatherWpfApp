@@ -3,7 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WeatherWpfApp"
              StartupUri="MainWindow.xaml">
+
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Fonts/ApplicationFonts.xaml"/>
+                <ResourceDictionary Source="/Resources/Themes/ColorThemes.xaml"/>
+                <ResourceDictionary Source="/Resources/Icons/WeatherIcons.xaml"/>
+                <ResourceDictionary Source="/Resources/Icons/WindDirectionIcons.xaml"/>
+                <ResourceDictionary Source="/Resources/Styles/MainMenuButtonStyles.xaml"/>
+                <ResourceDictionary Source="/Resources/Styles/TextBlockStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

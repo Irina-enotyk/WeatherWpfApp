@@ -5,19 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherWpfApp.Views.Home"
         xmlns:model="clr-namespace:WeatherWpfApp.Models"
+        xmlns:converters="clr-namespace:WeatherWpfApp.Resources.Converters"
+        FontFamily="{StaticResource MainFont}"
         mc:Ignorable="d"
         Height="450" Width="800">
     <UserControl.DataContext>
         <model:DayForecastModel/>
     </UserControl.DataContext>
-    <Grid>
+    <UserControl.Resources>
+        <converters:WeatherCodeToIconConverter x:Key="WeatherCodeToIconConverter"/>
+        <converters:WindDirectionToIconConverter x:Key="WindDirectionToIconConverter"/>
+    </UserControl.Resources>
+    <Grid 
+        Background="{DynamicResource LightBackground}">
         <StackPanel 
-                    x:Name="Details_StackPanel" 
-                    Grid.Column="0" 
-                    Orientation="Vertical">
+            Margin="25"
+            x:Name="Details_StackPanel">
+            <Label Content="{Binding Path=Location}"/>
             <Label Content="{Binding Path=Date}"/>
+            <Control
+                HorizontalAlignment="Left"
+                Template="{Binding WindDirection, Converter={StaticResource WindDirectionToIconConverter}}" Width="55" Height="54"/>
             <Label Content="{Binding Path=MaxTemperature}"/>
             <Label Content="{Binding Path=MinTemperature}"/>
+            <Control                 
+                HorizontalAlignment="Left"
+                Template="{Binding Weather, Converter={StaticResource WeatherCodeToIconConverter}}"/>
         </StackPanel>
     </Grid>
 </UserControl>
