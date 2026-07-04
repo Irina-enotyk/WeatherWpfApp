@@ -134,13 +134,5 @@ namespace WeatherWpfApp
             registrationButton.Visibility = Visibility.Collapsed;
             signInButton.Visibility = Visibility.Collapsed;
         }
-
-        private void WeatherDayButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button button)
-            {
-                var day = button.DataContext as DayForecastModel;
-            }
-        }
     }
 }
