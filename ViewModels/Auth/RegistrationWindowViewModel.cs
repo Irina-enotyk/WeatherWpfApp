@@ -6,7 +6,7 @@ using WeatherWpfApp.Storages;
 
 namespace WeatherWpfApp.ViewModels.Auth
 {
-    public class RegistrationViewViewModel : BaseViewModel
+    public class RegistrationWindowViewModel : BaseViewModel
     {
         public ICommand RegistrationCommand { get; }
 
@@ -45,7 +45,7 @@ namespace WeatherWpfApp.ViewModels.Auth
 
         private UserStorage userStorage;
 
-        public RegistrationViewViewModel()
+        public RegistrationWindowViewModel()
         {
             RegistrationCommand = new RelayCommand(TryRegisterUser, CanTryRegisterUser);
 

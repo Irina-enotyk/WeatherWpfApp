@@ -10,7 +10,7 @@
         Height="350" 
         Width="400">
     <Window.DataContext>
-        <vm:RegistrationViewViewModel/>
+        <vm:RegistrationWindowViewModel/>
     </Window.DataContext>
     
     <Grid>
