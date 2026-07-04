@@ -4,10 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherWpfApp"
+        xmlns:vm="clr-namespace:WeatherWpfApp.ViewModels.Auth"
         mc:Ignorable="d"
         Title="" 
         Height="350" 
         Width="400">
+    <Window.DataContext>
+        <vm:RegistrationViewViewModel/>
+    </Window.DataContext>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -49,6 +54,7 @@
                 FontSize="20"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center" 
+                Text="{Binding Login}"
             />
         </Grid>
 
@@ -67,7 +73,7 @@
                 Margin="5"
             />
 
-            <PasswordBox
+            <TextBox
                 x:Name="passwordPasswordBox"
                 Grid.Column="1"
                 Margin="5"
@@ -75,6 +81,7 @@
                 FontSize="20"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
+                Text="{Binding Password}"
             />
         </Grid>
 
@@ -84,13 +91,14 @@
                 <ColumnDefinition Width="131*"/>
             </Grid.ColumnDefinitions>
 
-            <PasswordBox
+            <TextBox
                 x:Name="repeatPasswordBox"
                 Grid.Column="1"
                 Width="200"
                 FontSize="20"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center" 
+                Text="{Binding RepeatedPassword}"
             />
 
             <Label
@@ -109,7 +117,8 @@
             Grid.Row="4"
             Content="Зарегистрироваться"
             FontSize="20"
-            Margin="10" Click="RegistrationButton_Click"
+            Margin="10" 
+            Command="{Binding RegistrationCommand}"
         />
     </Grid>
 </Window>
