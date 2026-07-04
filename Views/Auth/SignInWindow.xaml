@@ -4,10 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherWpfApp"
+        xmlns:vm="clr-namespace:WeatherWpfApp.ViewModels.Auth"
         mc:Ignorable="d"
         Title=""
         Height="400" 
-        Width="350">
+        Width="350"
+        >
+    <Window.DataContext>
+        <vm:SignInWindowViewModel/>
+    </Window.DataContext>   
+    
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -18,12 +24,12 @@
             </Grid.RowDefinitions>
 
             <Label
-            x:Name="titleLabel"
-            Grid.Row="0"
-            Content="Вход"
-            FontSize="20"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"
+                x:Name="titleLabel"
+                Grid.Row="0"
+                Content="Вход"
+                FontSize="20"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
             />
 
             <Grid Grid.Row="1">
@@ -33,22 +39,23 @@
                 </Grid.ColumnDefinitions>
 
                 <Label
-                x:Name="loginLabel"
-                Content="Логин"
-                FontSize="20"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Right"
-                Margin="5"
+                    x:Name="loginLabel"
+                    Content="Логин"
+                    FontSize="20"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="5"
                 />
 
                 <TextBox
-                x:Name="loginTextBox"
-                Grid.Column="1"
-                Margin="5"
-                Width="200"
-                FontSize="20"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
+                    x:Name="loginTextBox"
+                    Grid.Column="1"
+                    Margin="5"
+                    Width="200"
+                    FontSize="20"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Text="{Binding Login}"
                 />
             </Grid>
 
@@ -59,15 +66,15 @@
                 </Grid.ColumnDefinitions>
 
                 <Label
-                x:Name="passwordLabel"
-                Content="Пароль"
-                FontSize="20"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Right" 
-                Margin="5"
+                    x:Name="passwordLabel"
+                    Content="Пароль"
+                    FontSize="20"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right" 
+                    Margin="5"
                 />
 
-            <PasswordBox
+            <TextBox
                 x:Name="passwordPasswordBox"
                 Grid.Column="1"
                 Margin="5"
@@ -75,6 +82,7 @@
                 FontSize="20"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
+                Text="{Binding Password}"
                 />
             </Grid>
 
@@ -85,12 +93,13 @@
                 </Grid.ColumnDefinitions>
 
                 <CheckBox
-                x:Name="rememberMeCheckBox"
-                Grid.Column="0"
-                FontSize="20"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Right"
-                Margin="5"
+                    x:Name="rememberMeCheckBox"
+                    Grid.Column="0"
+                    FontSize="20"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="5"
+                    IsChecked="{Binding RememberMe}"
                 />
 
             <Label
@@ -105,11 +114,12 @@
         </Grid>
 
             <Button
-            x:Name="signInButton"
-            Grid.Row="4"
-            Content="Войти"
-            FontSize="20"
-            Margin="10"
+                x:Name="signInButton"
+                Grid.Row="4"
+                Content="Войти"
+                FontSize="20"
+                Margin="10"
+                Command="{Binding SignInCommand}"
             />
         </Grid>
 </Window>
