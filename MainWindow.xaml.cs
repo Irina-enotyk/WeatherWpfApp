@@ -101,6 +101,9 @@ namespace WeatherWpfApp
         {
             var signInWindow = new SignInWindow();
             signInWindow.ShowDialog();
+
+            IsSignOut = false;
+            ShowUser();
         }
 
         private void RegistrationButton_Click(object sender, RoutedEventArgs e)
@@ -112,9 +115,6 @@ namespace WeatherWpfApp
         private void SignOutButton_Click(object sender, RoutedEventArgs e)
         {
             IsSignOut = true;
-            ShowUser();
-
-            IsSignOut = false;
             ShowUser();
         }
 
