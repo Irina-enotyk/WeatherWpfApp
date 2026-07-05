@@ -78,7 +78,7 @@ namespace WeatherWpfApp
         private void SetSubscribes()
         {
             registrationButton.Click += RegistrationButton_Click;
-            signInButton.Click += SignInButtonButton_Click;
+            signInButton.Click += SignInButton_Click;
             signOutButton.Click += SignOutButton_Click;
             Activated += MainWindow_Activated;
         }
@@ -89,7 +89,7 @@ namespace WeatherWpfApp
             ShowUser();
         }
 
-        private void SignInButtonButton_Click(object sender, RoutedEventArgs e)
+        private void SignInButton_Click(object sender, RoutedEventArgs e)
         {
             var signInWindow = new SignInWindow();
             signInWindow.ShowDialog();
