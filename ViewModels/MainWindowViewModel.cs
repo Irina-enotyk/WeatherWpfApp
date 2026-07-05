@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using WeatherWpfApp.Models;
-using WeatherWpfApp.Storages;
+using WeatherWpfApp.Storages.Users;
 using WeatherWpfApp.ViewModels.Auth;
 
 namespace WeatherWpfApp.ViewModels

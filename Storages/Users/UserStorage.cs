@@ -1,6 +1,6 @@
 ﻿using WeatherWpfApp.Models;
 
-namespace WeatherWpfApp.Storages
+namespace WeatherWpfApp.Storages.Users
 {
     public class UserStorage : IUserStorage
     {

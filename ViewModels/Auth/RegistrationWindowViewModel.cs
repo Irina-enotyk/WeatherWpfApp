@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using WeatherWpfApp.Models;
-using WeatherWpfApp.Storages;
+using WeatherWpfApp.Storages.Users;
 
 namespace WeatherWpfApp.ViewModels.Auth
 {
@@ -43,12 +43,12 @@ namespace WeatherWpfApp.ViewModels.Auth
             }
         }
 
-        private UserStorage userStorage;
+        private IUserStorage userStorage;
 
-        public RegistrationWindowViewModel()
+        public RegistrationWindowViewModel(IUserStorage userStorage)
         {
             RegistrationCommand = new RelayCommand(TryRegisterUser, CanTryRegisterUser);
-            this.userStorage = new UserStorage();
+            this.userStorage = userStorage;
         }
 
         private void TryRegisterUser(object obj)

@@ -1,7 +1,7 @@
 ﻿
 using System.Windows;
 using System.Windows.Input;
-using WeatherWpfApp.Storages;
+using WeatherWpfApp.Storages.Users;
 
 namespace WeatherWpfApp.ViewModels.Auth
 {
@@ -43,12 +43,12 @@ namespace WeatherWpfApp.ViewModels.Auth
             }
         }
 
-        private UserStorage userStorage;
+        private IUserStorage userStorage;
 
-        public SignInWindowViewModel()
+        public SignInWindowViewModel(IUserStorage userStorage)
         {
             SignInCommand = new RelayCommand(TrySignIn, CanTrySignIn);
-            this.userStorage = new UserStorage();
+            this.userStorage = userStorage;
         }
 
         private bool CanTrySignIn(object arg)

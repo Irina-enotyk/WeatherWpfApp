@@ -1,4 +1,5 @@
 ﻿using WeatherWpfApp.Models;
+using WeatherWpfApp.Storages.Weathers;
 
 namespace WeatherWpfApp.ViewModels
 {
