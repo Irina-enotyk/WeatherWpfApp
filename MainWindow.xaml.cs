@@ -15,14 +15,9 @@ namespace WeatherWpfApp
     {
         private System.Timers.Timer timer;
 
-        private User user;
-
-        private UserStorage userStorage { get; } 
-
         public MainWindow(MainWindowViewModel mainWindowViewModel)
         {
             InitializeComponent();
-            SetSubscribes();
 
             DataContext = mainWindowViewModel;
 
@@ -30,15 +25,6 @@ namespace WeatherWpfApp
             timer.Interval = 3600000;   
             timer.Elapsed += Timer_Elapsed;
             timer.Start();
-
-            userStorage = new UserStorage();
-            var users = userStorage.GetAll();
-            user = userStorage.GetAutorizedUser();
-
-            if(user != null)
-            {
-                userStorage.SetActiveUser(user, users);
-            }
         }
 
         private void Timer_Elapsed(object? sender, ElapsedEventArgs e)
@@ -74,60 +60,6 @@ namespace WeatherWpfApp
 
             Application.Current.Resources["MainWindowBackGround"] = gradient;
             Application.Current.Resources["LightBackground"] = solidBrush;
-        }
-
-        private void SetSubscribes()
-        {
-            signOutButton.Click += SignOutButton_Click;
-            Activated += MainWindow_Activated;
-            Closing += MainWindow_Closing;
-        }
-
-        private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
-        {
-            userStorage.ResetActiveUser();
-        }
-
-        private void MainWindow_Activated(object? sender, EventArgs e)
-        {
-            ShowUser();
-        }
-
-        private void SignOutButton_Click(object sender, RoutedEventArgs e)
-        {
-            userStorage.ResetUser();
-            ShowUser();
-        }
-
-        private void ShowUser()
-        {
-            user = userStorage.GetAutorizedUser();
-
-            if (user == null )
-            {
-                userNameLabel.Content = "Имя";
-                OutAccount();
-                return;
-            }
-            userNameLabel.Content = "Имя: " + user.Login;
-            InAccount();
-        }
-
-        private void OutAccount()
-        {
-            userNameLabel.Visibility = Visibility.Collapsed;
-            signOutButton.Visibility = Visibility.Collapsed;
-
-            registrationButton.Visibility = Visibility.Visible;
-            signInButton.Visibility = Visibility.Visible;
-        }
-        private void InAccount()
-        {
-            userNameLabel.Visibility = Visibility.Visible;
-            signOutButton.Visibility = Visibility.Visible;
-
-            registrationButton.Visibility = Visibility.Collapsed;
-            signInButton.Visibility = Visibility.Collapsed;
         }
     }
 }

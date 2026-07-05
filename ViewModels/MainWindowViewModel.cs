@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using WeatherWpfApp.Models;
 using WeatherWpfApp.Storages;
 
 namespace WeatherWpfApp.ViewModels
@@ -28,6 +29,62 @@ namespace WeatherWpfApp.ViewModels
             }
         }
 
+        private bool registerButtonIsVisible;
+        public bool RegisterButtonIsVisible
+        {
+            get => registerButtonIsVisible;
+            set
+            {
+                registerButtonIsVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool signInButtonIsVisible;
+        public bool SignInButtonIsVisible
+        {
+            get => signInButtonIsVisible;
+            set
+            {
+                signInButtonIsVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool signOutButtonIsVisible;
+        public bool SignOutButtonIsVisible
+        {
+            get => signOutButtonIsVisible;
+            set
+            {
+                signOutButtonIsVisible = value;
+                OnPropertyChanged();
+            }
+        }
+        private bool userNameLabelIsVisible;
+        public bool UserNameLabelIsVisible
+        {
+            get => userNameLabelIsVisible;
+            set
+            {
+                userNameLabelIsVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string userName;
+        public string UserName
+        {
+            get => userName;
+            set
+            {
+                userName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private UserStorage userStorage;
+
         public MainWindowViewModel(HomeViewViewModel homeViewViewModel)
         {
             HomeCommand = new RelayCommand(OpenHomeView, CanOpenHomeView);
@@ -40,12 +97,32 @@ namespace WeatherWpfApp.ViewModels
             SignOutCommand = new RelayCommand(SignOut, CanSignOut);
 
             this.homeViewViewModel = homeViewViewModel;
+
+            userStorage = new UserStorage();
+
+            //Разобраться, как сбросить активного пользователя командой при закрытии приложения
+            userStorage.ResetActiveUser();
+            SetAutorizationStatus();
+        }
+
+        private void SetAutorizationStatus()
+        {
+            var user = userStorage.GetAutorizedUser();
+
+            if (user == null)
+            {
+                UserName = "";
+                OutAccount();
+                return;
+            }
+            UserName = "Имя: " + user.Login;
+            InAccount();
         }
 
         private void SignOut(object obj)
         {
-            //userStorage.ResetUser();
-            //ShowUser();
+            userStorage.ResetUser();
+            SetAutorizationStatus();
         }
 
         private bool CanSignOut(object arg)
@@ -62,7 +139,7 @@ namespace WeatherWpfApp.ViewModels
         {
             var signInWindow = new SignInWindow();
             signInWindow.ShowDialog();
-            //ShowUser();
+            SetAutorizationStatus();
         }
 
         private bool CanRegister(object arg)
@@ -114,6 +191,24 @@ namespace WeatherWpfApp.ViewModels
         private void CloseApplication(object obj)
         {
             Application.Current.MainWindow.Close();
+        }
+
+        private void OutAccount()
+        {
+            RegisterButtonIsVisible = true;
+            SignInButtonIsVisible = true;
+
+            SignOutButtonIsVisible = false;
+            UserNameLabelIsVisible = false;
+        }
+
+        private void InAccount()
+        {
+            RegisterButtonIsVisible = false;
+            SignInButtonIsVisible = false;
+
+            SignOutButtonIsVisible = true;
+            UserNameLabelIsVisible = true;
         }
     }
 }
