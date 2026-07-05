@@ -36,7 +36,6 @@ namespace WeatherWpfApp
 
         protected override async void OnExit(ExitEventArgs e)
         {
-            //Почему нужно писать  using (_host) ?
             using (_host)
             {
                 await _host.StopAsync(TimeSpan.FromSeconds(5));
