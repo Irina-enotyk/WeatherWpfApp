@@ -2,7 +2,7 @@
 
 namespace WeatherWpfApp.Storages
 {
-    public class WeatherDataStorage : IWeatherStorage
+    public class WeatherStorage : IWeatherStorage
     {
         public List<DayForecastModel> GetAll()
         {

@@ -21,7 +21,7 @@ namespace WeatherWpfApp
                 services.AddSingleton<MainWindow>();
                 services.AddSingleton<MainWindowViewModel>();
                 services.AddSingleton<HomeViewViewModel>();
-                services.AddSingleton<IWeatherStorage, WeatherDataStorage>();
+                services.AddSingleton<IWeatherStorage, WeatherStorage>();
             }).Build();
         }
 
