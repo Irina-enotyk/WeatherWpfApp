@@ -9,10 +9,6 @@
         Title="" 
         Height="350" 
         Width="400">
-    <Window.DataContext>
-        <vm:RegistrationWindowViewModel/>
-    </Window.DataContext>
-    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using WeatherWpfApp.ViewModels.Auth;
 
 namespace WeatherWpfApp
 {
@@ -7,9 +8,10 @@ namespace WeatherWpfApp
     /// </summary>
     public partial class RegistrationWindow : Window
     {
-        public RegistrationWindow()
+        public RegistrationWindow(RegistrationWindowViewModel registrationWindowViewModel)
         {
             InitializeComponent();
+            DataContext = registrationWindowViewModel;
         }
     }
 }

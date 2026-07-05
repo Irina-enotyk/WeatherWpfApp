@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using WeatherWpfApp.Storages;
+using WeatherWpfApp.ViewModels.Auth;
 
 namespace WeatherWpfApp
 {
@@ -8,11 +9,10 @@ namespace WeatherWpfApp
     /// </summary>
     public partial class SignInWindow : Window
     {
-        private UserStorage userStorage = new UserStorage();
-
-        public SignInWindow()
+        public SignInWindow(SignInWindowViewModel signInWindowViewModel)
         {
             InitializeComponent();
+            DataContext = signInWindowViewModel;
         }
     }
 }

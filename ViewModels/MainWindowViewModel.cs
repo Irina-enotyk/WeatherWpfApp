@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using WeatherWpfApp.Models;
 using WeatherWpfApp.Storages;
+using WeatherWpfApp.ViewModels.Auth;
 
 namespace WeatherWpfApp.ViewModels
 {
@@ -17,7 +18,9 @@ namespace WeatherWpfApp.ViewModels
 
         private BaseViewModel selectedContent;
 
-        private HomeViewViewModel homeViewViewModel;
+        private readonly HomeViewViewModel homeViewViewModel;
+        private readonly SignInWindowViewModel signInWindowViewModel;
+        private readonly RegistrationWindowViewModel registrationWindowViewModel;
 
         public BaseViewModel SelectedContent
         {
@@ -85,7 +88,7 @@ namespace WeatherWpfApp.ViewModels
 
         private UserStorage userStorage;
 
-        public MainWindowViewModel(HomeViewViewModel homeViewViewModel)
+        public MainWindowViewModel(HomeViewViewModel homeViewViewModel, RegistrationWindowViewModel registrationWindowViewModel, SignInWindowViewModel signInWindowViewModel)
         {
             HomeCommand = new RelayCommand(OpenHomeView, CanOpenHomeView);
             LocationCommand = new RelayCommand(OpenLocationView, CanOpenLocationView);
@@ -97,6 +100,8 @@ namespace WeatherWpfApp.ViewModels
             SignOutCommand = new RelayCommand(SignOut, CanSignOut);
 
             this.homeViewViewModel = homeViewViewModel;
+            this.registrationWindowViewModel = registrationWindowViewModel;
+            this.signInWindowViewModel = signInWindowViewModel;
 
             userStorage = new UserStorage();
 
@@ -138,7 +143,7 @@ namespace WeatherWpfApp.ViewModels
 
         private void SignIn(object obj)
         {
-            var signInWindow = new SignInWindow();
+            var signInWindow = new SignInWindow(signInWindowViewModel);
             signInWindow.ShowDialog();
             SetAutorizationStatus();
         }
@@ -150,7 +155,7 @@ namespace WeatherWpfApp.ViewModels
 
         private void Register(object obj)
         {
-            var registrationWindow = new RegistrationWindow();
+            var registrationWindow = new RegistrationWindow(registrationWindowViewModel);
             registrationWindow.ShowDialog();
             SetAutorizationStatus();
         }

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Hosting;
 using System.Windows;
 using WeatherWpfApp.Storages;
 using WeatherWpfApp.ViewModels;
+using WeatherWpfApp.ViewModels.Auth;
 
 namespace WeatherWpfApp
 {
@@ -21,7 +22,10 @@ namespace WeatherWpfApp
                 services.AddSingleton<MainWindow>();
                 services.AddSingleton<MainWindowViewModel>();
                 services.AddSingleton<HomeViewViewModel>();
+                services.AddSingleton<RegistrationWindowViewModel>();
+                services.AddSingleton<SignInWindowViewModel>();
                 services.AddSingleton<IWeatherStorage, WeatherStorage>();
+                //services.AddSingleton<IUserStorage, UserStorage>();
             }).Build();
         }
 

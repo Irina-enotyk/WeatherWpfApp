@@ -48,7 +48,7 @@ namespace WeatherWpfApp.ViewModels.Auth
         public SignInWindowViewModel()
         {
             SignInCommand = new RelayCommand(TrySignIn, CanTrySignIn);
-            userStorage = new UserStorage();
+            this.userStorage = new UserStorage();
         }
 
         private bool CanTrySignIn(object arg)

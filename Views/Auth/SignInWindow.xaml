@@ -9,11 +9,7 @@
         Title=""
         Height="400" 
         Width="350"
-        >
-    <Window.DataContext>
-        <vm:SignInWindowViewModel/>
-    </Window.DataContext>   
-    
+        >   
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -83,7 +79,7 @@
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 Text="{Binding Password}"
-                />
+            />
             </Grid>
 
             <Grid Grid.Row="3">

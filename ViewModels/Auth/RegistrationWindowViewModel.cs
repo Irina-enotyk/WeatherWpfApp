@@ -48,7 +48,7 @@ namespace WeatherWpfApp.ViewModels.Auth
         public RegistrationWindowViewModel()
         {
             RegistrationCommand = new RelayCommand(TryRegisterUser, CanTryRegisterUser);
-            userStorage = new UserStorage();
+            this.userStorage = new UserStorage();
         }
 
         private void TryRegisterUser(object obj)
