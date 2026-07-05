@@ -48,7 +48,6 @@ namespace WeatherWpfApp.ViewModels.Auth
         public RegistrationWindowViewModel()
         {
             RegistrationCommand = new RelayCommand(TryRegisterUser, CanTryRegisterUser);
-
             userStorage = new UserStorage();
         }
 
@@ -79,7 +78,6 @@ namespace WeatherWpfApp.ViewModels.Auth
             if (repeatedPassword != password)
             {
                 MessageBox.Show("Пароли не совпадают!");
-                //repeatPasswordBox.Clear();
                 return;
             }
 

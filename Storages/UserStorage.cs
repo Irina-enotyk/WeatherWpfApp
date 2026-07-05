@@ -12,12 +12,33 @@ namespace WeatherWpfApp.Storages
             return users.FirstOrDefault(x => (x.IsActive || x.IsRemember));
         }
 
+        public void ResetUser()
+        {
+            var users = GetAll();
+            foreach (var user in users)
+            {
+                user.IsActive = false;
+                user.IsRemember = false;
+            }
+            FileProvider.Save(users, fileName);
+        }
+
+        public void ResetActiveUser()
+        {
+            var users = GetAll();
+            foreach (var user in users)
+            {
+                user.IsActive = false;
+            }
+            FileProvider.Save(users, fileName);
+        }
+
         public void Add(User user)
         {
             var users = GetAll();
             users.Add(user);
-            SwitchRememberUser(user, users);
-            SwitchActiveUser(user, users);
+            SetRememberUser(user, users);
+            SetActiveUser(user, users);
             FileProvider.Save(users, fileName);
         }
 
@@ -27,7 +48,7 @@ namespace WeatherWpfApp.Storages
             return users.FirstOrDefault(x => (x?.Login == login));
         }
 
-        public void SwitchRememberUser(User signInUser, List<User> users)
+        public void SetRememberUser(User signInUser, List<User> users)
         {
             foreach (var user in users)
             {
@@ -40,7 +61,7 @@ namespace WeatherWpfApp.Storages
             FileProvider.Save(users, fileName);
         }
 
-        public void SwitchActiveUser(User activeUser, List<User> users)
+        public void SetActiveUser(User activeUser, List<User> users)
         {
             foreach (var user in users)
             {

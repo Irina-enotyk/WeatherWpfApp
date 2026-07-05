@@ -114,7 +114,6 @@
         </Grid>
 
             <Button
-                x:Name="signInButton"
                 Grid.Row="4"
                 Content="Войти"
                 FontSize="20"

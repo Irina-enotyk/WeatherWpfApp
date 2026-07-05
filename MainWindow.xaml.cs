@@ -17,7 +17,6 @@ namespace WeatherWpfApp
 
         private User user;
 
-        private bool IsSignOut;
         private UserStorage userStorage { get; } 
 
         public MainWindow(MainWindowViewModel mainWindowViewModel)
@@ -28,19 +27,17 @@ namespace WeatherWpfApp
             DataContext = mainWindowViewModel;
 
             timer = new System.Timers.Timer();
-            timer.Interval = 3600000;
+            timer.Interval = 3600000;   
             timer.Elapsed += Timer_Elapsed;
             timer.Start();
 
             userStorage = new UserStorage();
-            IsSignOut = false;
-
             var users = userStorage.GetAll();
             user = userStorage.GetAutorizedUser();
 
             if(user != null)
             {
-                userStorage.SwitchActiveUser(user, users);
+                userStorage.SetActiveUser(user, users);
             }
         }
 
@@ -85,11 +82,16 @@ namespace WeatherWpfApp
             signInButton.Click += SignInButton_Click;
             signOutButton.Click += SignOutButton_Click;
             Activated += MainWindow_Activated;
+            Closing += MainWindow_Closing;
+        }
+
+        private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+        {
+            userStorage.ResetActiveUser();
         }
 
         private void MainWindow_Activated(object? sender, EventArgs e)
         {
-            user = userStorage.GetAutorizedUser();
             ShowUser();
         }
 
@@ -97,8 +99,6 @@ namespace WeatherWpfApp
         {
             var signInWindow = new SignInWindow();
             signInWindow.ShowDialog();
-
-            IsSignOut = false;
             ShowUser();
         }
 
@@ -106,17 +106,20 @@ namespace WeatherWpfApp
         {
             var registrationWindow = new RegistrationWindow();
             registrationWindow.ShowDialog();
+            ShowUser();
         }
 
         private void SignOutButton_Click(object sender, RoutedEventArgs e)
         {
-            IsSignOut = true;
+            userStorage.ResetUser();
             ShowUser();
         }
 
         private void ShowUser()
         {
-            if (user == null || IsSignOut)
+            user = userStorage.GetAutorizedUser();
+
+            if (user == null )
             {
                 userNameLabel.Content = "Имя";
                 OutAccount();

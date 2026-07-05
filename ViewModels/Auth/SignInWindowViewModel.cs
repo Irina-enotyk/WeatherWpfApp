@@ -9,6 +9,7 @@ namespace WeatherWpfApp.ViewModels.Auth
     {
 
         public ICommand SignInCommand { get; }
+
         private string login;
         public string Login
         {
@@ -47,6 +48,7 @@ namespace WeatherWpfApp.ViewModels.Auth
         public SignInWindowViewModel()
         {
             SignInCommand = new RelayCommand(TrySignIn, CanTrySignIn);
+            userStorage = new UserStorage();
         }
 
         private bool CanTrySignIn(object arg)
@@ -84,9 +86,13 @@ namespace WeatherWpfApp.ViewModels.Auth
             var users = userStorage.GetAll();
             if (RememberMe)
             {
-                userStorage.SwitchRememberUser(currentUser, users);
+                userStorage.SetRememberUser(currentUser, users);
             }
-            userStorage.SwitchActiveUser(currentUser, users);
+            else
+            {
+                userStorage.SetActiveUser(currentUser, users);
+            }
+            
             //Close();
         }
     }
