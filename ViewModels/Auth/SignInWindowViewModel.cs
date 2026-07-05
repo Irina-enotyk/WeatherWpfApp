@@ -43,7 +43,7 @@ namespace WeatherWpfApp.ViewModels.Auth
             }
         }
 
-        private IUserStorage userStorage;
+        private readonly IUserStorage userStorage;
 
         public SignInWindowViewModel(IUserStorage userStorage)
         {

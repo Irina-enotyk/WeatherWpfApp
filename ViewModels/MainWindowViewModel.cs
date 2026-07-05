@@ -22,6 +22,8 @@ namespace WeatherWpfApp.ViewModels
         private readonly SignInWindowViewModel signInWindowViewModel;
         private readonly RegistrationWindowViewModel registrationWindowViewModel;
 
+        private readonly IUserStorage userStorage;
+
         public BaseViewModel SelectedContent
         {
             get {  return selectedContent; }
@@ -86,9 +88,7 @@ namespace WeatherWpfApp.ViewModels
             }
         }
 
-        private UserStorage userStorage;
-
-        public MainWindowViewModel(HomeViewViewModel homeViewViewModel, RegistrationWindowViewModel registrationWindowViewModel, SignInWindowViewModel signInWindowViewModel)
+        public MainWindowViewModel(IUserStorage userStorage, HomeViewViewModel homeViewViewModel, RegistrationWindowViewModel registrationWindowViewModel, SignInWindowViewModel signInWindowViewModel)
         {
             HomeCommand = new RelayCommand(OpenHomeView, CanOpenHomeView);
             LocationCommand = new RelayCommand(OpenLocationView, CanOpenLocationView);
@@ -103,7 +103,7 @@ namespace WeatherWpfApp.ViewModels
             this.registrationWindowViewModel = registrationWindowViewModel;
             this.signInWindowViewModel = signInWindowViewModel;
 
-            userStorage = new UserStorage();
+            this.userStorage = userStorage;
 
             //Разобраться, как сбросить активного пользователя командой при закрытии приложения
             userStorage.ResetActiveUser();
