@@ -30,58 +30,88 @@
                     <local:HourlyForecastDetailsView DataContext="{Binding SelectedDay}"/>
                 </Grid>
             </Grid>
-            <ListBox 
-                x:Name="WeatherDays_ListBox" 
-                Grid.Row="1" 
-                Background="{DynamicResource LightBackground}"
-                Margin="0,0,10,10"
-                ItemsSource="{Binding ForecastDays}"
-                SelectedItem="{Binding SelectedDay}">
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Vertical">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Grid Grid.Column ="0">
-                                    <Grid >
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                        </Grid.RowDefinitions>
-                                        <Grid Grid.Row="0">
-                                            <Label Content="{Binding Path=Date}"/>
-                                        </Grid>
-                                        <Grid Grid.Row="1">
-                                            <Label Content="{Binding Path=WeekDay}"/>
+
+            <Grid
+                Grid.Row ="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button 
+                    x:Name="ScrollToLeft_Button"
+                    Grid.Column="0"
+                    Margin="10">
+                </Button>
+
+                <ScrollViewer
+                    x:Name="WeatherDays_ScrollViewer"
+                    Grid.Column="1"
+                    Margin="5"
+                    ScrollViewer.HorizontalScrollBarVisibility ="Hidden"
+                    ScrollViewer.VerticalScrollBarVisibility ="Disabled">
+                    
+                    <ListBox 
+                        x:Name="WeatherDays_ListBox" 
+                        Grid.Row="1" 
+                        Background="{DynamicResource LightBackground}"
+                        Margin="5"
+                        ItemsSource="{Binding ForecastDays}"
+                        SelectedItem="{Binding SelectedDay}">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column ="0">
+                                            <Grid >
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Grid Grid.Row="0">
+                                                    <Label Content="{Binding Path=Date}"/>
+                                                </Grid>
+                                                <Grid Grid.Row="1">
+                                                    <Label Content="{Binding Path=WeekDay}"/>
+                                                </Grid>
+                                            </Grid>
                                         </Grid>
                                     </Grid>
-                                </Grid>
-                            </Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="0">
-                                    <Label Content="{Binding Path=MaxTemperature}"/>
-                                </Grid>
-                                <Grid Grid.Column="1">
-                                    <Label Content="{Binding Path=MinTemperature}"/>
-                                </Grid>
-                            </Grid>
-                            <Label Content="{Binding Path=Weather}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0">
+                                            <Label Content="{Binding Path=MaxTemperature}"/>
+                                        </Grid>
+                                        <Grid Grid.Column="1">
+                                            <Label Content="{Binding Path=MinTemperature}"/>
+                                        </Grid>
+                                    </Grid>
+                                    <Label Content="{Binding Path=Weather}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+
+                <Button 
+                    x:Name="ScrollToRight_Button"
+                    Grid.Column="2"
+                    Margin="10">
+                </Button>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>
