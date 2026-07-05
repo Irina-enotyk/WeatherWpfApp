@@ -35,7 +35,7 @@ namespace WeatherWpfApp
             userStorage = new UserStorage();
             IsSignOut = false;
 
-            user = userStorage.GetRememberUser();
+            user = userStorage.GetAutorizedUser();
             var users = userStorage.GetAll();
             userStorage.SwitchActiveUser(user, users);
         }
@@ -85,7 +85,7 @@ namespace WeatherWpfApp
 
         private void MainWindow_Activated(object? sender, EventArgs e)
         {
-            user = userStorage.GetActiveUser() ?? userStorage.GetRememberUser();
+            user = userStorage.GetAutorizedUser();
             ShowUser();
         }
 

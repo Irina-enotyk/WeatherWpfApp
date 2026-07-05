@@ -6,16 +6,10 @@ namespace WeatherWpfApp.Storages
     {
         private const string fileName = "Users.json";
 
-        public User GetRememberUser()
+        public User GetAutorizedUser()
         {
             var users = GetAll();
-            return users.FirstOrDefault(x => x.IsRemember);
-        }
-
-        public User GetActiveUser()
-        {
-            var users = GetAll();
-            return users.FirstOrDefault(x => x.IsActive);
+            return users.FirstOrDefault(x => (x.IsActive || x.IsRemember));
         }
 
         public void Add(User user)
@@ -30,7 +24,7 @@ namespace WeatherWpfApp.Storages
         public User GetUserByLogin(string login)
         {
             var users = GetAll();
-            return users.FirstOrDefault(x => (x.Login == login));
+            return users.FirstOrDefault(x => (x?.Login == login));
         }
 
         public void SwitchRememberUser(User signInUser, List<User> users)
