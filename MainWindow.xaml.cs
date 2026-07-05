@@ -13,11 +13,12 @@ namespace WeatherWpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private System.Timers.Timer timer = new System.Timers.Timer();
+        private System.Timers.Timer timer;
 
         private User user;
-        private bool IsSignOut = false;
-        private UserStorage userStorage { get; } = new UserStorage();
+
+        private bool IsSignOut;
+        private UserStorage userStorage { get; } 
 
         public MainWindow(MainWindowViewModel mainWindowViewModel)
         {
@@ -26,9 +27,13 @@ namespace WeatherWpfApp
 
             DataContext = mainWindowViewModel;
 
+            timer = new System.Timers.Timer();
             timer.Interval = 3600000;
             timer.Elapsed += Timer_Elapsed;
             timer.Start();
+
+            userStorage = new UserStorage();
+            IsSignOut = false;
 
             user = userStorage.GetRememberUser();
             var users = userStorage.GetAll();
@@ -70,18 +75,6 @@ namespace WeatherWpfApp
             Application.Current.Resources["LightBackground"] = solidBrush;
         }
 
-        private void ShowUser()
-        {
-            if (user == null || IsSignOut)
-            {
-                userNameLabel.Content = "Имя";
-                OutAccount();
-                return;
-            }
-            userNameLabel.Content = "Имя: " + user.Login;
-            InAccount();
-        }
-
         private void SetSubscribes()
         {
             registrationButton.Click += RegistrationButton_Click;
@@ -115,6 +108,18 @@ namespace WeatherWpfApp
         {
             IsSignOut = true;
             ShowUser();
+        }
+
+        private void ShowUser()
+        {
+            if (user == null || IsSignOut)
+            {
+                userNameLabel.Content = "Имя";
+                OutAccount();
+                return;
+            }
+            userNameLabel.Content = "Имя: " + user.Login;
+            InAccount();
         }
 
         private void OutAccount()
