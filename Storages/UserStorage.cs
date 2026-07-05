@@ -2,35 +2,13 @@
 
 namespace WeatherWpfApp.Storages
 {
-    public class UserStorage
+    public class UserStorage : IUserStorage
     {
         private const string fileName = "Users.json";
 
-        public User GetAutorizedUser()
+        public List<User> GetAll()
         {
-            var users = GetAll();
-            return users.FirstOrDefault(x => (x.IsActive || x.IsRemember));
-        }
-
-        public void ResetUser()
-        {
-            var users = GetAll();
-            foreach (var user in users)
-            {
-                user.IsActive = false;
-                user.IsRemember = false;
-            }
-            FileProvider.Save(users, fileName);
-        }
-
-        public void ResetActiveUser()
-        {
-            var users = GetAll();
-            foreach (var user in users)
-            {
-                user.IsActive = false;
-            }
-            FileProvider.Save(users, fileName);
+            return FileProvider.Load<List<User>>(fileName) ?? new List<User>();
         }
 
         public void Add(User user)
@@ -46,6 +24,12 @@ namespace WeatherWpfApp.Storages
         {
             var users = GetAll();
             return users.FirstOrDefault(x => (x?.Login == login));
+        }
+
+        public User GetAutorizedUser()
+        {
+            var users = GetAll();
+            return users.FirstOrDefault(x => (x.IsActive || x.IsRemember));
         }
 
         public void SetRememberUser(User signInUser, List<User> users)
@@ -74,9 +58,25 @@ namespace WeatherWpfApp.Storages
             FileProvider.Save(users, fileName);
         }
 
-        public List<User> GetAll()
+        public void ResetUser()
         {
-            return FileProvider.Load<List<User>>(fileName) ?? new List<User>();
+            var users = GetAll();
+            foreach (var user in users)
+            {
+                user.IsActive = false;
+                user.IsRemember = false;
+            }
+            FileProvider.Save(users, fileName);
+        }
+
+        public void ResetActiveUser()
+        {
+            var users = GetAll();
+            foreach (var user in users)
+            {
+                user.IsActive = false;
+            }
+            FileProvider.Save(users, fileName);
         }
     }
 }
