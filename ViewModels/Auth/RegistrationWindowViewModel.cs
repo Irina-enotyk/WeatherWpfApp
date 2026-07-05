@@ -84,7 +84,9 @@ namespace WeatherWpfApp.ViewModels.Auth
             var user = new User(login, password);
             userStorage.Add(user);
             MessageBox.Show("Успешная регистрация!");
-            //Close();
+
+            var window = obj as Window;
+            window.Close();
         }
 
         private bool CanTryRegisterUser(object arg)

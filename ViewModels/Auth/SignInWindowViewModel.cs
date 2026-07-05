@@ -93,7 +93,8 @@ namespace WeatherWpfApp.ViewModels.Auth
                 userStorage.SetActiveUser(currentUser, users);
             }
             
-            //Close();
+            var window = obj as Window;
+            window.Close();
         }
     }
 }
