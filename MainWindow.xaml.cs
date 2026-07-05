@@ -35,9 +35,13 @@ namespace WeatherWpfApp
             userStorage = new UserStorage();
             IsSignOut = false;
 
-            user = userStorage.GetAutorizedUser();
             var users = userStorage.GetAll();
-            userStorage.SwitchActiveUser(user, users);
+            user = userStorage.GetAutorizedUser();
+
+            if(user != null)
+            {
+                userStorage.SwitchActiveUser(user, users);
+            }
         }
 
         private void Timer_Elapsed(object? sender, ElapsedEventArgs e)
