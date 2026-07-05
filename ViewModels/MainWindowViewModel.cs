@@ -102,6 +102,7 @@ namespace WeatherWpfApp.ViewModels
 
             //Разобраться, как сбросить активного пользователя командой при закрытии приложения
             userStorage.ResetActiveUser();
+
             SetAutorizationStatus();
         }
 
@@ -111,7 +112,7 @@ namespace WeatherWpfApp.ViewModels
 
             if (user == null)
             {
-                UserName = "";
+                UserName = String.Empty;
                 OutAccount();
                 return;
             }
@@ -151,7 +152,7 @@ namespace WeatherWpfApp.ViewModels
         {
             var registrationWindow = new RegistrationWindow();
             registrationWindow.ShowDialog();
-            //ShowUser();
+            SetAutorizationStatus();
         }
 
         private bool CanOpenHomeView(object arg)
