@@ -79,17 +79,20 @@
                         Grid.Row="0"
                         Grid.Column="1"
                         Margin="5"
-                        Content="Выйти"/>
+                        Content="Выйти"
+                        Command="{Binding SignOutCommand}"/>
                     <Button x:Name="registrationButton"
                         Grid.Row="1"
                         Grid.Column="0" 
                         Margin="5" 
-                        Content="Регистрация"/>
+                        Content="Регистрация"
+                        Command="{Binding RegisterCommand}"/>
                     <Button x:Name="signInButton"
                         Grid.Row="1"
                         Grid.Column="1" 
                         Margin="5" 
-                        Content="Войти"/>
+                        Content="Войти"
+                        Command="{Binding SignInCommand}"/>
                 </Grid>
             </Grid>
         </Grid>

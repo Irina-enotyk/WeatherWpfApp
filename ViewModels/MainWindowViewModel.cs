@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using WeatherWpfApp.Storages;
 
 namespace WeatherWpfApp.ViewModels
 {
@@ -9,6 +10,9 @@ namespace WeatherWpfApp.ViewModels
         public ICommand LocationCommand { get; }
         public ICommand SettingsCommand { get; }
         public ICommand CloseCommand { get; }
+        public ICommand RegisterCommand { get; }
+        public ICommand SignInCommand { get; }
+        public ICommand SignOutCommand { get; }
 
         private BaseViewModel selectedContent;
 
@@ -29,8 +33,48 @@ namespace WeatherWpfApp.ViewModels
             HomeCommand = new RelayCommand(OpenHomeView, CanOpenHomeView);
             LocationCommand = new RelayCommand(OpenLocationView, CanOpenLocationView);
             SettingsCommand = new RelayCommand(OpenSettingsView, CanOpenSettingsView);
-            CloseCommand = new RelayCommand(CloseApplication, CanOpenCloseApplication);
+            CloseCommand = new RelayCommand(CloseApplication, CanCloseApplication);
+
+            RegisterCommand = new RelayCommand(Register, CanRegister);
+            SignInCommand = new RelayCommand(SignIn, CanSignIn);
+            SignOutCommand = new RelayCommand(SignOut, CanSignOut);
+
             this.homeViewViewModel = homeViewViewModel;
+        }
+
+        private void SignOut(object obj)
+        {
+            //userStorage.ResetUser();
+            //ShowUser();
+        }
+
+        private bool CanSignOut(object arg)
+        {
+            return true;
+        }
+
+        private bool CanSignIn(object arg)
+        {
+            return true;
+        }
+
+        private void SignIn(object obj)
+        {
+            var signInWindow = new SignInWindow();
+            signInWindow.ShowDialog();
+            //ShowUser();
+        }
+
+        private bool CanRegister(object arg)
+        {
+            return true;
+        }
+
+        private void Register(object obj)
+        {
+            var registrationWindow = new RegistrationWindow();
+            registrationWindow.ShowDialog();
+            //ShowUser();
         }
 
         private bool CanOpenHomeView(object arg)
@@ -62,7 +106,7 @@ namespace WeatherWpfApp.ViewModels
             SelectedContent = new SettingsViewViewModel();
         }
 
-        private bool CanOpenCloseApplication(object arg)
+        private bool CanCloseApplication(object arg)
         {
             return true;
         }
