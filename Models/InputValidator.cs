@@ -4,7 +4,7 @@
     {
         public static void CheckLogin(string login)
         {
-            if(login == string.Empty)
+            if(login == null || login == string.Empty)
             {
                 throw new Exception("Логин не может быть пустым");
             }
@@ -24,7 +24,7 @@
 
         public static void CheckPassword(string password)
         {
-            if (password == string.Empty)
+            if (password == null || password == string.Empty)
             {
                 throw new Exception("Пароль не может быть пустым");
             }

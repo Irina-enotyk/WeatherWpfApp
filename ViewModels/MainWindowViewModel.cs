@@ -1,5 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using WeatherWpfApp.Models;
+using WeatherWpfApp.Storages.Users;
+using WeatherWpfApp.ViewModels.Auth;
 
 namespace WeatherWpfApp.ViewModels
 {
@@ -9,8 +12,17 @@ namespace WeatherWpfApp.ViewModels
         public ICommand LocationCommand { get; }
         public ICommand SettingsCommand { get; }
         public ICommand CloseCommand { get; }
+        public ICommand RegisterCommand { get; }
+        public ICommand SignInCommand { get; }
+        public ICommand SignOutCommand { get; }
 
         private BaseViewModel selectedContent;
+
+        private readonly HomeViewViewModel homeViewViewModel;
+        private readonly SignInWindowViewModel signInWindowViewModel;
+        private readonly RegistrationWindowViewModel registrationWindowViewModel;
+
+        private readonly IUserStorage userStorage;
 
         public BaseViewModel SelectedContent
         {
@@ -22,12 +34,130 @@ namespace WeatherWpfApp.ViewModels
             }
         }
 
-        public MainWindowViewModel()
+        private bool registerButtonIsVisible;
+        public bool RegisterButtonIsVisible
+        {
+            get => registerButtonIsVisible;
+            set
+            {
+                registerButtonIsVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool signInButtonIsVisible;
+        public bool SignInButtonIsVisible
+        {
+            get => signInButtonIsVisible;
+            set
+            {
+                signInButtonIsVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool signOutButtonIsVisible;
+        public bool SignOutButtonIsVisible
+        {
+            get => signOutButtonIsVisible;
+            set
+            {
+                signOutButtonIsVisible = value;
+                OnPropertyChanged();
+            }
+        }
+        private bool userNameLabelIsVisible;
+        public bool UserNameLabelIsVisible
+        {
+            get => userNameLabelIsVisible;
+            set
+            {
+                userNameLabelIsVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string userName;
+        public string UserName
+        {
+            get => userName;
+            set
+            {
+                userName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public MainWindowViewModel(IUserStorage userStorage, HomeViewViewModel homeViewViewModel, RegistrationWindowViewModel registrationWindowViewModel, SignInWindowViewModel signInWindowViewModel)
         {
             HomeCommand = new RelayCommand(OpenHomeView, CanOpenHomeView);
             LocationCommand = new RelayCommand(OpenLocationView, CanOpenLocationView);
             SettingsCommand = new RelayCommand(OpenSettingsView, CanOpenSettingsView);
-            CloseCommand = new RelayCommand(CloseApplication, CanOpenCloseApplication);
+            CloseCommand = new RelayCommand(CloseApplication, CanCloseApplication);
+
+            RegisterCommand = new RelayCommand(Register, CanRegister);
+            SignInCommand = new RelayCommand(SignIn, CanSignIn);
+            SignOutCommand = new RelayCommand(SignOut, CanSignOut);
+
+            this.homeViewViewModel = homeViewViewModel;
+            this.registrationWindowViewModel = registrationWindowViewModel;
+            this.signInWindowViewModel = signInWindowViewModel;
+
+            this.userStorage = userStorage;
+
+            //Разобраться, как сбросить активного пользователя командой при закрытии приложения
+            userStorage.ResetActiveUser();
+
+            SetAutorizationStatus();
+        }
+
+        private void SetAutorizationStatus()
+        {
+            var user = userStorage.GetAutorizedUser();
+
+            if (user == null)
+            {
+                UserName = String.Empty;
+                OutAccount();
+                return;
+            }
+            UserName = "Имя: " + user.Login;
+            InAccount();
+        }
+
+        private void SignOut(object obj)
+        {
+            userStorage.ResetUser();
+            SetAutorizationStatus();
+        }
+
+        private bool CanSignOut(object arg)
+        {
+            return true;
+        }
+
+        private bool CanSignIn(object arg)
+        {
+            return true;
+        }
+
+        private void SignIn(object obj)
+        {
+            var signInWindow = new SignInWindow(signInWindowViewModel);
+            signInWindow.ShowDialog();
+            SetAutorizationStatus();
+        }
+
+        private bool CanRegister(object arg)
+        {
+            return true;
+        }
+
+        private void Register(object obj)
+        {
+            var registrationWindow = new RegistrationWindow(registrationWindowViewModel);
+            registrationWindow.ShowDialog();
+            SetAutorizationStatus();
         }
 
         private bool CanOpenHomeView(object arg)
@@ -37,7 +167,7 @@ namespace WeatherWpfApp.ViewModels
 
         private void OpenHomeView(object obj)
         {
-            SelectedContent = new HomeViewViewModel();
+            SelectedContent = homeViewViewModel;
         }
         private bool CanOpenLocationView(object arg)
         {
@@ -59,7 +189,7 @@ namespace WeatherWpfApp.ViewModels
             SelectedContent = new SettingsViewViewModel();
         }
 
-        private bool CanOpenCloseApplication(object arg)
+        private bool CanCloseApplication(object arg)
         {
             return true;
         }
@@ -67,6 +197,24 @@ namespace WeatherWpfApp.ViewModels
         private void CloseApplication(object obj)
         {
             Application.Current.MainWindow.Close();
+        }
+
+        private void OutAccount()
+        {
+            RegisterButtonIsVisible = true;
+            SignInButtonIsVisible = true;
+
+            SignOutButtonIsVisible = false;
+            UserNameLabelIsVisible = false;
+        }
+
+        private void InAccount()
+        {
+            RegisterButtonIsVisible = false;
+            SignInButtonIsVisible = false;
+
+            SignOutButtonIsVisible = true;
+            UserNameLabelIsVisible = true;
         }
     }
 }

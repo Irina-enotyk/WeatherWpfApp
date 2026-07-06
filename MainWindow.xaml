@@ -8,10 +8,12 @@
         xmlns:settingsView="clr-namespace:WeatherWpfApp.Views.Settings"
         xmlns:vm="clr-namespace:WeatherWpfApp.ViewModels"
         xmlns:local="clr-namespace:WeatherWpfApp"
+        xmlns:converters="clr-namespace:WeatherWpfApp.Resources.Converters"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="935"
         FontFamily="{StaticResource MainFont}">
     <Window.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         <DataTemplate DataType="{x:Type vm:HomeViewViewModel}">
             <homeView:HomeView DataContext="{Binding}"/>
         </DataTemplate>
@@ -24,10 +26,6 @@
             <settingsView:SettingsView DataContext="{Binding}"/>
         </DataTemplate>
     </Window.Resources>
-    
-    <Window.DataContext>
-        <vm:MainWindowViewModel/>
-    </Window.DataContext>
 
     <Grid Background="{DynamicResource MainWindowBackGround}">
         
@@ -78,22 +76,31 @@
                         Grid.Column="0"
                         Margin="5"
                         VerticalAlignment="Center"
-                        HorizontalAlignment="Center"/>
+                        HorizontalAlignment="Center"
+                        Visibility="{Binding UserNameLabelIsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                        Content="{Binding UserName}"
+                        />
                     <Button x:Name="signOutButton"
                         Grid.Row="0"
                         Grid.Column="1"
                         Margin="5"
-                        Content="Выйти"/>
+                        Content="Выйти"
+                        Visibility="{Binding SignOutButtonIsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                        Command="{Binding SignOutCommand}"/>
                     <Button x:Name="registrationButton"
                         Grid.Row="1"
                         Grid.Column="0" 
                         Margin="5" 
-                        Content="Регистрация"/>
+                        Content="Регистрация"
+                        Visibility="{Binding RegisterButtonIsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                        Command="{Binding RegisterCommand}"/>
                     <Button x:Name="signInButton"
                         Grid.Row="1"
                         Grid.Column="1" 
                         Margin="5" 
-                        Content="Войти"/>
+                        Content="Войти"
+                        Visibility="{Binding SignInButtonIsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                        Command="{Binding SignInCommand}"/>
                 </Grid>
             </Grid>
         </Grid>

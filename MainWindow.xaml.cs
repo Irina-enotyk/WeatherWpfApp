@@ -1,10 +1,10 @@
 ﻿using System.Windows;
 using System.Timers;
-using System.Windows.Controls;
 using WeatherWpfApp.Models;
 using WeatherWpfApp.Storages;
 using System.Windows.Media;
 using LinearGradientBrush = System.Windows.Media.LinearGradientBrush;
+using WeatherWpfApp.ViewModels;
 
 namespace WeatherWpfApp
 {
@@ -13,24 +13,18 @@ namespace WeatherWpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private System.Timers.Timer timer = new System.Timers.Timer();
+        private System.Timers.Timer timer;
 
-        private User user;
-        private bool IsSignOut = false;
-        private UserStorage userStorage { get; } = new UserStorage();
-
-        public MainWindow()
+        public MainWindow(MainWindowViewModel mainWindowViewModel)
         {
             InitializeComponent();
-            SetSubscribes();
 
-            timer.Interval = 3600000;
+            DataContext = mainWindowViewModel;
+
+            timer = new System.Timers.Timer();
+            timer.Interval = 3600000;   
             timer.Elapsed += Timer_Elapsed;
             timer.Start();
-
-            user = userStorage.GetRememberUser();
-            var users = userStorage.GetAll();
-            userStorage.SwitchActiveUser(user, users);
         }
 
         private void Timer_Elapsed(object? sender, ElapsedEventArgs e)
@@ -66,75 +60,6 @@ namespace WeatherWpfApp
 
             Application.Current.Resources["MainWindowBackGround"] = gradient;
             Application.Current.Resources["LightBackground"] = solidBrush;
-        }
-
-        private void ShowUser()
-        {
-            if (user == null || IsSignOut)
-            {
-                userNameLabel.Content = "Имя";
-                OutAccount();
-                return;
-            }
-            userNameLabel.Content = "Имя: " + user.Login;
-            InAccount();
-        }
-
-        private void SetSubscribes()
-        {
-            registrationButton.Click += RegistrationButton_Click;
-            signInButton.Click += SignInButtonButton_Click;
-            signOutButton.Click += SignOutButton_Click;
-            Activated += MainWindow_Activated;
-        }
-
-        private void MainWindow_Activated(object? sender, EventArgs e)
-        {
-            user = userStorage.GetActiveUser() ?? userStorage.GetRememberUser();
-            ShowUser();
-        }
-
-        private void SignInButtonButton_Click(object sender, RoutedEventArgs e)
-        {
-            var signInWindow = new SignInWindow();
-            signInWindow.ShowDialog();
-        }
-
-        private void RegistrationButton_Click(object sender, RoutedEventArgs e)
-        {
-            var registrationWindow = new RegistrationWindow();
-            registrationWindow.ShowDialog();
-        }
-
-        private void SignOutButton_Click(object sender, RoutedEventArgs e)
-        {
-            IsSignOut = true;
-            ShowUser();
-        }
-
-        private void OutAccount()
-        {
-            userNameLabel.Visibility = Visibility.Collapsed;
-            signOutButton.Visibility = Visibility.Collapsed;
-
-            registrationButton.Visibility = Visibility.Visible;
-            signInButton.Visibility = Visibility.Visible;
-        }
-        private void InAccount()
-        {
-            userNameLabel.Visibility = Visibility.Visible;
-            signOutButton.Visibility = Visibility.Visible;
-
-            registrationButton.Visibility = Visibility.Collapsed;
-            signInButton.Visibility = Visibility.Collapsed;
-        }
-
-        private void WeatherDayButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button button)
-            {
-                var day = button.DataContext as DayForecastModel;
-            }
         }
     }
 }
