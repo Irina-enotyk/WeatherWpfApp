@@ -12,12 +12,16 @@
     </UserControl.DataContext>
     
     <Grid>
-        <StackPanel HorizontalAlignment="Center" Width="300">
+        <StackPanel 
+            HorizontalAlignment="Center"
+            Width="300"
+            >
             <TextBlock Text="Настройки"/>
             <TextBox/>
             <TextBlock Text="Системные настройки"/>
             <TextBox/>
+            <TextBlock Text="Язык приложения"/>
+            <ComboBox Name="Culture_Combobox" SelectedItem="{Binding Culture}"/>
         </StackPanel>
-            
     </Grid>
 </UserControl>
