@@ -1,7 +1,5 @@
 ﻿using System.Windows;
 using System.Timers;
-using WeatherWpfApp.Models;
-using WeatherWpfApp.Storages;
 using System.Windows.Media;
 using LinearGradientBrush = System.Windows.Media.LinearGradientBrush;
 using WeatherWpfApp.ViewModels;

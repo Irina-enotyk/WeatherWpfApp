@@ -17,15 +17,14 @@ namespace WeatherWpfApp.ViewModels
         public ICommand SignInCommand { get; }
         public ICommand SignOutCommand { get; }
 
-        private BaseViewModel selectedContent;
-
         private readonly HomeViewViewModel homeViewViewModel;
         private readonly SignInWindowViewModel signInWindowViewModel;
         private readonly RegistrationWindowViewModel registrationWindowViewModel;
-        private readonly ILocalizationServise localizationServise;
 
         private readonly IUserStorage userStorage;
+        private readonly ILocalizationServise localizationServise;
 
+        private BaseViewModel selectedContent;
         public BaseViewModel SelectedContent
         {
             get {  return selectedContent; }
@@ -91,11 +90,12 @@ namespace WeatherWpfApp.ViewModels
         }
 
         public MainWindowViewModel
-            (ILocalizationServise localizationServise,
-            IUserStorage userStorage,
+            (IUserStorage userStorage,
+            ILocalizationServise localizationServise,
             HomeViewViewModel homeViewViewModel,
             RegistrationWindowViewModel registrationWindowViewModel,
-            SignInWindowViewModel signInWindowViewModel)
+            SignInWindowViewModel signInWindowViewModel
+            )
         {
             HomeCommand = new RelayCommand(OpenHomeView, CanOpenHomeView);
             LocationCommand = new RelayCommand(OpenLocationView, CanOpenLocationView);

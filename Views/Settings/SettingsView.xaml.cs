@@ -9,11 +9,10 @@ namespace WeatherWpfApp.Views.Settings
     /// </summary>
     public partial class SettingsView : UserControl
     {
-        public SettingsView(SettingsViewViewModel settingsViewViewModel)
+        public SettingsView()
         {
             InitializeComponent();
-            DataContext = settingsViewViewModel;
-
+            
             Culture_Combobox.ItemsSource = Enum.GetValues(typeof(Cultures)).Cast<Cultures>();
         }
     }
