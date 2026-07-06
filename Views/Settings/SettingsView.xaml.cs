@@ -1,4 +1,6 @@
 ﻿using System.Windows.Controls;
+using WeatherWpfApp.Servises.Localizations;
+using WeatherWpfApp.ViewModels;
 
 namespace WeatherWpfApp.Views.Settings
 {
@@ -7,9 +9,10 @@ namespace WeatherWpfApp.Views.Settings
     /// </summary>
     public partial class SettingsView : UserControl
     {
-        public SettingsView()
+        public SettingsView(SettingsViewViewModel settingsViewViewModel)
         {
             InitializeComponent();
+            DataContext = settingsViewViewModel;
 
             Culture_Combobox.ItemsSource = Enum.GetValues(typeof(Cultures)).Cast<Cultures>();
         }

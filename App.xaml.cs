@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Windows;
+using WeatherWpfApp.Servises.Localizations;
 using WeatherWpfApp.Storages.Users;
 using WeatherWpfApp.Storages.Weathers;
 using WeatherWpfApp.ViewModels;
@@ -23,11 +24,13 @@ namespace WeatherWpfApp
                 services.AddSingleton<MainWindow>();
                 services.AddSingleton<MainWindowViewModel>();
                 services.AddSingleton<HomeViewViewModel>();
+                services.AddSingleton<SettingsViewViewModel>();
                 services.AddSingleton<RegistrationWindowViewModel>();
                 services.AddSingleton<SignInWindowViewModel>();
 
                 services.AddSingleton<IWeatherStorage, WeatherStorage>();
                 services.AddSingleton<IUserStorage, UserStorage>();
+                services.AddSingleton<ILocalizationServise, LocalizationServise>();
             }).Build();
         }
 

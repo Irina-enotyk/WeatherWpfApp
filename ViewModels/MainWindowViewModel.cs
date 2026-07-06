@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using WeatherWpfApp.Models;
+using WeatherWpfApp.Servises.Localizations;
 using WeatherWpfApp.Storages.Users;
 using WeatherWpfApp.ViewModels.Auth;
 
@@ -21,6 +22,7 @@ namespace WeatherWpfApp.ViewModels
         private readonly HomeViewViewModel homeViewViewModel;
         private readonly SignInWindowViewModel signInWindowViewModel;
         private readonly RegistrationWindowViewModel registrationWindowViewModel;
+        private readonly ILocalizationServise localizationServise;
 
         private readonly IUserStorage userStorage;
 
@@ -88,7 +90,12 @@ namespace WeatherWpfApp.ViewModels
             }
         }
 
-        public MainWindowViewModel(IUserStorage userStorage, HomeViewViewModel homeViewViewModel, RegistrationWindowViewModel registrationWindowViewModel, SignInWindowViewModel signInWindowViewModel)
+        public MainWindowViewModel
+            (ILocalizationServise localizationServise,
+            IUserStorage userStorage,
+            HomeViewViewModel homeViewViewModel,
+            RegistrationWindowViewModel registrationWindowViewModel,
+            SignInWindowViewModel signInWindowViewModel)
         {
             HomeCommand = new RelayCommand(OpenHomeView, CanOpenHomeView);
             LocationCommand = new RelayCommand(OpenLocationView, CanOpenLocationView);
@@ -104,6 +111,7 @@ namespace WeatherWpfApp.ViewModels
             this.signInWindowViewModel = signInWindowViewModel;
 
             this.userStorage = userStorage;
+            this.localizationServise = localizationServise;
 
             //Разобраться, как сбросить активного пользователя командой при закрытии приложения
             userStorage.ResetActiveUser();
@@ -186,7 +194,7 @@ namespace WeatherWpfApp.ViewModels
 
         private void OpenSettingsView(object obj)
         {
-            SelectedContent = new SettingsViewViewModel();
+            SelectedContent = new SettingsViewViewModel(localizationServise);
         }
 
         private bool CanCloseApplication(object arg)

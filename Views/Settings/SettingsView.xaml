@@ -7,10 +7,6 @@
              xmlns:vm="clr-namespace:WeatherWpfApp.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <vm:SettingsViewViewModel/>
-    </UserControl.DataContext>
-    
     <Grid>
         <StackPanel 
             HorizontalAlignment="Center"
