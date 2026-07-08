@@ -1,6 +1,5 @@
 ﻿
 using WeatherWpfApp.Servises.Localizations;
-using WeatherWpfApp.Views.Settings;
 
 namespace WeatherWpfApp.ViewModels
 {

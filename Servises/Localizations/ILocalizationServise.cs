@@ -1,6 +1,4 @@
-﻿using WeatherWpfApp.Views.Settings;
-
-namespace WeatherWpfApp.Servises.Localizations
+﻿namespace WeatherWpfApp.Servises.Localizations
 {
     public interface ILocalizationServise
     {

@@ -1,7 +1,6 @@
 ﻿
 using System.Globalization;
 using System.Windows;
-using WeatherWpfApp.Views.Settings;
 
 namespace WeatherWpfApp.Servises.Localizations
 {
