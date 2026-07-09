@@ -39,27 +39,19 @@
             Grid.Row="0">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="0">
                     <Label 
-                       Content="Прогноз"
+                       Content="{DynamicResource DateHeader}"
                        Margin="5"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"/>
                 </Grid>
 
                 <Grid Grid.Column="1">
-                    <Label 
-                       Content="Погода"
-                       Margin="5"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"/>
-                </Grid>
-                <Grid Grid.Column="2">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -84,21 +76,21 @@
                         Grid.Row="0"
                         Grid.Column="1"
                         Margin="5"
-                        Content="Выйти"
+                        Content="{DynamicResource SignOut}"
                         Visibility="{Binding SignOutButtonIsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
                         Command="{Binding SignOutCommand}"/>
                     <Button x:Name="registrationButton"
                         Grid.Row="1"
                         Grid.Column="0" 
                         Margin="5" 
-                        Content="Регистрация"
+                        Content="{DynamicResource Register}"
                         Visibility="{Binding RegisterButtonIsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
                         Command="{Binding RegisterCommand}"/>
                     <Button x:Name="signInButton"
                         Grid.Row="1"
                         Grid.Column="1" 
                         Margin="5" 
-                        Content="Войти"
+                        Content="{DynamicResource SignIn}"
                         Visibility="{Binding SignInButtonIsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
                         Command="{Binding SignInCommand}"/>
                 </Grid>
@@ -123,13 +115,14 @@
                     Width="Auto"
                     Margin="5,5,0,5"
                     HorizontalAlignment="Left"
-                    Content=" Обновить "/>
+                    Content="{DynamicResource Update}"/>
                 <Label
                     Grid.Column="1"
                     Width="Auto"
                     Margin="112,5,0,5"
                     HorizontalAlignment="Left"
-                    Content="Период прогноза погоды" Grid.ColumnSpan="2"/>
+                    Content="{DynamicResource WeatherPeriod}"
+                    Grid.ColumnSpan="2"/>
             </Grid>
         </Grid>
 
@@ -142,19 +135,19 @@
                 Grid.Column ="0"
                 Orientation="Vertical">
                 <Button
-                    Content="Главная"
+                    Content="{DynamicResource HomeTitle}"
                     Style="{StaticResource LeftPanelButton}"
                     Command="{Binding HomeCommand}"/>
                 <Button
-                    Content="Местоположение"
+                    Content="{DynamicResource LocationsTitle}"
                     Style="{StaticResource LeftPanelButton}"
                     Command="{Binding LocationCommand}"/>
                 <Button 
-                    Content="Настройки"
+                    Content="{DynamicResource SettingsTitle}"
                     Style="{StaticResource LeftPanelButton}"
                     Command="{Binding SettingsCommand}"/>
                 <Button
-                    Content="Закрыть" 
+                    Content="{DynamicResource Exit}" 
                     Style="{StaticResource LeftPanelButton}"
                     Command="{Binding CloseCommand}"/>
             </StackPanel>

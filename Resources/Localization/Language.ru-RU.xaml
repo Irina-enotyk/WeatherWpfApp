@@ -9,6 +9,11 @@
     <v:String x:Key="LocationsTitle">Места</v:String>
     <v:String x:Key="SettingsTitle">Настройки</v:String>
     <v:String x:Key="Exit">Выход</v:String>
+    <v:String x:Key="Update">Обновить</v:String>
+    <v:String x:Key="WeatherPeriod">Период прогноза</v:String>
+    <v:String x:Key="SignOut">Выйти</v:String>
+    <v:String x:Key="SignIn">Войти</v:String>
+    <v:String x:Key="Register">Регистрация</v:String>
 
     <!--  Страница погоды  -->
     <v:String x:Key="DateHeader">Прогноз погоды</v:String>

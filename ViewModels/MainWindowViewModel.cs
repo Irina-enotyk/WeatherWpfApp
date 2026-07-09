@@ -112,6 +112,7 @@ namespace WeatherWpfApp.ViewModels
 
             this.userStorage = userStorage;
             this.localizationServise = localizationServise;
+            localizationServise.SetCulture(Servises.Localizations.Cultures.RU);
 
             //Разобраться, как сбросить активного пользователя командой при закрытии приложения
             userStorage.ResetActiveUser();
