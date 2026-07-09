@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using WeatherWpfApp.Servises.Localizations;
 
 namespace WeatherWpfApp.Views.Settings
 {
@@ -10,8 +11,6 @@ namespace WeatherWpfApp.Views.Settings
         public SettingsView()
         {
             InitializeComponent();
-            
-            //Culture_Combobox.ItemsSource = Enum.GetValues(typeof(Cultures)).Cast<Cultures>();
         }
     }
 }

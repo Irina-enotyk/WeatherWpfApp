@@ -17,7 +17,10 @@
             <TextBlock Text="Системные настройки"/>
             <TextBox/>
             <TextBlock Text="Язык приложения"/>
-            <ComboBox Name="Culture_Combobox" SelectedItem="{Binding Culture}"/>
+            <ComboBox
+                Name="Culture_Combobox"
+                ItemsSource="{Binding Cultures}"
+                SelectedItem="{Binding Culture}"/>
         </StackPanel>
     </Grid>
 </UserControl>
