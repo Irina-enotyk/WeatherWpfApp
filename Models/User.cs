@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using WeatherWpfApp.Servises.Localizations;
 
 namespace WeatherWpfApp.Models
 {
