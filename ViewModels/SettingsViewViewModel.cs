@@ -1,11 +1,13 @@
 ﻿using WeatherWpfApp.Servises.Localizations;
+using WeatherWpfApp.Servises.Settings;
 
 namespace WeatherWpfApp.ViewModels
 {
     public class SettingsViewViewModel : BaseViewModel
     {
         private readonly ILocalizationServise localizationServise;
-
+        private readonly Settings settings;
+        private readonly ISettingsServise settingsServise;
         private Cultures culture;
         public Cultures Culture
         {
@@ -16,6 +18,9 @@ namespace WeatherWpfApp.ViewModels
                 culture = value;
                 localizationServise.SetCulture(culture);
                 OnPropertyChanged();
+
+                settings.Cultures = culture;
+                settingsServise.Save(settings);
             }
         }
 
@@ -45,9 +50,11 @@ namespace WeatherWpfApp.ViewModels
             }
         }
 
-        public SettingsViewViewModel(ILocalizationServise localizationServise)
+        public SettingsViewViewModel(ILocalizationServise localizationServise, ISettingsServise settingsServise)
         {
             this.localizationServise = localizationServise;
+            this.settingsServise = settingsServise;
+            this.settings = new Settings();
 
             Cultures = Enum.GetValues(typeof(Cultures)).Cast<Cultures>().ToList();
             Temperaturess = Enum.GetValues(typeof(Temperatures)).Cast<Temperatures>().ToList();

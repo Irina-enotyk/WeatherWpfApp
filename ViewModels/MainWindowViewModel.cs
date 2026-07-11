@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using WeatherWpfApp.Models;
 using WeatherWpfApp.Servises.Localizations;
+using WeatherWpfApp.Servises.Settings;
 using WeatherWpfApp.Storages.Users;
 using WeatherWpfApp.ViewModels.Auth;
 
@@ -23,7 +24,7 @@ namespace WeatherWpfApp.ViewModels
 
         private readonly IUserStorage userStorage;
         private readonly ILocalizationServise localizationServise;
-
+        private readonly ISettingsServise settingsServise;
         private BaseViewModel selectedContent;
         public BaseViewModel SelectedContent
         {
@@ -94,7 +95,8 @@ namespace WeatherWpfApp.ViewModels
             ILocalizationServise localizationServise,
             HomeViewViewModel homeViewViewModel,
             RegistrationWindowViewModel registrationWindowViewModel,
-            SignInWindowViewModel signInWindowViewModel
+            SignInWindowViewModel signInWindowViewModel,
+            ISettingsServise settingsServise
             )
         {
             HomeCommand = new RelayCommand(OpenHomeView, CanOpenHomeView);
@@ -112,11 +114,13 @@ namespace WeatherWpfApp.ViewModels
 
             this.userStorage = userStorage;
             this.localizationServise = localizationServise;
-            localizationServise.SetCulture(Servises.Localizations.Cultures.RU);
+            this.settingsServise = settingsServise;
+
+            var settings =  settingsServise.Load();
+            localizationServise.SetCulture(settings.Cultures);
 
             //Разобраться, как сбросить активного пользователя командой при закрытии приложения
             userStorage.ResetActiveUser();
-
             SetAutorizationStatus();
         }
 
@@ -195,7 +199,7 @@ namespace WeatherWpfApp.ViewModels
 
         private void OpenSettingsView(object obj)
         {
-            SelectedContent = new SettingsViewViewModel(localizationServise);
+            SelectedContent = new SettingsViewViewModel(localizationServise, settingsServise);
         }
 
         private bool CanCloseApplication(object arg)
