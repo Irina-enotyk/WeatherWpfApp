@@ -12,13 +12,12 @@
             HorizontalAlignment="Center"
             Width="300"
             >
-            <TextBlock Text="Настройки"/>
-            <TextBox/>
-            <TextBlock Text="Системные настройки"/>
-            <TextBox/>
+            <TextBlock Text="Температура"/>
+            <ComboBox
+                ItemsSource="{Binding Temperaturess}"
+                />
             <TextBlock Text="Язык приложения"/>
             <ComboBox
-                Name="Culture_Combobox"
                 ItemsSource="{Binding Cultures}"
                 SelectedItem="{Binding Culture}"/>
         </StackPanel>
