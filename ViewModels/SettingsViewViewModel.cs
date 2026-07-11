@@ -2,7 +2,7 @@
 
 namespace WeatherWpfApp.ViewModels
 {
-    public partial class SettingsViewViewModel : BaseViewModel
+    public class SettingsViewViewModel : BaseViewModel
     {
         private readonly ILocalizationServise localizationServise;
 
