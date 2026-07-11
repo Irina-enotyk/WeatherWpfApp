@@ -17,10 +17,5 @@ namespace WeatherWpfApp.Servises.Localizations
             Application.Current.Resources.MergedDictionaries.Add(cultureDictionary[culture]);
             CultureInfo.CurrentCulture = new CultureInfo(Application.Current.Resources["lang"].ToString());
         }
-
-        public CultureInfo GetCulture()
-        {
-            return  CultureInfo.CurrentCulture = new CultureInfo(Application.Current.Resources["lang"].ToString());
-        }
     }
 }

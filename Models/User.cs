@@ -6,8 +6,6 @@ namespace WeatherWpfApp.Models
     {
         public bool IsActive { get; set; }
         public bool IsRemember { get; set; }
-
-        public CultureInfo CultureSetting { get; set; }
         public string Login { get; protected set; }
         public string Password { get; protected set; }
 
