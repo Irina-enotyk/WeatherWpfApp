@@ -1,4 +1,5 @@
-﻿using WeatherWpfApp.Servises.Localizations;
+﻿using WeatherWpfApp.Models;
+using WeatherWpfApp.Servises.Localizations;
 using WeatherWpfApp.Servises.Settings;
 
 namespace WeatherWpfApp.ViewModels
@@ -36,10 +37,10 @@ namespace WeatherWpfApp.ViewModels
             }
         }
 
-        private List<Temperatures> temperatures;
+        private List<TemperatureMeasure> temperatures;
 
         // Не понимаю, почему не даёт назвать свойство Temperatures
-        public List<Temperatures> Temperaturess
+        public List<TemperatureMeasure> Temperaturess
         {
             get => temperatures;
             set
@@ -57,7 +58,7 @@ namespace WeatherWpfApp.ViewModels
             this.settings = new Settings();
 
             Cultures = Enum.GetValues(typeof(Cultures)).Cast<Cultures>().ToList();
-            Temperaturess = Enum.GetValues(typeof(Temperatures)).Cast<Temperatures>().ToList();
+            Temperaturess = Enum.GetValues(typeof(TemperatureMeasure)).Cast<TemperatureMeasure>().ToList();
         }
     }
 }

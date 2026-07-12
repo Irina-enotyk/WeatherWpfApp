@@ -1,4 +1,4 @@
-﻿namespace WeatherWpfApp.Servises.Localizations
+﻿namespace WeatherWpfApp.Models
 {
     public enum Cultures
     {

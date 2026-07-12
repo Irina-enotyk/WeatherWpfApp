@@ -1,4 +1,4 @@
-﻿using WeatherWpfApp.Servises.Localizations;
+﻿using WeatherWpfApp.Models;
 
 namespace WeatherWpfApp.Servises.Settings
 {

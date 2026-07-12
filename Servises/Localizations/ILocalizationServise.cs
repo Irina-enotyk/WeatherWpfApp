@@ -1,4 +1,6 @@
-﻿namespace WeatherWpfApp.Servises.Localizations
+﻿using WeatherWpfApp.Models;
+
+namespace WeatherWpfApp.Servises.Localizations
 {
     public interface ILocalizationServise
     {
