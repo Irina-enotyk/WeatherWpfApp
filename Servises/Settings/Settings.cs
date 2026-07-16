@@ -5,5 +5,6 @@ namespace WeatherWpfApp.Servises.Settings
     public class Settings
     {
         public Cultures Cultures { get; set; } = Cultures.RU;
+        public TemperatureMeasure TemperatureMeasure { get; set; } = TemperatureMeasure.Celsius;
     }
 }

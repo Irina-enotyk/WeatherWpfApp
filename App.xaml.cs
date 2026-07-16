@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Windows;
+using WeatherWpfApp.Servises;
 using WeatherWpfApp.Servises.Localizations;
 using WeatherWpfApp.Servises.Settings;
 using WeatherWpfApp.Storages.Users;
@@ -40,6 +41,9 @@ namespace WeatherWpfApp
         protected async void OnStartup(object sender, StartupEventArgs e)
         {
             await _host.StartAsync();
+
+            //Сделали контейнер зависимостей публичным. Теперь зависимости доступны из любого места проекта.
+            ServiceLocator.ServiceProvider = _host.Services;
 
             //Получение сервиса главного окна и его отображение
             var mainWindow = _host.Services.GetService<MainWindow>();

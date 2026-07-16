@@ -14,7 +14,8 @@
             >
             <TextBlock Text="Температура"/>
             <ComboBox
-                ItemsSource="{Binding Temperaturess}"
+                ItemsSource="{Binding TemperatureMeasures}"
+                SelectedItem="{Binding TemperatureMeasure}"
                 />
             <TextBlock Text="Язык приложения"/>
             <ComboBox

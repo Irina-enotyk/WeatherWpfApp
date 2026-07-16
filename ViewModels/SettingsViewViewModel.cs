@@ -21,7 +21,7 @@ namespace WeatherWpfApp.ViewModels
                 OnPropertyChanged();
 
                 settings.Cultures = culture;
-                settingsServise.Save(settings);
+                settingsServise?.Save(settings);
             }
         }
 
@@ -37,16 +37,31 @@ namespace WeatherWpfApp.ViewModels
             }
         }
 
-        private List<TemperatureMeasure> temperatures;
-
-        // Не понимаю, почему не даёт назвать свойство Temperatures
-        public List<TemperatureMeasure> Temperaturess
+        private TemperatureMeasure temperatureMeasure;
+        public TemperatureMeasure TemperatureMeasure
         {
-            get => temperatures;
+            get => temperatureMeasure;
             set
             {
-                if (temperatures == value) return;
-                temperatures = value;
+                if(temperatureMeasure == value) return;
+                temperatureMeasure = value;
+                OnPropertyChanged();
+
+                settings.TemperatureMeasure = temperatureMeasure;
+                settingsServise?.Save(settings);
+            }
+        }
+
+        private List<TemperatureMeasure> temperatureMeasures;
+
+        // Не понимаю, почему не даёт назвать свойство Temperatures
+        public List<TemperatureMeasure> TemperatureMeasures
+        {
+            get => temperatureMeasures;
+            set
+            {
+                if (temperatureMeasures == value) return;
+                temperatureMeasures = value;
                 OnPropertyChanged();
             }
         }
@@ -58,7 +73,7 @@ namespace WeatherWpfApp.ViewModels
             this.settings = new Settings();
 
             Cultures = Enum.GetValues(typeof(Cultures)).Cast<Cultures>().ToList();
-            Temperaturess = Enum.GetValues(typeof(TemperatureMeasure)).Cast<TemperatureMeasure>().ToList();
+            TemperatureMeasures = Enum.GetValues(typeof(TemperatureMeasure)).Cast<TemperatureMeasure>().ToList();
         }
     }
 }
