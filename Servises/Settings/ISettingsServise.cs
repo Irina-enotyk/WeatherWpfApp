@@ -2,8 +2,8 @@
 {
     public interface ISettingsServise
     {
-        void Save(Settings settings);
+        public void Save(Settings settings);
 
-        Settings Load();
+        public Settings Load();
     }
 }
