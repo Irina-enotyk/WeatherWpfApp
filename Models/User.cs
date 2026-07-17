@@ -9,6 +9,8 @@ namespace WeatherWpfApp.Models
         public string Login { get; protected set; }
         public string Password { get; protected set; }
 
+        //Хранить список настроек пользователя.
+
         public User(string login, string password)
         {
             Login = login;

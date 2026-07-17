@@ -21,6 +21,7 @@ namespace WeatherWpfApp.ViewModels
         private readonly HomeViewViewModel homeViewViewModel;
         private readonly SignInWindowViewModel signInWindowViewModel;
         private readonly RegistrationWindowViewModel registrationWindowViewModel;
+        private readonly SettingsViewViewModel settingsViewViewModel;
 
         private readonly IUserStorage userStorage;
         private readonly ILocalizationServise localizationServise;
@@ -96,7 +97,8 @@ namespace WeatherWpfApp.ViewModels
             HomeViewViewModel homeViewViewModel,
             RegistrationWindowViewModel registrationWindowViewModel,
             SignInWindowViewModel signInWindowViewModel,
-            ISettingsServise settingsServise
+            ISettingsServise settingsServise,
+            SettingsViewViewModel settingsViewViewModel
             )
         {
             HomeCommand = new RelayCommand(OpenHomeView, CanOpenHomeView);
@@ -111,6 +113,7 @@ namespace WeatherWpfApp.ViewModels
             this.homeViewViewModel = homeViewViewModel;
             this.registrationWindowViewModel = registrationWindowViewModel;
             this.signInWindowViewModel = signInWindowViewModel;
+            this.settingsViewViewModel = settingsViewViewModel;
 
             this.userStorage = userStorage;
             this.localizationServise = localizationServise;
@@ -199,7 +202,7 @@ namespace WeatherWpfApp.ViewModels
 
         private void OpenSettingsView(object obj)
         {
-            SelectedContent = new SettingsViewViewModel(localizationServise, settingsServise);
+            SelectedContent = settingsViewViewModel;
         }
 
         private bool CanCloseApplication(object arg)

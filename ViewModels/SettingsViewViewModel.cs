@@ -54,7 +54,6 @@ namespace WeatherWpfApp.ViewModels
 
         private List<TemperatureMeasure> temperatureMeasures;
 
-        // Не понимаю, почему не даёт назвать свойство Temperatures
         public List<TemperatureMeasure> TemperatureMeasures
         {
             get => temperatureMeasures;
