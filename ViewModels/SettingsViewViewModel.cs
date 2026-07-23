@@ -69,10 +69,13 @@ namespace WeatherWpfApp.ViewModels
         {
             this.localizationServise = localizationServise;
             this.settingsServise = settingsServise;
-            this.settings = new Settings();
+            this.settings = settingsServise.Load();
 
             Cultures = Enum.GetValues(typeof(Cultures)).Cast<Cultures>().ToList();
             TemperatureMeasures = Enum.GetValues(typeof(TemperatureMeasure)).Cast<TemperatureMeasure>().ToList();
+
+            Culture = settings.Cultures;
+            TemperatureMeasure = settings.TemperatureMeasure;
         }
     }
 }
