@@ -7,17 +7,20 @@
              xmlns:vm="clr-namespace:WeatherWpfApp.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <vm:SettingsViewViewModel/>
-    </UserControl.DataContext>
-    
     <Grid>
-        <StackPanel HorizontalAlignment="Center" Width="300">
-            <TextBlock Text="Настройки"/>
-            <TextBox/>
-            <TextBlock Text="Системные настройки"/>
-            <TextBox/>
+        <StackPanel 
+            HorizontalAlignment="Center"
+            Width="300"
+            >
+            <TextBlock Text="Температура"/>
+            <ComboBox
+                ItemsSource="{Binding TemperatureMeasures}"
+                SelectedItem="{Binding TemperatureMeasure}"
+                />
+            <TextBlock Text="Язык приложения"/>
+            <ComboBox
+                ItemsSource="{Binding Cultures}"
+                SelectedItem="{Binding Culture}"/>
         </StackPanel>
-            
     </Grid>
 </UserControl>

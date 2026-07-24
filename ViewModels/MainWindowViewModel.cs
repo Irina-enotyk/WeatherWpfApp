@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using WeatherWpfApp.Models;
+using WeatherWpfApp.Servises.Localizations;
+using WeatherWpfApp.Servises.Settings;
 using WeatherWpfApp.Storages.Users;
 using WeatherWpfApp.ViewModels.Auth;
 
@@ -16,14 +18,15 @@ namespace WeatherWpfApp.ViewModels
         public ICommand SignInCommand { get; }
         public ICommand SignOutCommand { get; }
 
-        private BaseViewModel selectedContent;
-
         private readonly HomeViewViewModel homeViewViewModel;
         private readonly SignInWindowViewModel signInWindowViewModel;
         private readonly RegistrationWindowViewModel registrationWindowViewModel;
+        private readonly SettingsViewViewModel settingsViewViewModel;
 
         private readonly IUserStorage userStorage;
-
+        private readonly ILocalizationServise localizationServise;
+        private readonly ISettingsServise settingsServise;
+        private BaseViewModel selectedContent;
         public BaseViewModel SelectedContent
         {
             get {  return selectedContent; }
@@ -88,7 +91,15 @@ namespace WeatherWpfApp.ViewModels
             }
         }
 
-        public MainWindowViewModel(IUserStorage userStorage, HomeViewViewModel homeViewViewModel, RegistrationWindowViewModel registrationWindowViewModel, SignInWindowViewModel signInWindowViewModel)
+        public MainWindowViewModel
+            (IUserStorage userStorage,
+            ILocalizationServise localizationServise,
+            HomeViewViewModel homeViewViewModel,
+            RegistrationWindowViewModel registrationWindowViewModel,
+            SignInWindowViewModel signInWindowViewModel,
+            ISettingsServise settingsServise,
+            SettingsViewViewModel settingsViewViewModel
+            )
         {
             HomeCommand = new RelayCommand(OpenHomeView, CanOpenHomeView);
             LocationCommand = new RelayCommand(OpenLocationView, CanOpenLocationView);
@@ -102,12 +113,17 @@ namespace WeatherWpfApp.ViewModels
             this.homeViewViewModel = homeViewViewModel;
             this.registrationWindowViewModel = registrationWindowViewModel;
             this.signInWindowViewModel = signInWindowViewModel;
+            this.settingsViewViewModel = settingsViewViewModel;
 
             this.userStorage = userStorage;
+            this.localizationServise = localizationServise;
+            this.settingsServise = settingsServise;
+
+            var settings =  settingsServise.Load();
+            localizationServise.SetCulture(settings.Cultures);
 
             //Разобраться, как сбросить активного пользователя командой при закрытии приложения
             userStorage.ResetActiveUser();
-
             SetAutorizationStatus();
         }
 
@@ -186,7 +202,7 @@ namespace WeatherWpfApp.ViewModels
 
         private void OpenSettingsView(object obj)
         {
-            SelectedContent = new SettingsViewViewModel();
+            SelectedContent = settingsViewViewModel;
         }
 
         private bool CanCloseApplication(object arg)

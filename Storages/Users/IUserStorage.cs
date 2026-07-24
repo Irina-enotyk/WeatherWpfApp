@@ -12,9 +12,9 @@ namespace WeatherWpfApp.Storages.Users
 
         public User GetAutorizedUser();
 
-        public void SetRememberUser(User signInUser, List<User> users);
+        public void WhriteRememberUser(User signInUser, List<User> users);
 
-        public void SetActiveUser(User signInUser, List<User> users);
+        public void WhriteActiveUser(User signInUser, List<User> users);
 
         public void ResetUser();
 

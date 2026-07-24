@@ -86,11 +86,11 @@ namespace WeatherWpfApp.ViewModels.Auth
             var users = userStorage.GetAll();
             if (RememberMe)
             {
-                userStorage.SetRememberUser(currentUser, users);
+                userStorage.WhriteRememberUser(currentUser, users);
             }
             else
             {
-                userStorage.SetActiveUser(currentUser, users);
+                userStorage.WhriteActiveUser(currentUser, users);
             }
             
             var window = obj as Window;

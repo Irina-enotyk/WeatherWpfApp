@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using WeatherWpfApp.Servises.Localizations;
 
 namespace WeatherWpfApp.Views.Settings
 {
