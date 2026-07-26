@@ -17,6 +17,11 @@
 
     public class FeatureMember
     {
+        public GeoObject GeoObject { get; set; }
+    }
+
+    public class GeoObject
+    {
         public string Name { get; set; }
         public string Description { get; set; }
         public Point Point { get; set; }

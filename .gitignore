@@ -6,6 +6,9 @@
 # API keys / secrets — никогда не коммитим (используйте apikey.txt.sample как образец)
 apikey.txt
 
+# Runtime-данные приложения (создаются при запуске)
+Users.json
+
 # User-specific files
 *.rsuser
 *.suo

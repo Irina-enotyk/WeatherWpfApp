@@ -1,4 +1,5 @@
 ﻿
+using System.Globalization;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -42,13 +43,13 @@ namespace WeatherWpfApp.Servises.GeoCoder
             {
                 var location = new GeoLocation();
 
-                location.Name = item.Name;
-                location.Description = item.Description;
+                location.Name = item.GeoObject.Name;
+                location.Description = item.GeoObject.Description;
 
-                var points = item.Point.Pos.Split(" ");
+                var points = item.GeoObject.Point.Pos.Split(" ");
 
-                location.Longitude = Convert.ToDouble(points[0]);
-                location.Latitude = Convert.ToDouble(points[1]);
+                location.Longitude = double.Parse(points[0], CultureInfo.InvariantCulture);
+                location.Latitude = double.Parse(points[1], CultureInfo.InvariantCulture);
 
                 locations.Add(location);
             }
