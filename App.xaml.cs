@@ -59,6 +59,9 @@ namespace WeatherWpfApp
         {
             using (_host)
             {
+                var settingsService = _host.Services.GetService<ISettingsServise>();
+                settingsService.Save();
+
                 await _host.StopAsync(TimeSpan.FromSeconds(5));
             }
             base.OnExit(e);

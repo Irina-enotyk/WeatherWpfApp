@@ -6,15 +6,19 @@ namespace WeatherWpfApp.Servises.Settings
 {
     public class SettingsServise : ISettingsServise
     {
+
+        //Эта запись равнозначна вызову метода Load() в конструкторе?
+        public Settings Settings => Load();
+
         private const string fileName = "Settings.json";
 
-        public void Save(Settings settings)
+        public void Save()
         {
-            var json = JsonConvert.SerializeObject(settings);
+            var json = JsonConvert.SerializeObject(Settings);
             File.WriteAllText(fileName, json);
         }
 
-        public Settings Load()
+        private Settings Load()
         {
             if(!File.Exists(fileName))
             {

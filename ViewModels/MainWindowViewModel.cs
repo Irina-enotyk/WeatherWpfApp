@@ -119,7 +119,7 @@ namespace WeatherWpfApp.ViewModels
             this.localizationServise = localizationServise;
             this.settingsServise = settingsServise;
 
-            var settings =  settingsServise.Load();
+            var settings = settingsServise.Settings;
             localizationServise.SetCulture(settings.Cultures);
 
             //Разобраться, как сбросить активного пользователя командой при закрытии приложения
