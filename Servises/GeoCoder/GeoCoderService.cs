@@ -1,4 +1,6 @@
 ﻿
+using System.Globalization;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Json;
 
@@ -6,8 +8,23 @@ namespace WeatherWpfApp.Servises.GeoCoder
 {
     public class GeoCoderService
     {
-        private const string apikey = "67303047-9d38-49b7-a1fe-4e79406f0655";
+        private readonly string apikey = LoadApiKey();
         private readonly HttpClient httpClient = new HttpClient();
+
+        private static string LoadApiKey()
+        {
+            var path = Path.Combine(AppContext.BaseDirectory, "apikey.txt");
+
+            if (!File.Exists(path))
+            {
+                throw new FileNotFoundException(
+                    "Не найден файл apikey.txt с ключом API Яндекс Геокодера. " +
+                    "Скопируйте apikey.txt.sample в apikey.txt и вставьте свой ключ.",
+                    path);
+            }
+
+            return File.ReadAllText(path).Trim();
+        }
 
         public List<GeoLocation> GetLocations (string place)
         {
@@ -26,13 +43,13 @@ namespace WeatherWpfApp.Servises.GeoCoder
             {
                 var location = new GeoLocation();
 
-                location.Name = item.Name;
-                location.Description = item.Description;
+                location.Name = item.GeoObject.Name;
+                location.Description = item.GeoObject.Description;
 
-                var points = item.Point.Pos.Split(" ");
+                var points = item.GeoObject.Point.Pos.Split(" ");
 
-                location.Longitude = Convert.ToDouble(points[0]);
-                location.Latitude = Convert.ToDouble(points[1]);
+                location.Longitude = double.Parse(points[0], CultureInfo.InvariantCulture);
+                location.Latitude = double.Parse(points[1], CultureInfo.InvariantCulture);
 
                 locations.Add(location);
             }
