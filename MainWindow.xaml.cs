@@ -16,22 +16,17 @@ namespace WeatherWpfApp
         public MainWindow(MainWindowViewModel mainWindowViewModel)
         {
             InitializeComponent();
-
             DataContext = mainWindowViewModel;
-
-            timer = new System.Timers.Timer();
-            timer.Interval = 3600000;   
-            timer.Elapsed += Timer_Elapsed;
-            timer.Start();
+            SetInterfaceTheme();
         }
 
-        private void Timer_Elapsed(object? sender, ElapsedEventArgs e)
+        private static void SetInterfaceTheme()
         {
             var hour = DateTime.Now.Hour;
             LinearGradientBrush gradient = new LinearGradientBrush { };
             SolidColorBrush solidBrush = new SolidColorBrush(Colors.White);
 
-            if (hour <=  6 || hour >= 18)
+            if (hour <= 6 || hour >= 18)
             {
                 gradient = new LinearGradientBrush
                 {
@@ -41,7 +36,7 @@ namespace WeatherWpfApp
                         new GradientStop(Colors.MidnightBlue, 0),
                     }
                 };
-                solidBrush.Opacity =0.25;
+                solidBrush.Opacity = 0.25;
             }
 
             else
