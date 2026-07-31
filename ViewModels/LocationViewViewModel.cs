@@ -51,11 +51,6 @@ namespace WeatherWpfApp.ViewModels
             get { return searchResults; }
             set
             {
-                //if(settingsServise.Settings.SelectedLocation != null) 
-                //{ 
-                //    return;
-                //}
-
                 searchResults = value;
                 OnPropertyChanged();
             }
