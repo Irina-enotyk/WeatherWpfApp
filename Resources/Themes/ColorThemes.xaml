@@ -7,6 +7,8 @@
             <GradientStop Offset="1" Color="#FFC371"/>
         </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
+    
+    
 
     <SolidColorBrush 
         x:Key="MainMenuButtonBackground"
@@ -24,4 +26,7 @@
         x:Key="HourlyForcastDataBackground" 
         Color="LightGreen"
         Opacity="0.35"/>
+
+    <SolidColorBrush x:Key="MainForeground" Color="Black"/>
+    <SolidColorBrush x:Key="PagesTipsForeground" Color="White"/>
 </ResourceDictionary>

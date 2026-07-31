@@ -6,9 +6,7 @@ namespace WeatherWpfApp.Servises.Settings
 {
     public class SettingsServise : ISettingsServise
     {
-
-        //Эта запись равнозначна вызову метода Load() в конструкторе?
-        public Settings Settings => Load();
+        public Settings Settings { get; }  = Load();
 
         private const string fileName = "Settings.json";
 
@@ -18,7 +16,7 @@ namespace WeatherWpfApp.Servises.Settings
             File.WriteAllText(fileName, json);
         }
 
-        private Settings Load()
+        private static Settings Load()
         {
             if(!File.Exists(fileName))
             {

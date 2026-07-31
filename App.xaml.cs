@@ -28,6 +28,7 @@ namespace WeatherWpfApp
                 services.AddSingleton<MainWindowViewModel>();
                 services.AddSingleton<HomeViewViewModel>();
                 services.AddSingleton<SettingsViewViewModel>();
+                services.AddSingleton<LocationViewViewModel>();
                 services.AddSingleton<RegistrationWindowViewModel>();
                 services.AddSingleton<SignInWindowViewModel>();
                 services.AddSingleton<GeoCoderService>();
@@ -43,9 +44,6 @@ namespace WeatherWpfApp
         protected async void OnStartup(object sender, StartupEventArgs e)
         {
             await _host.StartAsync();
-
-            var geoCoderService = _host.Services.GetService<GeoCoderService>();
-            var place = geoCoderService.GetLocations("Москва");
 
             //Сделали контейнер зависимостей публичным. Теперь зависимости доступны из любого места проекта.
             ServiceLocator.ServiceProvider = _host.Services;
