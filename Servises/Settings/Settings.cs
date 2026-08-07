@@ -10,8 +10,8 @@ namespace WeatherWpfApp.Servises.Settings
         public GeoLocation SelectedLocation { get; set; } = new GeoLocation
         {
             Name = "Санкт-Петербург",
-            Longitude = 59.938676,
-            Latitude = 30.314494,
+            Longitude = 59.938676f,
+            Latitude = 30.314494f,
         };
     }
 }

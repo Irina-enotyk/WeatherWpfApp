@@ -5,6 +5,6 @@ namespace WeatherWpfApp.Storages.Weathers
 
     public interface IWeatherStorage
     {
-        public List<DayForecastModel> GetAll();
+        WeatherForecast Get(float latitude, float longitude, ForecastMeasuresModel measures, string name);
     }
 }

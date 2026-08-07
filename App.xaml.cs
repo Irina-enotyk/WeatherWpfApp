@@ -5,6 +5,7 @@ using WeatherWpfApp.Servises;
 using WeatherWpfApp.Servises.GeoCoder;
 using WeatherWpfApp.Servises.Localizations;
 using WeatherWpfApp.Servises.Settings;
+using WeatherWpfApp.Servises.Weather;
 using WeatherWpfApp.Storages.Users;
 using WeatherWpfApp.Storages.Weathers;
 using WeatherWpfApp.ViewModels;
@@ -31,6 +32,8 @@ namespace WeatherWpfApp
                 services.AddSingleton<LocationViewViewModel>();
                 services.AddSingleton<RegistrationWindowViewModel>();
                 services.AddSingleton<SignInWindowViewModel>();
+
+                services.AddSingleton<OpenMeteoProvider>();
                 services.AddSingleton<GeoCoderService>();
 
                 services.AddSingleton<IWeatherStorage, WeatherStorage>();

@@ -125,7 +125,6 @@ namespace WeatherWpfApp.ViewModels
             var settings = settingsServise.Settings;
             localizationServise.SetCulture(settings.Cultures);
 
-            //Разобраться, как сбросить активного пользователя командой при закрытии приложения
             userStorage.ResetActiveUser();
             SetAutorizationStatus();
         }
@@ -186,6 +185,7 @@ namespace WeatherWpfApp.ViewModels
 
         private void OpenHomeView(object obj)
         {
+            homeViewViewModel.TryUpdateWeather();
             SelectedContent = homeViewViewModel;
         }
         private bool CanOpenLocationView(object arg)

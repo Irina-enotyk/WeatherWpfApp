@@ -48,8 +48,8 @@ namespace WeatherWpfApp.Servises.GeoCoder
 
                 var points = item.GeoObject.Point.Pos.Split(" ");
 
-                location.Longitude = double.Parse(points[0], CultureInfo.InvariantCulture);
-                location.Latitude = double.Parse(points[1], CultureInfo.InvariantCulture);
+                location.Longitude = float.Parse(points[0], CultureInfo.InvariantCulture);
+                location.Latitude = float.Parse(points[1], CultureInfo.InvariantCulture);
 
                 locations.Add(location);
             }

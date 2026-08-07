@@ -26,6 +26,7 @@ namespace WeatherWpfApp.ViewModels
                 if(string.IsNullOrEmpty(locationSearch))
                 {
                     searchResults = null;
+                    locationSearch = null;
                     return;
                 }
 

@@ -22,8 +22,7 @@
                     Text="{Binding LocationSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     ItemsSource="{Binding SearchResults}"
                     SelectedItem="{Binding SelectedLocation}">
-                    
-                    
+
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
