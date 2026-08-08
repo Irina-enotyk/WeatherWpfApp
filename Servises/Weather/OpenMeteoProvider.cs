@@ -16,15 +16,14 @@ namespace WeatherWpfApp.Servises.Weather
 
         public WeatherForecast GetWeather(float latitude, float longitude, ForecastMeasuresModel measures)
             {
-                //Здпесь плохо пониаю, как рааботает этот url
                 var url = new StringBuilder();
                 url.Append("?latitude=" + latitude.ToString(CultureInfo.InvariantCulture));
                 url.Append("&longitude=" + longitude.ToString(CultureInfo.InvariantCulture));
                 url.Append("&temperature_unit=" + measures.TemperatureMeasure.ToString().ToLower());
                 url.Append("&timezone=auto");
                 url.Append("&past_days=2");
-                url.Append("&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,weathercode,sunrise,sunset,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant");
-                url.Append("&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,surface_pressure,windspeed_10m,winddirection_10m,weathercode");
+                url.Append("&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,weathercode,sunrise,sunset,windspeed_10m_max,windgusts_10m_max,wind_direction_10m_dominant");
+                url.Append("&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,surface_pressure,windspeed_10m,wind_direction_10m,weathercode");
 
                 DailyApiResponse response;
 
@@ -61,8 +60,7 @@ namespace WeatherWpfApp.Servises.Weather
                     MaxTemperature = dailyApiResponse.Daily.Temperature_2m_max[i],
                     MinTemperature = dailyApiResponse.Daily.Temperature_2m_min[i],
                     WindSpeed = dailyApiResponse.Daily.Windspeed_10m_max[i],
-                    //тут что-то не загружается, надо поправить
-                    //WindDirection = (WindDirection)dailyApiResponse.Daily.Winddirection_10m_dominantion[i]
+                    WindDirection = (WindDirection)dailyApiResponse.Daily.Wind_direction_10m_dominant[i]
                 };
 
                 float pressure = 0;
@@ -73,17 +71,14 @@ namespace WeatherWpfApp.Servises.Weather
                         Time = dailyApiResponse.Hourly.Time[j],
                         Temperature = dailyApiResponse.Hourly.Temperature_2m[j],
                         ApparentTemperature = dailyApiResponse.Hourly.Apparent_temperature[j],
-                        //RelativeHumidity = dailyApiResponse.Hourly.Relaitivehumidity[j],
+                        RelativeHumidity = dailyApiResponse.Hourly.Relative_humidity_2m[j],
                         SurfasePressure = dailyApiResponse.Hourly.Surface_pressure[j],
                         WindSpeed = dailyApiResponse.Hourly.Windspeed_10m[j],
-                        //WindDirection = dailyApiResponse.Hourly.Winddirection_10m_dominantion[j],
+                        WindDirection = dailyApiResponse.Hourly.Wind_direction_10m[j],
                         Weather = (WeatherCodes)dailyApiResponse.Hourly.Weathercode[j]
                     };
-                    day.HourlyForecast  .Add(hour);
+                    day.HourlyForecast.Add(hour);
                 }
-
-                //Почему так странно вычисляем? 
-                //day.Pressure = pressure / 24;
                 hoursCounter += 24;
                 weatherForecast.DayForecasts.Add(day);
             }
