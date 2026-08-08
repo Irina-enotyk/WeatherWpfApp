@@ -27,6 +27,5 @@ namespace WeatherWpfApp.Servises.Weather
         public List<float>? Relative_humidity_2m { get; set; }
         public List<float>? Surface_pressure { get; set; }
         public List<int>? Weathercode { get; set; }
-        public List<int>? Wind_direction_10m { get; set; }
     }
 }

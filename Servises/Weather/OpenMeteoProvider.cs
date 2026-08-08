@@ -23,7 +23,7 @@ namespace WeatherWpfApp.Servises.Weather
                 url.Append("&timezone=auto");
                 url.Append("&past_days=2");
                 url.Append("&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,weathercode,sunrise,sunset,windspeed_10m_max,windgusts_10m_max,wind_direction_10m_dominant");
-                url.Append("&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,surface_pressure,windspeed_10m,wind_direction_10m,weathercode");
+                url.Append("&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,surface_pressure,windspeed_10m,weathercode");
 
                 DailyApiResponse response;
 
@@ -63,7 +63,6 @@ namespace WeatherWpfApp.Servises.Weather
                     WindDirection = (WindDirection)dailyApiResponse.Daily.Wind_direction_10m_dominant[i]
                 };
 
-                float pressure = 0;
                 for (int j = hoursCounter; j < hoursCounter + 24; j++)
                 {
                     HourlyForecastModel hour = new()
@@ -74,7 +73,7 @@ namespace WeatherWpfApp.Servises.Weather
                         RelativeHumidity = dailyApiResponse.Hourly.Relative_humidity_2m[j],
                         SurfasePressure = dailyApiResponse.Hourly.Surface_pressure[j],
                         WindSpeed = dailyApiResponse.Hourly.Windspeed_10m[j],
-                        WindDirection = dailyApiResponse.Hourly.Wind_direction_10m[j],
+
                         Weather = (WeatherCodes)dailyApiResponse.Hourly.Weathercode[j]
                     };
                     day.HourlyForecast.Add(hour);
