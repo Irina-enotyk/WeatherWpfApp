@@ -40,7 +40,7 @@ namespace WeatherWpfApp.Resources.Converters
 
         //Хотела бы сделать так, чтобы в ресурсах было просто "wind_array" - базовая стрелка.
         //А угол наклона менять динамически
-        //А внутри ресурса подписаться на свойство типа int x от 0 до 359,
+        //Внутри ресурса подписаться на свойство типа int x от 0 до 359,
         //значение которого приходит из апи и хранится в свойстве, и бросать событие изменения этого свойства
         //public List<int>? Wind_direction_10m_dominant { get; set; }
 
@@ -59,7 +59,7 @@ namespace WeatherWpfApp.Resources.Converters
         private static double DetectSectorByDegrees(int degrees)
         {
             //Выглядит, наверное, непонятно.
-            //Это преобразование из градусов в радианы со смещением на -45 градусов (0.5)
+            //Это преобразование из градусов в радианы со смещением на -45 градусов (-0.5)
 
             var radian = (degrees / 90) - 0.5;
             var windDirection = 0;
