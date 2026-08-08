@@ -24,10 +24,10 @@
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public Point GeoPoint { get; set; }
+        public GeoPoint Point { get; set; }
     }
 
-    public class Point
+    public class GeoPoint
     {
         public string Pos { get; set; }
     }

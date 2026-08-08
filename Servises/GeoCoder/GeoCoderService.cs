@@ -46,7 +46,7 @@ namespace WeatherWpfApp.Servises.GeoCoder
                 location.Name = item.GeoObject.Name;
                 location.Description = item.GeoObject.Description;
 
-                var points = item.GeoObject.GeoPoint.Pos.Split(" ");
+                var points = item.GeoObject.Point.Pos.Split(" ");
 
                 location.Longitude = float.Parse(points[0], CultureInfo.InvariantCulture);
                 location.Latitude = float.Parse(points[1], CultureInfo.InvariantCulture);
