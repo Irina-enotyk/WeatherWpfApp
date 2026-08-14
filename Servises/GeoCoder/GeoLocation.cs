@@ -1,5 +1,9 @@
-﻿namespace WeatherWpfApp.Servises.GeoCoder
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace WeatherWpfApp.Servises.GeoCoder
 {
+    [PrimaryKey("Latitude", "Longitude")]
+
     public class GeoLocation
     {
         public string Name { get; set; }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Windows;
 using WeatherWpfApp.Servises;
@@ -6,6 +7,7 @@ using WeatherWpfApp.Servises.GeoCoder;
 using WeatherWpfApp.Servises.Localizations;
 using WeatherWpfApp.Servises.Settings;
 using WeatherWpfApp.Servises.Weather;
+using WeatherWpfApp.Storages;
 using WeatherWpfApp.Storages.Users;
 using WeatherWpfApp.Storages.Weathers;
 using WeatherWpfApp.ViewModels;
@@ -40,6 +42,11 @@ namespace WeatherWpfApp
                 services.AddSingleton<IUserStorage, UserStorage>();
                 services.AddSingleton<ILocalizationServise, LocalizationServise>();
                 services.AddSingleton<ISettingsServise, SettingsServise>();
+
+                //строка состояния
+                var connectionString = "Data Source=locations.db";
+                //options - параметры, передаваемые конструктору класса DatabaseContext
+                services.AddDbContext<DatabaseContext>(options => options.UseSqlite(connectionString));
 
             }).Build();
         }
