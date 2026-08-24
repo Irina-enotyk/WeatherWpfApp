@@ -25,7 +25,7 @@ namespace WeatherWpfApp.ViewModels
                 locationSearch = value;
                 if(string.IsNullOrEmpty(locationSearch))
                 {
-                    searchResults = null;
+                    SearchResults = null;
                     locationSearch = null;
                     return;
                 }
@@ -33,6 +33,8 @@ namespace WeatherWpfApp.ViewModels
                 Task.Run(async () =>
                 {
                     var search = value;
+                    await Task.Delay(700);
+
                     if(search != locationSearch)
                     {
                         return;

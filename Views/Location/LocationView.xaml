@@ -14,24 +14,15 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Disabled"    >
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Disabled">
             <StackPanel HorizontalAlignment="Center">
                 <ComboBox
                     IsEditable="True"
                     IsTextSearchEnabled="True"
                     Text="{Binding LocationSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     ItemsSource="{Binding SearchResults}"
-                    SelectedItem="{Binding SelectedLocation}">
-
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Name}"
-                                           Foreground="{DynamicResource MainForeground}"
-                                           FontSize="15"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
+                    SelectedItem="{Binding SelectedLocation}"
+                    DisplayMemberPath="Name">
                 </ComboBox>
 
                 <TextBlock Text="{Binding SelectLocation}"
