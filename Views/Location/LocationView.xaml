@@ -21,8 +21,8 @@
                     IsTextSearchEnabled="True"
                     Text="{Binding LocationSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     ItemsSource="{Binding SearchResults}"
-                    SelectedItem="{Binding SelectedLocation}"
-                    DisplayMemberPath="Name">
+                    DisplayMemberPath="Name"
+                    SelectedItem="{Binding SelectedLocation}">
                 </ComboBox>
 
                 <TextBlock Text="{Binding SelectLocation}"
