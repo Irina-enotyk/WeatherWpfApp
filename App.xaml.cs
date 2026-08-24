@@ -2,8 +2,10 @@
 using Microsoft.Extensions.Hosting;
 using System.Windows;
 using WeatherWpfApp.Servises;
+using WeatherWpfApp.Servises.GeoCoder;
 using WeatherWpfApp.Servises.Localizations;
 using WeatherWpfApp.Servises.Settings;
+using WeatherWpfApp.Servises.Weather;
 using WeatherWpfApp.Storages.Users;
 using WeatherWpfApp.Storages.Weathers;
 using WeatherWpfApp.ViewModels;
@@ -27,8 +29,12 @@ namespace WeatherWpfApp
                 services.AddSingleton<MainWindowViewModel>();
                 services.AddSingleton<HomeViewViewModel>();
                 services.AddSingleton<SettingsViewViewModel>();
+                services.AddSingleton<LocationViewViewModel>();
                 services.AddSingleton<RegistrationWindowViewModel>();
                 services.AddSingleton<SignInWindowViewModel>();
+
+                services.AddSingleton<OpenMeteoProvider>();
+                services.AddSingleton<GeoCoderService>();
 
                 services.AddSingleton<IWeatherStorage, WeatherStorage>();
                 services.AddSingleton<IUserStorage, UserStorage>();
@@ -54,6 +60,9 @@ namespace WeatherWpfApp
         {
             using (_host)
             {
+                var settingsService = _host.Services.GetService<ISettingsServise>();
+                settingsService.Save();
+
                 await _host.StopAsync(TimeSpan.FromSeconds(5));
             }
             base.OnExit(e);

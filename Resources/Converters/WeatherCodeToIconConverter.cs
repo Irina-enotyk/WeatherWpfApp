@@ -17,30 +17,82 @@ namespace WeatherWpfApp.Resources.Converters
                 case WeatherCodes.ClearSky:
                     resourceName = "clear_sky";
                     break;
+                case WeatherCodes.MainlyClear:
+                    resourceName = "clear_sky";
+                    break;
 
                 case WeatherCodes.PartlyCloudy:
                     resourceName = "partly_cloudy";
                     break;
+
                 case WeatherCodes.Overcast:
                     resourceName = "overcast";
                     break;
-                case WeatherCodes.Drizzle:
-                    resourceName = "drizzle";
-                    break;
+
                 case WeatherCodes.Fog:
                     resourceName = "fog";
                     break;
+                case WeatherCodes.DepositingRimeFog:
+                    resourceName = "fog";
+                    break;
+
+                case WeatherCodes.LightDrizzle:
+                    resourceName = "drizzle";
+                    break;
+                case WeatherCodes.ModerateDrizzle:
+                    resourceName = "drizzle";
+                    break;
+                case WeatherCodes.IntensityDrizzle:
+                    resourceName = "drizzle";
+                    break;
+                case WeatherCodes.LightFreezingDrizzle:
+                    resourceName = "drizzle";
+                    break;
+                case WeatherCodes.IntensityFreezingDrizzle:
+                    resourceName = "drizzle";
+                    break;
+
                 case WeatherCodes.SlightRain:
                     resourceName = "slight_rain";
                     break;
-                case WeatherCodes.Snowfall:
+                case WeatherCodes.ModerateRain:
+                    resourceName = "slight_rain";
+                    break;
+                case WeatherCodes.HeavyIntensityRain:
+                    resourceName = "slight_rain";
+                    break;
+
+                case WeatherCodes.SlightRainShowers:
+                    resourceName = "slight_rain";
+                    break;
+                case WeatherCodes.ModerateRainShowers:
+                    resourceName = "slight_rain";
+                    break;
+                case WeatherCodes.ViolentRainShowers:
+                    resourceName = "slight_rain";
+                    break;
+
+                case WeatherCodes.SlightSnowFall:
                     resourceName = "snowfall";
                     break;
+                case WeatherCodes.ModerateSnowFall:
+                    resourceName = "snowfall";
+                    break;
+                case WeatherCodes.HeavySnowFall:
+                    resourceName = "snowfall";
+                    break;
+                case WeatherCodes.SnowGrains:
+                    resourceName = "snowfall";
+                    break;
+
                 case WeatherCodes.Thunderstorm:
                     resourceName = "thunderstorm";
                     break;
-                case WeatherCodes.Windy:
-                    resourceName = "windy";
+                case WeatherCodes.SlightThunderstormHail:
+                    resourceName = "thunderstorm";
+                    break;
+                case WeatherCodes.HeavyThunderstormHail:
+                    resourceName = "thunderstorm";
                     break;
             }
             if(resourceName == null)

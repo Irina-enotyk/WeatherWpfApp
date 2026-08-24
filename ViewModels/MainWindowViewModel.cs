@@ -22,6 +22,7 @@ namespace WeatherWpfApp.ViewModels
         private readonly SignInWindowViewModel signInWindowViewModel;
         private readonly RegistrationWindowViewModel registrationWindowViewModel;
         private readonly SettingsViewViewModel settingsViewViewModel;
+        private readonly LocationViewViewModel locationViewViewModel;
 
         private readonly IUserStorage userStorage;
         private readonly ILocalizationServise localizationServise;
@@ -98,7 +99,8 @@ namespace WeatherWpfApp.ViewModels
             RegistrationWindowViewModel registrationWindowViewModel,
             SignInWindowViewModel signInWindowViewModel,
             ISettingsServise settingsServise,
-            SettingsViewViewModel settingsViewViewModel
+            SettingsViewViewModel settingsViewViewModel,
+            LocationViewViewModel locationViewViewModel
             )
         {
             HomeCommand = new RelayCommand(OpenHomeView, CanOpenHomeView);
@@ -118,11 +120,11 @@ namespace WeatherWpfApp.ViewModels
             this.userStorage = userStorage;
             this.localizationServise = localizationServise;
             this.settingsServise = settingsServise;
+            this.locationViewViewModel = locationViewViewModel;
 
-            var settings =  settingsServise.Load();
+            var settings = settingsServise.Settings;
             localizationServise.SetCulture(settings.Cultures);
 
-            //Разобраться, как сбросить активного пользователя командой при закрытии приложения
             userStorage.ResetActiveUser();
             SetAutorizationStatus();
         }
@@ -183,6 +185,7 @@ namespace WeatherWpfApp.ViewModels
 
         private void OpenHomeView(object obj)
         {
+            homeViewViewModel.TryUpdateWeather();
             SelectedContent = homeViewViewModel;
         }
         private bool CanOpenLocationView(object arg)
@@ -192,7 +195,7 @@ namespace WeatherWpfApp.ViewModels
 
         private void OpenLocationView(object obj)
         {
-            SelectedContent = new LocationViewViewModel();
+            SelectedContent = locationViewViewModel;
         }
 
         private bool CanOpenSettingsView(object arg)

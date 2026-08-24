@@ -17,7 +17,7 @@ namespace WeatherWpfApp.Resources.Converters
         {
             var temperature = (float)value;
 
-            var settings = settingsService.Load();
+            var settings = settingsService.Settings;
             var temperatureMeasure = settings.TemperatureMeasure;
             if (temperatureMeasure == TemperatureMeasure.Fahrenheit)
             {

@@ -7,17 +7,44 @@
              xmlns:vm="clr-namespace:WeatherWpfApp.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <vm:LocationViewViewModel/>
-    </UserControl.DataContext>
     <Grid>
-        <StackPanel HorizontalAlignment="Center" Width="300">
-            <TextBlock Text="Местоположение"/>
-            <TextBox/>
-            <TextBlock Text="Выбранное местоположение"/>
-            <TextBox/>
-            <TextBlock Text="Избранное местоположение"/>
-            <TextBox/>
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Disabled">
+            <StackPanel HorizontalAlignment="Center">
+                <ComboBox
+                    IsEditable="True"
+                    IsTextSearchEnabled="True"
+                    Text="{Binding LocationSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    ItemsSource="{Binding SearchResults}"
+                    DisplayMemberPath="Name"
+                    SelectedItem="{Binding SelectedLocation}">
+                </ComboBox>
+
+                <TextBlock Text="{Binding SelectLocation}"
+                           Foreground="{DynamicResource PagesTipsForeground}"
+                           FontSize="15"/>
+
+                <Border 
+                    Background="{DynamicResource PagesTipsForeground}"
+                    Margin="0, 5, 0, 0"
+                    Padding="15, 10"
+                    CornerRadius="10">
+
+                    <TextBlock
+                        Text="{Binding SelectedLocation.Name}"
+                        Foreground="{DynamicResource MainForeground}"
+                        FontSize="15"
+                        Margin="0, 0, 0, 0"
+                        VerticalAlignment="Center">
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+        
     </Grid>
 </UserControl>

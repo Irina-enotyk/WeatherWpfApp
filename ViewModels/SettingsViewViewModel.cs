@@ -21,8 +21,7 @@ namespace WeatherWpfApp.ViewModels
                 OnPropertyChanged();
 
                 settings.Cultures = culture;
-                settingsServise?.Save(settings);
-            }
+             }
         }
 
         private List<Cultures> cultures;
@@ -48,7 +47,6 @@ namespace WeatherWpfApp.ViewModels
                 OnPropertyChanged();
 
                 settings.TemperatureMeasure = temperatureMeasure;
-                settingsServise?.Save(settings);
             }
         }
 
@@ -69,7 +67,7 @@ namespace WeatherWpfApp.ViewModels
         {
             this.localizationServise = localizationServise;
             this.settingsServise = settingsServise;
-            this.settings = settingsServise.Load();
+            this.settings = settingsServise.Settings;
 
             Cultures = Enum.GetValues(typeof(Cultures)).Cast<Cultures>().ToList();
             TemperatureMeasures = Enum.GetValues(typeof(TemperatureMeasure)).Cast<TemperatureMeasure>().ToList();

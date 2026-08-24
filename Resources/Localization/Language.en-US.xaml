@@ -81,4 +81,9 @@
     <v:String x:Key="North">N</v:String>
     <v:String x:Key="South">S</v:String>
 
+    <!-- Страница мест-->
+    <v:String x:Key="SelectLocation">Selected place</v:String>
+    <v:String x:Key="FavouriteLocations">Favourite place</v:String>
+    <v:String x:Key="SearchPlaceHolder">Find and place on the planet</v:String>
+    
 </ResourceDictionary>
